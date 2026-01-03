@@ -1,4 +1,3 @@
-
 import { Model3D } from './types';
 
 export const MODELS: Model3D[] = [
@@ -10,8 +9,12 @@ export const MODELS: Model3D[] = [
     originalPrice: 220.00,
     rating: 4.9,
     reviewsCount: 128,
-    imageUrl: 'https://picsum.photos/seed/cyber1/800/600',
-    description: 'דמות סייברפאנק מפורטת במיוחד. כולל גרסה מיוחדת מותאמת להדפסת שרף (Resin).',
+    images: [
+      'https://picsum.photos/seed/cyber1/800/600',
+      'https://picsum.photos/seed/cyber2/800/600',
+      'https://picsum.photos/seed/cyber3/800/600'
+    ],
+    description: 'דמות סייברפאנק מפורטת במיוחד. כולל גרסה מיוחדת מותאמת להדפסת שרף (Resin). המודל כולל טקסטורות PBR איכותיות.',
     fileFormat: ['FBX', 'STL', 'OBJ'],
     vertices: '120k',
     isOnSale: true,
@@ -19,20 +22,22 @@ export const MODELS: Model3D[] = [
     recommendedMaterial: 'שרף (Resin) / Tough SLA'
   },
   {
-    id: '10',
-    name: 'מערכת ארגונית למגירות (DIY)',
+    id: 'custom-diy',
+    name: 'עיצוב אישי לפי דרישה',
     category: 'DIY',
-    price: 55.00,
-    originalPrice: 75.00,
-    rating: 4.9,
-    reviewsCount: 156,
-    imageUrl: 'https://picsum.photos/seed/diy1/800/600',
-    description: 'סט מודולרי להדפסה עצמית של חוצצים למגירות. ניתן להתאמה לכל גודל מגירה.',
-    fileFormat: ['STL', 'STEP'],
-    vertices: '5k',
-    isOnSale: true,
+    price: 0,
+    rating: 5.0,
+    reviewsCount: 12,
+    images: [
+      'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1581092162384-8987c1794ed9?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
+    description: 'זקוקים למודל ייחודי שאינו קיים בקטלוג? צוות Polymode כאן בשבילכם. אנו מציעים שירותי מידול ועיצוב בתלת-ממד בהתאמה אישית מלאה לפי שרטוט, תמונה או רעיון. צרו איתנו קשר לייעוץ ראשוני והצעת מחיר.',
+    fileFormat: ['STL', 'STEP', 'OBJ'],
+    vertices: 'בהתאם לעיצוב',
+    isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'PLA / PETG'
+    recommendedMaterial: 'בהתאמה אישית'
   },
   {
     id: '7',
@@ -42,28 +47,16 @@ export const MODELS: Model3D[] = [
     originalPrice: 250.00,
     rating: 5.0,
     reviewsCount: 42,
-    imageUrl: 'https://picsum.photos/seed/menorah1/800/600',
-    description: 'עיצוב גאומטרי מודרני למנורה. אופטימלי להדפסה בחומרים דמויי מתכת או פליז.',
+    images: [
+      'https://picsum.photos/seed/menorah1/800/600',
+      'https://picsum.photos/seed/menorah2/800/600'
+    ],
+    description: 'עיצוב גאומטרי מודרני למנורה. אופטימלי להדפסה בחומרים דמויי מתכת או פליז. יצירה אומנותית ייחודית.',
     fileFormat: ['STL', 'OBJ'],
     vertices: '85k',
     isOnSale: true,
     isPrintReady: true,
     recommendedMaterial: 'PLA מטאלי / נחושת'
-  },
-  {
-    id: '11',
-    name: 'תופסן כבלים שולחני',
-    category: 'DIY',
-    price: 15.00,
-    rating: 4.7,
-    reviewsCount: 312,
-    imageUrl: 'https://picsum.photos/seed/diy2/800/600',
-    description: 'פתרון פשוט ואלגנטי לניהול כבלים על שולחן העבודה. הדפסה מהירה ללא תמיכות.',
-    fileFormat: ['STL'],
-    vertices: '1k',
-    isOnSale: false,
-    isPrintReady: true,
-    recommendedMaterial: 'TPU (גמיש) או PLA'
   },
   {
     id: '8',
@@ -72,8 +65,11 @@ export const MODELS: Model3D[] = [
     price: 40.00,
     rating: 4.8,
     reviewsCount: 89,
-    imageUrl: 'https://picsum.photos/seed/mezuzah1/800/600',
-    description: 'בית מזוזה מעוצב בקווים נקיים. כולל חריץ פנימי מותאם לקלף סטנדרטי.',
+    images: [
+      'https://picsum.photos/seed/mezuzah1/800/600',
+      'https://picsum.photos/seed/mezuzah1b/800/600'
+    ],
+    description: 'בית מזוזה מעוצב בקווים נקיים. כולל חריץ פנימי מותאם לקלף סטנדרטי. התקנה קלה עם דבק דו-צדדי.',
     fileFormat: ['STL', 'STEP'],
     vertices: '12k',
     isOnSale: false,
@@ -88,58 +84,16 @@ export const MODELS: Model3D[] = [
     originalPrice: 70.00,
     rating: 4.8,
     reviewsCount: 215,
-    imageUrl: 'https://picsum.photos/seed/props1/800/600',
+    images: [
+      'https://picsum.photos/seed/props1/800/600',
+      'https://picsum.photos/seed/props1b/800/600',
+      'https://picsum.photos/seed/props1c/800/600'
+    ],
     description: '10 וריאציות של ארגזי מדע בדיוני. גאומטריה פשוטה שהופכת אותם למושלמים למתחילים בהדפסה.',
     fileFormat: ['FBX', 'STL'],
     vertices: '2k',
     isOnSale: true,
     isPrintReady: true,
     recommendedMaterial: 'כל סוג של PLA'
-  },
-  {
-    id: '12',
-    name: 'מתלה אוזניות אוניברסלי',
-    category: 'DIY',
-    price: 25.00,
-    originalPrice: 35.00,
-    rating: 4.6,
-    reviewsCount: 94,
-    imageUrl: 'https://picsum.photos/seed/diy3/800/600',
-    description: 'מתלה חזק המתחבר לצד השולחן. כולל ברגים להדפסה לחיזוק מקסימלי.',
-    fileFormat: ['STL', 'OBJ'],
-    vertices: '8k',
-    isOnSale: true,
-    isPrintReady: true,
-    recommendedMaterial: 'PETG לחוזק מכני'
-  },
-  {
-    id: '9',
-    name: 'גביע קידוש מגולף',
-    category: 'יודאיקה',
-    price: 120.00,
-    rating: 4.7,
-    reviewsCount: 15,
-    imageUrl: 'https://picsum.photos/seed/cup1/800/600',
-    description: 'גביע קידוש עם עיטורים מורכבים. דורש רזולוציית הדפסה גבוהה מאוד.',
-    fileFormat: ['STL'],
-    vertices: '300k',
-    isOnSale: false,
-    isPrintReady: true,
-    recommendedMaterial: 'שרף (Resin) איכותי'
-  },
-  {
-    id: '6',
-    name: 'נפח סגנוני',
-    category: 'דמויות',
-    price: 125.00,
-    rating: 4.9,
-    reviewsCount: 67,
-    imageUrl: 'https://picsum.photos/seed/char2/800/600',
-    description: 'דמות נפח מקסימה למשחקי פנטזיה. מודל אטום (Watertight) מוכן לפריסה להדפסה.',
-    fileFormat: ['FBX', 'STL', 'Blend'],
-    vertices: '25k',
-    isOnSale: false,
-    isPrintReady: true,
-    recommendedMaterial: 'שרף (Resin)'
   }
 ];

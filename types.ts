@@ -7,7 +7,7 @@ export interface Model3D {
   originalPrice?: number;
   rating: number;
   reviewsCount: number;
-  imageUrl: string;
+  images: string[];
   description: string;
   fileFormat: string[];
   vertices: string;

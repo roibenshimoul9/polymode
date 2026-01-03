@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { HashRouter as Router } from 'react-router-dom';
 import { MODELS } from './constants';
@@ -6,6 +7,7 @@ import Navbar from './components/Navbar';
 import ModelCard from './components/ModelCard';
 import CartSidebar from './components/CartSidebar';
 import GeminiAssistant from './components/GeminiAssistant';
+import ModelDetailsModal from './components/ModelDetailsModal';
 
 const CATEGORIES: Category[] = ['הכל', 'דמויות', 'אביזרים', 'יודאיקה', 'DIY', 'קבצי הדפסת תלת מימד'];
 
@@ -14,6 +16,7 @@ const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedModel, setSelectedModel] = useState<Model3D | null>(null);
 
   const filteredModels = useMemo(() => {
     return MODELS.filter(model => {
@@ -34,6 +37,7 @@ const App: React.FC = () => {
       return [...prev, { ...model, quantity: 1, purchaseType: type }];
     });
     setIsCartOpen(true);
+    setSelectedModel(null); // Close modal after adding to cart if open
   };
 
   const onUpdateQuantity = (id: string, type: string, delta: number) => {
@@ -112,7 +116,12 @@ const App: React.FC = () => {
           <section className="max-w-7xl mx-auto px-6 py-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredModels.map(model => (
-                <ModelCard key={model.id} model={model} onAddToCart={onAddToCart} />
+                <ModelCard 
+                  key={model.id} 
+                  model={model} 
+                  onAddToCart={onAddToCart} 
+                  onOpenDetails={setSelectedModel}
+                />
               ))}
             </div>
           </section>
@@ -122,10 +131,8 @@ const App: React.FC = () => {
           <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row-reverse justify-between items-center gap-8 text-center md:text-right">
             <div className="space-y-4">
               <div className="flex items-center justify-center md:justify-start space-x-2 space-x-reverse">
-                {/* Footer Logo - Refined Detailed Panda & Cube */}
                 <div className="relative w-12 h-12 flex items-center justify-center">
                   <svg viewBox="0 0 120 120" className="w-full h-full drop-shadow-[0_5px_15px_rgba(59,130,246,0.3)] overflow-visible">
-                    {/* Panda Behind */}
                     <g transform="translate(10, 20)">
                        <circle cx="42" cy="15" r="7" fill="#111" />
                        <circle cx="78" cy="15" r="7" fill="#111" />
@@ -134,11 +141,9 @@ const App: React.FC = () => {
                        <circle cx="72" cy="20" r="4" fill="#111" />
                        <circle cx="49" cy="19" r="1.5" fill="white" />
                        <circle cx="71" cy="19" r="1.5" fill="white" />
-                       {/* Paws */}
                        <circle cx="35" cy="24" r="3" fill="#000" />
                        <circle cx="85" cy="24" r="3" fill="#000" />
                     </g>
-                    {/* Cube */}
                     <g transform="translate(10, 15)">
                       <path d="M50 15 L85 30 L50 45 L15 30 Z" fill="#3b82f6" />
                       <path d="M50 45 L85 30 L85 70 L50 85 Z" fill="#1e3a8a" />
@@ -169,6 +174,12 @@ const App: React.FC = () => {
           items={cart}
           onRemove={onRemoveFromCart}
           onUpdateQuantity={onUpdateQuantity}
+        />
+
+        <ModelDetailsModal 
+          model={selectedModel} 
+          onClose={() => setSelectedModel(null)} 
+          onAddToCart={onAddToCart}
         />
       </div>
     </Router>
