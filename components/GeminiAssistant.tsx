@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { chatWithAssistant } from '../services/geminiService';
 
@@ -31,7 +32,7 @@ const GeminiAssistant: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-[60]">
+    <div className="fixed bottom-6 left-6 z-[60] flex flex-col items-center">
       {isOpen ? (
         <div className="bg-[#1a1a1a] border border-white/10 w-80 md:w-96 h-[500px] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300 text-right">
           <div className="bg-blue-600 p-4 flex justify-between items-center flex-row-reverse">
@@ -92,15 +93,59 @@ const GeminiAssistant: React.FC = () => {
           </div>
         </div>
       ) : (
-        <button 
-          onClick={() => setIsOpen(true)}
-          className="bg-blue-600 hover:bg-blue-500 text-white p-4 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center space-x-2 relative group-active:scale-95"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" />
-          </svg>
-          <span className="font-bold hidden md:inline">צ'אט עם פולי</span>
-        </button>
+        <div className="relative group flex flex-col items-center">
+          {/* Peeking Panda */}
+          <div className="absolute -top-14 left-1/2 -translate-x-1/2 w-20 h-20 transition-all duration-500 transform group-hover:-top-16 group-hover:scale-110 pointer-events-none animate-bounce-slow">
+            <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-xl overflow-visible">
+              {/* Ears with white outline */}
+              {/* Left Ear */}
+              <circle cx="25" cy="30" r="14" fill="white" />
+              <circle cx="25" cy="30" r="10.5" fill="#111" />
+              
+              {/* Right Ear */}
+              <circle cx="75" cy="30" r="14" fill="white" />
+              <circle cx="75" cy="30" r="10.5" fill="#111" />
+              
+              {/* Head/Body */}
+              <circle cx="50" cy="55" r="35" fill="white" />
+              
+              {/* Eye Patches */}
+              <ellipse cx="38" cy="50" rx="10" ry="12" fill="#111" transform="rotate(-15, 38, 50)" />
+              <ellipse cx="62" cy="50" rx="10" ry="12" fill="#111" transform="rotate(15, 62, 50)" />
+              
+              {/* Eyes */}
+              <circle cx="39" cy="48" r="3" fill="white" />
+              <circle cx="61" cy="48" r="3" fill="white" />
+              
+              {/* Nose */}
+              <ellipse cx="50" cy="62" rx="4" ry="2.5" fill="#111" />
+              
+              {/* Hands Peeking */}
+              <circle cx="35" cy="88" r="8" fill="#111" />
+              <circle cx="65" cy="88" r="8" fill="#111" />
+            </svg>
+          </div>
+
+          <button 
+            onClick={() => setIsOpen(true)}
+            className="bg-blue-600 hover:bg-blue-500 text-white p-4 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center space-x-2 relative group-active:scale-95 z-10"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" />
+            </svg>
+            <span className="font-bold hidden md:inline">צ'אט עם פולי</span>
+          </button>
+
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes bounce-slow {
+              0%, 100% { transform: translate(-50%, 0); }
+              50% { transform: translate(-50%, -5px); }
+            }
+            .animate-bounce-slow {
+              animation: bounce-slow 3s infinite ease-in-out;
+            }
+          `}} />
+        </div>
       )}
     </div>
   );

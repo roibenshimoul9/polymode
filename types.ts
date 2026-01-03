@@ -16,6 +16,14 @@ export interface Model3D {
   recommendedMaterial?: string;
 }
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar: string;
+  joinedAt: string;
+}
+
 export type Category = 'הכל' | 'דמויות' | 'אביזרים' | 'יודאיקה' | 'DIY' | 'קבצי הדפסת תלת מימד';
 
 export type PurchaseType = 'דיגיטלי' | 'פיזי';
