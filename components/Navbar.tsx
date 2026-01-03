@@ -1,20 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { User } from '../types';
 
 interface NavbarProps {
   onCartToggle: () => void;
   cartCount: number;
-  user: User | null;
-  onLoginClick: () => void;
-  onLogout: () => void;
 }
 
 const PHONE_NUMBER = "0502156056";
 
-const Navbar: React.FC<NavbarProps> = ({ onCartToggle, cartCount, user, onLoginClick, onLogout }) => {
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-
+const Navbar: React.FC<NavbarProps> = ({ onCartToggle, cartCount }) => {
   const handleSupportClick = (e: React.MouseEvent) => {
     e.preventDefault();
     const message = `שלום Polymode! אני זקוק לתמיכה או ייעוץ בנושא מודלים ותלת-ממד.`;
@@ -84,43 +78,6 @@ const Navbar: React.FC<NavbarProps> = ({ onCartToggle, cartCount, user, onLoginC
               </span>
             )}
           </button>
-
-          {user ? (
-            <div className="relative">
-              <button 
-                onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className="flex items-center gap-2 bg-white/5 hover:bg-white/10 p-1 pr-3 rounded-full border border-white/10 transition-all"
-              >
-                <span className="text-xs font-bold text-gray-200 hidden sm:inline">{user.name}</span>
-                <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full border border-blue-500/50" />
-              </button>
-
-              {isUserMenuOpen && (
-                <div className="absolute top-full mt-2 left-0 w-48 bg-[#111] border border-white/10 rounded-2xl shadow-2xl py-2 animate-in fade-in slide-in-from-top-2 duration-200">
-                  <Link 
-                    to="/profile" 
-                    onClick={() => setIsUserMenuOpen(false)}
-                    className="block px-4 py-3 text-sm text-gray-300 hover:bg-white/5 hover:text-white text-right"
-                  >
-                    אזור אישי
-                  </Link>
-                  <button 
-                    onClick={() => { onLogout(); setIsUserMenuOpen(false); }}
-                    className="w-full block px-4 py-3 text-sm text-red-500 hover:bg-red-500/10 text-right font-bold border-t border-white/5"
-                  >
-                    התנתקות
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <button 
-              onClick={onLoginClick}
-              className="bg-white text-black px-6 py-2 rounded-full text-sm font-black hover:bg-blue-400 hover:text-white transition-all transform active:scale-95 shadow-lg shadow-white/5"
-            >
-              התחברות
-            </button>
-          )}
         </div>
       </div>
     </nav>

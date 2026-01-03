@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { MODELS } from './constants.ts';
-import { Model3D, Category, CartItem, PurchaseType, User } from './types.ts';
+import { Model3D, Category, CartItem, PurchaseType } from './types.ts';
 import Navbar from './components/Navbar.tsx';
 import ModelCard from './components/ModelCard.tsx';
 import CartSidebar from './components/CartSidebar.tsx';
@@ -10,8 +10,6 @@ import ModelDetailsModal from './components/ModelDetailsModal.tsx';
 import PrintingGuide from './components/PrintingGuide.tsx';
 import LicensesPage from './components/LicensesPage.tsx';
 import PrivacyPolicy from './components/PrivacyPolicy.tsx';
-import LoginModal from './components/LoginModal.tsx';
-import PersonalArea from './components/PersonalArea.tsx';
 import SpecialsPage from './components/SpecialsPage.tsx';
 
 const CATEGORIES: Category[] = ['הכל', 'דמויות', 'אביזרים', 'יודאיקה', 'DIY', 'קבצי הדפסת תלת מימד'];
@@ -95,8 +93,6 @@ const Catalog: React.FC<{
 );
 
 const App: React.FC = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Category>('הכל');
   const [searchQuery, setSearchQuery] = useState('');
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -139,24 +135,12 @@ const App: React.FC = () => {
     setCart(prev => prev.filter(item => !(item.id === id && item.purchaseType === type)));
   };
 
-  const handleLogin = (mockUser: User) => {
-    setUser(mockUser);
-    setIsLoginModalOpen(false);
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-  };
-
   return (
     <Router>
       <div className="min-h-screen flex flex-col text-right bg-[#0a0a0a]">
         <Navbar 
           onCartToggle={() => setIsCartOpen(true)} 
           cartCount={cart.reduce((a, b) => a + b.quantity, 0)} 
-          user={user}
-          onLoginClick={() => setIsLoginModalOpen(true)}
-          onLogout={handleLogout}
         />
         
         <main className="flex-grow">
@@ -175,7 +159,6 @@ const App: React.FC = () => {
             <Route path="/guide" element={<PrintingGuide />} />
             <Route path="/licenses" element={<LicensesPage />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/profile" element={<PersonalArea user={user} onLogout={handleLogout} />} />
             <Route path="/specials" element={
               <SpecialsPage 
                 onAddToCart={onAddToCart} 
@@ -227,12 +210,6 @@ const App: React.FC = () => {
           model={selectedModel} 
           onClose={() => setSelectedModel(null)} 
           onAddToCart={onAddToCart}
-        />
-
-        <LoginModal 
-          isOpen={isLoginModalOpen} 
-          onClose={() => setIsLoginModalOpen(false)} 
-          onLogin={handleLogin}
         />
       </div>
     </Router>

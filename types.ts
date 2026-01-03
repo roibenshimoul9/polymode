@@ -16,14 +16,6 @@ export interface Model3D {
   recommendedMaterial?: string;
 }
 
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  avatar: string;
-  joinedAt: string;
-}
-
 export type Category = 'הכל' | 'דמויות' | 'אביזרים' | 'יודאיקה' | 'DIY' | 'קבצי הדפסת תלת מימד';
 
 export type PurchaseType = 'דיגיטלי' | 'פיזי';
@@ -31,4 +23,13 @@ export type PurchaseType = 'דיגיטלי' | 'פיזי';
 export interface CartItem extends Model3D {
   quantity: number;
   purchaseType: PurchaseType;
+}
+
+// Added User interface to fix import errors in components/LoginModal.tsx and components/PersonalArea.tsx
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar: string;
+  joinedAt: string;
 }
