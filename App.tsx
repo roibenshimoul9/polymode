@@ -1,13 +1,12 @@
-
 import React, { useState, useMemo } from 'react';
 import { HashRouter as Router } from 'react-router-dom';
-import { MODELS } from './constants';
-import { Model3D, Category, CartItem, PurchaseType } from './types';
-import Navbar from './components/Navbar';
-import ModelCard from './components/ModelCard';
-import CartSidebar from './components/CartSidebar';
-import GeminiAssistant from './components/GeminiAssistant';
-import ModelDetailsModal from './components/ModelDetailsModal';
+import { MODELS } from './constants.ts';
+import { Model3D, Category, CartItem, PurchaseType } from './types.ts';
+import Navbar from './components/Navbar.tsx';
+import ModelCard from './components/ModelCard.tsx';
+import CartSidebar from './components/CartSidebar.tsx';
+import GeminiAssistant from './components/GeminiAssistant.tsx';
+import ModelDetailsModal from './components/ModelDetailsModal.tsx';
 
 const CATEGORIES: Category[] = ['הכל', 'דמויות', 'אביזרים', 'יודאיקה', 'DIY', 'קבצי הדפסת תלת מימד'];
 

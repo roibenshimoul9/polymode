@@ -29,8 +29,7 @@ export const MODELS: Model3D[] = [
     rating: 5.0,
     reviewsCount: 12,
     images: [
-      'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800&h=600',
-      'https://images.unsplash.com/photo-1581092162384-8987c1794ed9?auto=format&fit=crop&q=80&w=800&h=600'
+      'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800&h=600'
     ],
     description: 'זקוקים למודל ייחודי שאינו קיים בקטלוג? צוות Polymode כאן בשבילכם. אנו מציעים שירותי מידול ועיצוב בתלת-ממד בהתאמה אישית מלאה לפי שרטוט, תמונה או רעיון. צרו איתנו קשר לייעוץ ראשוני והצעת מחיר.',
     fileFormat: ['STL', 'STEP', 'OBJ'],
@@ -38,6 +37,24 @@ export const MODELS: Model3D[] = [
     isOnSale: false,
     isPrintReady: true,
     recommendedMaterial: 'בהתאמה אישית'
+  },
+  {
+    id: '2',
+    name: 'רכב עתידני Neo-Tokyo',
+    category: 'אביזרים',
+    price: 85.00,
+    rating: 4.7,
+    reviewsCount: 64,
+    images: [
+      'https://picsum.photos/seed/car1/800/600',
+      'https://picsum.photos/seed/car2/800/600'
+    ],
+    description: 'מודל רכב בעיצוב עתידני נקי. מושלם למשחקי מחשב או כפריט אספנות מודפס.',
+    fileFormat: ['OBJ', 'BLEND'],
+    vertices: '45k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA משי (Silk)'
   },
   {
     id: '7',
@@ -51,7 +68,7 @@ export const MODELS: Model3D[] = [
       'https://picsum.photos/seed/menorah1/800/600',
       'https://picsum.photos/seed/menorah2/800/600'
     ],
-    description: 'עיצוב גאומטרי מודרני למנורה. אופטימלי להדפסה בחומרים דמויי מתכת או פליז. יצירה אומנותית ייחודית.',
+    description: 'עיצוב גאומטרי מודרני למנורה. אופטימלי להדפסה בחומרים דמויי מתכת או פליז.',
     fileFormat: ['STL', 'OBJ'],
     vertices: '85k',
     isOnSale: true,
@@ -66,10 +83,9 @@ export const MODELS: Model3D[] = [
     rating: 4.8,
     reviewsCount: 89,
     images: [
-      'https://picsum.photos/seed/mezuzah1/800/600',
-      'https://picsum.photos/seed/mezuzah1b/800/600'
+      'https://picsum.photos/seed/mezuzah1/800/600'
     ],
-    description: 'בית מזוזה מעוצב בקווים נקיים. כולל חריץ פנימי מותאם לקלף סטנדרטי. התקנה קלה עם דבק דו-צדדי.',
+    description: 'בית מזוזה מעוצב בקווים נקיים. כולל חריץ פנימי מותאם לקלף סטנדרטי.',
     fileFormat: ['STL', 'STEP'],
     vertices: '12k',
     isOnSale: false,
@@ -86,8 +102,7 @@ export const MODELS: Model3D[] = [
     reviewsCount: 215,
     images: [
       'https://picsum.photos/seed/props1/800/600',
-      'https://picsum.photos/seed/props1b/800/600',
-      'https://picsum.photos/seed/props1c/800/600'
+      'https://picsum.photos/seed/props1b/800/600'
     ],
     description: '10 וריאציות של ארגזי מדע בדיוני. גאומטריה פשוטה שהופכת אותם למושלמים למתחילים בהדפסה.',
     fileFormat: ['FBX', 'STL'],
