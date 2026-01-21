@@ -30,6 +30,11 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
     window.open(`https://wa.me/972${PHONE_NUMBER.substring(1)}?text=${encodedMessage}`, '_blank');
   };
 
+  const handleAddToCart = (e: React.MouseEvent, type: PurchaseType) => {
+    e.stopPropagation();
+    onAddToCart(model, type);
+  };
+
   return (
     <div 
       className="group bg-[#111] border border-white/5 rounded-xl md:rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 flex flex-col h-full cursor-pointer"
@@ -42,7 +47,6 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
         
-        {/* Navigation Arrows on Card - Hidden on Mobile */}
         {model.images.length > 1 && (
           <div className="absolute inset-0 hidden md:flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity">
             <button 
@@ -60,7 +64,6 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
           </div>
         )}
 
-        {/* Indicators - Smaller on Mobile */}
         <div className="absolute bottom-2 md:bottom-3 left-1/2 -translate-x-1/2 flex gap-1 md:gap-1.5">
           {model.images.map((_, idx) => (
             <div 
@@ -76,13 +79,6 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
               מבצע
             </div>
           )}
-          {model.isPrintReady && (
-            <div className="bg-cyan-500 text-black text-[8px] md:text-[10px] font-black px-1.5 md:px-2 py-0.5 md:py-1 rounded uppercase tracking-wider flex items-center gap-1">
-              <svg className="w-2.5 h-2.5 md:w-3 md:h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M19 8h-1V3H6v5H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zM8 5h8v3H8V5zm8 14H8v-4h8v4zm2-4v-2H6v2H4v-4c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v4h-2z"/><circle cx="18" cy="11.5" r="1"/></svg>
-              <span className="hidden sm:inline">מוכן להדפסה</span>
-              <span className="sm:hidden">פיזי</span>
-            </div>
-          )}
         </div>
       </div>
 
@@ -95,38 +91,49 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
           </div>
         </div>
         
-        <h3 className="font-bold text-gray-100 text-xs md:text-base mb-1 md:mb-2 line-clamp-1">{model.name}</h3>
-        <p className="text-[10px] md:text-xs text-gray-500 line-clamp-2 mb-2 hidden md:block">{model.description}</p>
+        <h3 className="font-bold text-gray-100 text-[11px] md:text-base mb-1 md:mb-2 line-clamp-1">{model.name}</h3>
         
-        <div className="mt-auto pt-2 md:pt-4 border-t border-white/5 space-y-2 md:space-y-3">
-          <div className="flex flex-wrap items-baseline gap-1 md:gap-2 justify-end">
+        <div className="mt-auto pt-2 md:pt-4 border-t border-white/5 space-y-2">
+          <div className="flex flex-wrap items-baseline gap-1 md:gap-2 justify-end mb-1">
             {model.price === 0 ? (
-              <span className="text-xs md:text-lg font-bold text-cyan-400">בתיאום אישי</span>
+              <span className="text-[11px] md:text-lg font-bold text-cyan-400">בתיאום אישי</span>
             ) : (
               <>
-                <span className="text-sm md:text-lg font-bold text-white">₪{model.price.toFixed(0)}</span>
+                <span className="text-xs md:text-lg font-bold text-white">₪{model.price.toFixed(0)}</span>
                 {model.originalPrice && (
-                  <span className="text-[9px] md:text-xs text-gray-600 line-through">₪{model.originalPrice.toFixed(0)}</span>
+                  <span className="text-[8px] md:text-xs text-gray-600 line-through">₪{model.originalPrice.toFixed(0)}</span>
                 )}
               </>
             )}
           </div>
           
-          <div className="grid grid-cols-1 gap-1.5">
+          <div className="flex flex-col gap-1.5">
             {model.price === 0 ? (
               <button 
                 onClick={handleContactClick}
-                className="w-full py-1.5 md:py-2.5 bg-cyan-600 hover:bg-cyan-500 rounded-lg md:rounded-xl text-[9px] md:text-xs font-bold text-white transition-all shadow-lg shadow-cyan-900/20"
+                className="w-full py-1.5 md:py-2.5 bg-cyan-600 hover:bg-cyan-500 rounded-lg md:rounded-xl text-[9px] md:text-xs font-bold text-white transition-all"
               >
                 צרו קשר
               </button>
             ) : (
-              <button 
-                onClick={(e) => { e.stopPropagation(); onAddToCart(model, 'דיגיטלי'); }}
-                className="w-full py-1.5 md:py-2.5 bg-blue-600 hover:bg-blue-500 rounded-lg md:rounded-xl text-[9px] md:text-xs font-bold text-white transition-all shadow-lg shadow-blue-900/20"
-              >
-                הורדה
-              </button>
+              <>
+                <button 
+                  onClick={(e) => handleAddToCart(e, 'דיגיטלי')}
+                  className="w-full py-1.5 md:py-2.5 bg-blue-600 hover:bg-blue-500 rounded-lg md:rounded-xl text-[9px] md:text-xs font-bold text-white transition-all flex items-center justify-center gap-1"
+                >
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                  הורדה
+                </button>
+                {model.isPrintReady && (
+                  <button 
+                    onClick={(e) => handleAddToCart(e, 'פיזי')}
+                    className="w-full py-1.5 md:py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg md:rounded-xl text-[9px] md:text-xs font-bold text-cyan-400 transition-all flex items-center justify-center gap-1"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    הזמנה פיזית
+                  </button>
+                )}
+              </>
             )}
           </div>
         </div>
