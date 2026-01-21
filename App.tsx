@@ -36,31 +36,31 @@ const Catalog: React.FC<{
 }) => (
   <>
     {/* Hero Section */}
-    <section className="relative py-20 overflow-hidden">
+    <section className="relative py-12 md:py-20 overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-blue-600/20 blur-[120px] rounded-full -z-10" />
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight text-white">
+        <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight mb-4 md:mb-6 leading-tight text-white">
           מהמסך למציאות:<br />
           <span className="text-blue-500 uppercase tracking-wide">Polymode</span>
         </h1>
-        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+        <p className="text-gray-400 text-base md:text-xl max-w-2xl mx-auto mb-8 md:mb-10">
           זירת המסחר המקצועית למודלים ו<span className="text-cyan-400 font-semibold">הדפסות תלת-ממד במשלוח עד הבית</span>.
         </p>
         
         <div className="max-w-xl mx-auto relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-          <div className="relative flex items-center bg-[#111] border border-white/10 rounded-2xl p-2 flex-row-reverse">
-            <svg className="w-5 h-5 text-gray-500 mr-4 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="relative flex items-center bg-[#111] border border-white/10 rounded-2xl p-1.5 md:p-2 flex-row-reverse">
+            <svg className="w-5 h-5 text-gray-500 mr-3 ml-3 md:mr-4 md:ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <input 
               type="text" 
-              placeholder="חפש דמויות, פידג'טים, DIY, יודאיקה או מודלים להדפסה..."
-              className="flex-grow bg-transparent border-none focus:ring-0 text-white px-4 py-3 text-sm md:text-base text-right"
+              placeholder="חפש מודלים להדפסה..."
+              className="flex-grow bg-transparent border-none focus:ring-0 text-white px-2 md:px-4 py-2 md:py-3 text-sm md:text-base text-right"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button className="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-500 transition-colors hidden sm:block">
+            <button className="bg-blue-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:bg-blue-500 transition-colors hidden sm:block">
               חיפוש
             </button>
           </div>
@@ -69,7 +69,7 @@ const Catalog: React.FC<{
     </section>
 
     {/* Catalog Controls */}
-    <section className="sticky top-[73px] z-40 bg-black/95 border-b border-white/5 py-4">
+    <section className="sticky top-[73px] z-40 bg-black/95 border-b border-white/5 py-3 md:py-4">
       <div className="max-w-7xl mx-auto px-6 space-y-4">
         {/* Category Row */}
         <div className="overflow-x-auto no-scrollbar flex items-center justify-start space-x-2 space-x-reverse pb-1">
@@ -77,7 +77,7 @@ const Catalog: React.FC<{
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`whitespace-nowrap px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
+              className={`whitespace-nowrap px-4 md:px-6 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all ${
                 selectedCategory === cat 
                   ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' 
                   : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
@@ -89,54 +89,53 @@ const Catalog: React.FC<{
         </div>
 
         {/* Price Range Filter Row */}
-        <div className="flex flex-wrap items-center gap-4 text-right">
-          <div className="flex items-center gap-3 bg-white/5 p-1 rounded-2xl border border-white/5">
-            <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 px-3">טווח מחירים:</span>
+        <div className="flex flex-wrap items-center gap-3 md:gap-4 text-right">
+          <div className="flex items-center gap-2 md:gap-3 bg-white/5 p-1 rounded-2xl border border-white/5">
+            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-gray-500 px-2 md:px-3 whitespace-nowrap">מחיר:</span>
             
             <div className="relative flex items-center">
-              <span className="absolute right-3 text-gray-600 text-[10px]">₪</span>
+              <span className="absolute right-2 text-gray-600 text-[9px] md:text-[10px]">₪</span>
               <input 
                 type="number" 
-                placeholder="מינימום"
+                placeholder="מ-"
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value === '' ? '' : Number(e.target.value))}
-                className="w-24 bg-black/40 border border-white/10 rounded-xl py-1.5 pr-7 pl-3 text-xs text-white focus:outline-none focus:border-blue-500 transition-colors"
+                className="w-16 md:w-24 bg-black/40 border border-white/10 rounded-xl py-1 md:py-1.5 pr-5 md:pr-7 pl-2 md:pl-3 text-[10px] md:text-xs text-white focus:outline-none focus:border-blue-500 transition-colors"
               />
             </div>
 
             <div className="relative flex items-center">
-              <span className="absolute right-3 text-gray-600 text-[10px]">₪</span>
+              <span className="absolute right-2 text-gray-600 text-[9px] md:text-[10px]">₪</span>
               <input 
                 type="number" 
-                placeholder="מקסימום"
+                placeholder="עד"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value === '' ? '' : Number(e.target.value))}
-                className="w-24 bg-black/40 border border-white/10 rounded-xl py-1.5 pr-7 pl-3 text-xs text-white focus:outline-none focus:border-blue-500 transition-colors"
+                className="w-16 md:w-24 bg-black/40 border border-white/10 rounded-xl py-1 md:py-1.5 pr-5 md:pr-7 pl-2 md:pl-3 text-[10px] md:text-xs text-white focus:outline-none focus:border-blue-500 transition-colors"
               />
             </div>
 
             {(minPrice !== '' || maxPrice !== '') && (
               <button 
                 onClick={() => { setMinPrice(''); setMaxPrice(''); }}
-                className="p-1.5 hover:bg-red-500/10 text-gray-500 hover:text-red-500 transition-all rounded-lg ml-1"
-                title="נקה מחיר"
+                className="p-1 hover:bg-red-500/10 text-gray-500 hover:text-red-500 transition-all rounded-lg ml-1"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
             )}
           </div>
           
-          <div className="text-[10px] text-gray-600 font-bold">
-            נמצאו {filteredModels.length} תוצאות מתאימות
+          <div className="text-[9px] md:text-[10px] text-gray-600 font-bold hidden sm:block">
+            {filteredModels.length} תוצאות
           </div>
         </div>
       </div>
     </section>
 
-    {/* Catalog Grid */}
-    <section className="max-w-7xl mx-auto px-6 py-12">
+    {/* Catalog Grid - Updated for 2 columns on mobile */}
+    <section className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
       {filteredModels.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
           {filteredModels.map(model => (
             <ModelCard 
               key={model.id} 
@@ -147,17 +146,17 @@ const Catalog: React.FC<{
           ))}
         </div>
       ) : (
-        <div className="text-center py-32 bg-[#111] rounded-[3rem] border border-white/5">
-          <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-700">
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 9.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <div className="text-center py-24 bg-[#111] rounded-[2rem] md:rounded-[3rem] border border-white/5">
+          <div className="w-16 h-16 md:w-20 md:h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-700">
+            <svg className="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 9.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
           </div>
-          <h3 className="text-2xl font-black text-white mb-2">לא נמצאו מודלים מתאימים</h3>
-          <p className="text-gray-500">נסה לשנות את מסנני החיפוש או המחיר.</p>
+          <h3 className="text-xl md:text-2xl font-black text-white mb-2">לא נמצאו מודלים</h3>
+          <p className="text-gray-500 text-sm">נסה לשנות את מסנני המחיר.</p>
           <button 
             onClick={() => { setSearchQuery(''); setSelectedCategory('הכל'); setMinPrice(''); setMaxPrice(''); }}
-            className="mt-8 text-blue-500 font-bold hover:underline"
+            className="mt-6 text-blue-500 font-bold hover:underline text-sm"
           >
-            איפוס כל המסננים
+            איפוס מסננים
           </button>
         </div>
       )}
@@ -176,15 +175,12 @@ const App: React.FC = () => {
 
   const filteredModels = useMemo(() => {
     return MODELS.filter(model => {
-      // Category filter
       const matchesCategory = selectedCategory === 'הכל' || 
                              (selectedCategory === 'קבצי הדפסת תלת מימד' ? model.isPrintReady : model.category === selectedCategory);
       
-      // Search filter
       const matchesSearch = model.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                            model.description.toLowerCase().includes(searchQuery.toLowerCase());
       
-      // Price Range filter
       const matchesMin = minPrice === '' || model.price >= minPrice;
       const matchesMax = maxPrice === '' || model.price <= maxPrice;
 
