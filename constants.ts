@@ -1,6 +1,27 @@
+
 import { Model3D } from './types';
 
 export const MODELS: Model3D[] = [
+  {
+    id: 'fidget-vortex',
+    name: 'פידג\'ט בצורות תלת מימדי',
+    category: 'פידג\'טים',
+    price: 35.00,
+    originalPrice: 40.00,
+    rating: 5.0,
+    reviewsCount: 24,
+    images: [
+      'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800&h=600', // מייצג את המראה הגאומטרי הסגול-כחול
+      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800&h=600', // מייצג שכבות גאומטריות
+      'https://images.unsplash.com/photo-1509223197845-458d87318791?auto=format&fit=crop&q=80&w=800&h=600'  // מייצג וורטקס מתמטי
+    ],
+    description: 'סדרת פידג\'טים גאומטריים מהפנטים הכוללת צורות משושה וריבוע בשכבות משולבות. המודל יוצר אפקט ויזואלי של עומק אינסופי (Vortex) בעת משחק. מתאים להדפסה בצבעים מתחלפים (Multicolor) לקבלת המראה המופיע בתמונות.',
+    fileFormat: ['STL', 'STEP'],
+    vertices: '52k',
+    isOnSale: true,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA Silk (משי) כחול-סגול / Magic PLA'
+  },
   {
     id: '1',
     name: 'רונין סייברפאנק',
@@ -20,6 +41,43 @@ export const MODELS: Model3D[] = [
     isOnSale: true,
     isPrintReady: true,
     recommendedMaterial: 'שרף (Resin) / Tough SLA'
+  },
+  {
+    id: 'fidget-1',
+    name: 'דרקון קריסטל מפרקי',
+    category: 'פידג\'טים',
+    price: 55.00,
+    originalPrice: 75.00,
+    rating: 4.9,
+    reviewsCount: 342,
+    images: [
+      'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://picsum.photos/seed/dragon2/800/600'
+    ],
+    description: 'פידג\'ט דרקון גמיש במיוחד המודפס כיחידה אחת (Print-in-place). זז בצורה חלקה ומספק חוויה סנסורית מדהימה.',
+    fileFormat: ['STL'],
+    vertices: '85k',
+    isOnSale: true,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA משי (Silk) למראה זוהר'
+  },
+  {
+    id: 'fidget-2',
+    name: 'קוביית אינסוף גאומטרית',
+    category: 'פידג\'טים',
+    price: 35.00,
+    rating: 4.7,
+    reviewsCount: 156,
+    images: [
+      'https://picsum.photos/seed/cube1/800/600',
+      'https://picsum.photos/seed/cube2/800/600'
+    ],
+    description: 'קובייה מתקפלת לאינסוף כיוונים. פתרון מעולה להפגת מתחים ושיפור הריכוז. מודל עמיד מאוד.',
+    fileFormat: ['STL', 'STEP'],
+    vertices: '15k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PETG לעמידות מקסימלית'
   },
   {
     id: 'custom-diy',

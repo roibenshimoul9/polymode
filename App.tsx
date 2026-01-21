@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { MODELS } from './constants.ts';
@@ -12,17 +13,27 @@ import LicensesPage from './components/LicensesPage.tsx';
 import PrivacyPolicy from './components/PrivacyPolicy.tsx';
 import SpecialsPage from './components/SpecialsPage.tsx';
 
-const CATEGORIES: Category[] = ['הכל', 'דמויות', 'אביזרים', 'יודאיקה', 'DIY', 'קבצי הדפסת תלת מימד'];
+const CATEGORIES: Category[] = ['הכל', 'דמויות', 'פידג\'טים', 'אביזרים', 'יודאיקה', 'DIY', 'קבצי הדפסת תלת מימד'];
 
 const Catalog: React.FC<{ 
   searchQuery: string, 
   setSearchQuery: (s: string) => void,
   selectedCategory: Category,
   setSelectedCategory: (c: Category) => void,
+  minPrice: number | '',
+  setMinPrice: (n: number | '') => void,
+  maxPrice: number | '',
+  setMaxPrice: (n: number | '') => void,
   filteredModels: Model3D[],
   onAddToCart: (m: Model3D, t: PurchaseType) => void,
   onOpenDetails: (m: Model3D) => void
-}> = ({ searchQuery, setSearchQuery, selectedCategory, setSelectedCategory, filteredModels, onAddToCart, onOpenDetails }) => (
+}> = ({ 
+  searchQuery, setSearchQuery, 
+  selectedCategory, setSelectedCategory, 
+  minPrice, setMinPrice, 
+  maxPrice, setMaxPrice, 
+  filteredModels, onAddToCart, onOpenDetails 
+}) => (
   <>
     {/* Hero Section */}
     <section className="relative py-20 overflow-hidden">
@@ -44,7 +55,7 @@ const Catalog: React.FC<{
             </svg>
             <input 
               type="text" 
-              placeholder="חפש דמויות, DIY, יודאיקה או מודלים להדפסה..."
+              placeholder="חפש דמויות, פידג'טים, DIY, יודאיקה או מודלים להדפסה..."
               className="flex-grow bg-transparent border-none focus:ring-0 text-white px-4 py-3 text-sm md:text-base text-right"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -59,35 +70,97 @@ const Catalog: React.FC<{
 
     {/* Catalog Controls */}
     <section className="sticky top-[73px] z-40 bg-black/95 border-b border-white/5 py-4">
-      <div className="max-w-7xl mx-auto px-6 overflow-x-auto no-scrollbar flex items-center justify-start space-x-2 space-x-reverse">
-        {CATEGORIES.map(cat => (
-          <button
-            key={cat}
-            onClick={() => setSelectedCategory(cat)}
-            className={`whitespace-nowrap px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-              selectedCategory === cat 
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' 
-                : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
-            }`}
-          >
-            {cat === 'קבצי הדפסת תלת מימד' ? '🖨️ ' + cat : cat}
-          </button>
-        ))}
+      <div className="max-w-7xl mx-auto px-6 space-y-4">
+        {/* Category Row */}
+        <div className="overflow-x-auto no-scrollbar flex items-center justify-start space-x-2 space-x-reverse pb-1">
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`whitespace-nowrap px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
+                selectedCategory === cat 
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' 
+                  : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+              }`}
+            >
+              {cat === 'קבצי הדפסת תלת מימד' ? '🖨️ ' + cat : cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Price Range Filter Row */}
+        <div className="flex flex-wrap items-center gap-4 text-right">
+          <div className="flex items-center gap-3 bg-white/5 p-1 rounded-2xl border border-white/5">
+            <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 px-3">טווח מחירים:</span>
+            
+            <div className="relative flex items-center">
+              <span className="absolute right-3 text-gray-600 text-[10px]">₪</span>
+              <input 
+                type="number" 
+                placeholder="מינימום"
+                value={minPrice}
+                onChange={(e) => setMinPrice(e.target.value === '' ? '' : Number(e.target.value))}
+                className="w-24 bg-black/40 border border-white/10 rounded-xl py-1.5 pr-7 pl-3 text-xs text-white focus:outline-none focus:border-blue-500 transition-colors"
+              />
+            </div>
+
+            <div className="relative flex items-center">
+              <span className="absolute right-3 text-gray-600 text-[10px]">₪</span>
+              <input 
+                type="number" 
+                placeholder="מקסימום"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(e.target.value === '' ? '' : Number(e.target.value))}
+                className="w-24 bg-black/40 border border-white/10 rounded-xl py-1.5 pr-7 pl-3 text-xs text-white focus:outline-none focus:border-blue-500 transition-colors"
+              />
+            </div>
+
+            {(minPrice !== '' || maxPrice !== '') && (
+              <button 
+                onClick={() => { setMinPrice(''); setMaxPrice(''); }}
+                className="p-1.5 hover:bg-red-500/10 text-gray-500 hover:text-red-500 transition-all rounded-lg ml-1"
+                title="נקה מחיר"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            )}
+          </div>
+          
+          <div className="text-[10px] text-gray-600 font-bold">
+            נמצאו {filteredModels.length} תוצאות מתאימות
+          </div>
+        </div>
       </div>
     </section>
 
     {/* Catalog Grid */}
     <section className="max-w-7xl mx-auto px-6 py-12">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {filteredModels.map(model => (
-          <ModelCard 
-            key={model.id} 
-            model={model} 
-            onAddToCart={onAddToCart} 
-            onOpenDetails={onOpenDetails}
-          />
-        ))}
-      </div>
+      {filteredModels.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredModels.map(model => (
+            <ModelCard 
+              key={model.id} 
+              model={model} 
+              onAddToCart={onAddToCart} 
+              onOpenDetails={onOpenDetails}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-32 bg-[#111] rounded-[3rem] border border-white/5">
+          <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-700">
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 9.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <h3 className="text-2xl font-black text-white mb-2">לא נמצאו מודלים מתאימים</h3>
+          <p className="text-gray-500">נסה לשנות את מסנני החיפוש או המחיר.</p>
+          <button 
+            onClick={() => { setSearchQuery(''); setSelectedCategory('הכל'); setMinPrice(''); setMaxPrice(''); }}
+            className="mt-8 text-blue-500 font-bold hover:underline"
+          >
+            איפוס כל המסננים
+          </button>
+        </div>
+      )}
     </section>
   </>
 );
@@ -95,19 +168,29 @@ const Catalog: React.FC<{
 const App: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>('הכל');
   const [searchQuery, setSearchQuery] = useState('');
+  const [minPrice, setMinPrice] = useState<number | ''>('');
+  const [maxPrice, setMaxPrice] = useState<number | ''>('');
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedModel, setSelectedModel] = useState<Model3D | null>(null);
 
   const filteredModels = useMemo(() => {
     return MODELS.filter(model => {
+      // Category filter
       const matchesCategory = selectedCategory === 'הכל' || 
                              (selectedCategory === 'קבצי הדפסת תלת מימד' ? model.isPrintReady : model.category === selectedCategory);
+      
+      // Search filter
       const matchesSearch = model.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                            model.description.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
+      
+      // Price Range filter
+      const matchesMin = minPrice === '' || model.price >= minPrice;
+      const matchesMax = maxPrice === '' || model.price <= maxPrice;
+
+      return matchesCategory && matchesSearch && matchesMin && matchesMax;
     });
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategory, searchQuery, minPrice, maxPrice]);
 
   const onAddToCart = (model: Model3D, type: PurchaseType) => {
     setCart(prev => {
@@ -151,6 +234,10 @@ const App: React.FC = () => {
                 setSearchQuery={setSearchQuery}
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
+                minPrice={minPrice}
+                setMinPrice={setMinPrice}
+                maxPrice={maxPrice}
+                setMaxPrice={setMaxPrice}
                 filteredModels={filteredModels}
                 onAddToCart={onAddToCart}
                 onOpenDetails={setSelectedModel}
