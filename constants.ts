@@ -1,7 +1,78 @@
 
 import { Model3D } from './types';
 
+export const PRINT_FEE = 90.00;
+
 export const MODELS: Model3D[] = [
+  {
+    id: 'apple-watch-magsafe-stand',
+    name: 'מעמד אפל וואטש ומג סייף לאייפון',
+    category: 'אביזרים',
+    price: 85.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769288939/%D7%97%D7%97%D7%97_jwwufl.png'
+    ],
+    description: 'מעמד יוקרתי ומעוצב המשלב טעינה ל-Apple Watch וטעינת MagSafe לאייפון. פתרון אלגנטי לשולחן העבודה או לשידת הלילה, השומר על הסדר ומציג את המכשירים בזווית צפייה נוחה. עוצב בדיוק מרבי למעבר כבלים נקי ומראה נקי על השולחן.',
+    fileFormat: ['STL'],
+    vertices: '145k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA Silk / Matte PLA למראה פרימיום'
+  },
+  {
+    id: 'fidget-poker-chip',
+    name: 'גיטון פידגט',
+    category: 'פידג\'טים',
+    price: 35.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769288644/%D7%97%D7%97_iv7yyq.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769288262/%D7%97%D7%A3%D7%97_vxxzu6.png'
+    ],
+    description: 'גיטון פידג\'ט (Poker Chip) בעיצוב יוקרתי ומספק. מורכב מחלקים מגנטיים המאפשרים סיבוב, החלקה ותקתוק נעים במיוחד. מושלם להפגת מתחים, שיפור הריכוז ותעסוקה לידיים בזמן עבודה או לימודים.',
+    fileFormat: ['STL'],
+    vertices: '65k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA Silk / PETG למגע חלק ועמידות'
+  },
+  {
+    id: 'hair-dryer-stand',
+    name: 'מעמד לפן',
+    category: 'אביזרים',
+    price: 50.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769287799/%D7%9C%D7%9C%D7%9C_zvc1ws.png'
+    ],
+    description: 'מעמד ארגונומי ומעוצב למייבש שיער (פן). פתרון מושלם לארגון חדר האמבטיה או שולחן האיפור. עוצב להתאמה למגוון רחב של דגמי מייבשי שיער, כולל מקום לכבל המזנה. יציב ועמיד מאוד.',
+    fileFormat: ['STL'],
+    vertices: '110k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PETG (עמיד יותר בחום למקרה שהפן עדיין חם)'
+  },
+  {
+    id: 'fidget-clicker',
+    name: 'קליקר פידגט',
+    category: 'פידג\'טים',
+    price: 30.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769286620/%D7%93%D7%92_nwwz6k.png'
+    ],
+    description: 'קליקר פידג\'ט קומפקטי וממכר המדמה לחיצה על מתג מכני. מושלם להפגת מתחים, שיפור הריכוז ותעסוקה לידיים. עיצוב ארגונומי שמתאים בדיוק לכיס או לכף היד.',
+    fileFormat: ['STL'],
+    vertices: '45k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA / PETG (לחיצה עמידה יותר)'
+  },
   {
     id: 'fidget-vortex',
     name: 'פידג\'ט בצורות תלת מימדי',
@@ -20,6 +91,41 @@ export const MODELS: Model3D[] = [
     isOnSale: true,
     isPrintReady: true,
     recommendedMaterial: 'PLA Silk (משי) כחול-סגול / Magic PLA'
+  },
+  {
+    id: 'dog-treat-spinner',
+    name: 'משחק חטיפים מסתובב לכלב',
+    category: 'בעלי חיים',
+    price: 60.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769286619/%D7%AA%D7%AA_locaxd.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769286620/%D7%93%D7%A9%D7%92_itzmxj.png'
+    ],
+    description: 'מתקן האכלה ומשחק אינטראקטיבי לכלבים. הכלב צריך לסובב את המכלים כדי לגרום לחטיפים ליפול החוצה. מעסיק את הכלב לאורך זמן ומעודד פעילות קוגניטיבית. בנוי מחלקים עמידים הניתנים לשטיפה.',
+    fileFormat: ['STL'],
+    vertices: '180k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PETG (בטוח למזון ועמיד יותר מפני נשיכות)'
+  },
+  {
+    id: 'fidget-formula-wheel',
+    name: 'הגה פורמולה עם הילוכים',
+    category: 'פידג\'טים',
+    price: 45.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769281835/5_guhhwg.png'
+    ],
+    description: 'פידג\'ט הגה פורמולה 1 ייחודי הכולל הילוכים מתקתקים. חוויה סנסורית מושלמת לחובבי רכב ומהירות. עוצב במיוחד לתנועה חלקה וסיפוק מרבי בכל לחיצה וסיבוב.',
+    fileFormat: ['STL'],
+    vertices: '120k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA Silk שחור או פחם למראה ספורטיבי'
   },
   {
     id: '1',

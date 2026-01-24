@@ -16,7 +16,7 @@ export interface Model3D {
   recommendedMaterial?: string;
 }
 
-export type Category = 'הכל' | 'דמויות' | 'פידג\'טים' | 'אביזרים' | 'יודאיקה' | 'DIY' | 'קבצי הדפסת תלת מימד';
+export type Category = 'הכל' | 'דגמים ודמויות תלת־ממד' | 'פידג\'טים' | 'אביזרים' | 'יודאיקה' | 'בעלי חיים' | 'DIY';
 
 export type PurchaseType = 'דיגיטלי' | 'פיזי';
 

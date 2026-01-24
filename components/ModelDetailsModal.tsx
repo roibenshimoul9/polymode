@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Model3D, PurchaseType } from '../types';
+import { PRINT_FEE } from '../constants';
 
 interface ModelDetailsModalProps {
   model: Model3D | null;
@@ -16,6 +17,9 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [imgError, setImgError] = useState(false);
 
+  const physicalPrice = model.price > 0 ? model.price + PRINT_FEE : 0;
+  const originalPhysicalPrice = model.originalPrice ? model.originalPrice + PRINT_FEE : null;
+
   const nextImg = () => {
     setImgError(false);
     setActiveImgIndex(prev => (prev + 1) % model.images.length);
@@ -29,6 +33,12 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
   const handleThumbClick = (idx: number) => {
     setImgError(false);
     setActiveImgIndex(idx);
+  };
+
+  const handleDigitalContact = () => {
+    const message = `שלום Polymode! אני מעוניין ברכישת הקובץ הדיגיטלי של המודל: "${model.name}".`;
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/972${PHONE_NUMBER.substring(1)}?text=${encodedMessage}`, '_blank');
   };
 
   const handleContactClick = () => {
@@ -65,8 +75,7 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
                 <svg className="w-16 h-16 mb-4 opacity-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <p className="font-bold text-sm">התמונה בכתובת זו לא נמצאה</p>
-                <p className="text-[10px] opacity-60 mt-2">{model.images[activeImgIndex]}</p>
+                <p className="font-bold text-sm">התמונה לא נמצאה</p>
               </div>
             )}
             
@@ -109,7 +118,6 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
           <div className="mb-6 flex justify-between items-center">
              <span className="text-[10px] font-black uppercase tracking-widest text-blue-500 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">{model.category}</span>
              <div className="flex items-center gap-1.5">
-               <span className="text-[10px] font-bold text-gray-500">({model.reviewsCount})</span>
                <span className="font-black text-yellow-500 text-sm">{model.rating}</span>
                <svg className="w-3.5 h-3.5 fill-current text-yellow-500" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
              </div>
@@ -133,15 +141,18 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
 
           <div className="mt-auto space-y-4 pt-6 border-t border-white/10">
             <div className="flex items-center justify-between">
-              <div className="flex items-baseline gap-2">
+              <div className="flex flex-col items-end gap-1">
                 {model.price === 0 ? (
                   <span className="text-2xl font-black text-cyan-400">בתיאום אישי</span>
                 ) : (
                   <>
-                    <span className="text-3xl font-black text-white">₪{model.price.toFixed(0)}</span>
-                    {model.originalPrice && (
-                      <span className="text-sm text-gray-600 line-through">₪{model.originalPrice.toFixed(0)}</span>
-                    )}
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-3xl font-black text-white">₪{physicalPrice.toFixed(0)}</span>
+                      {originalPhysicalPrice && (
+                        <span className="text-sm text-gray-600 line-through">₪{originalPhysicalPrice.toFixed(0)}</span>
+                      )}
+                    </div>
+                    <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">מחיר להזמנה פיזית (הדפסה)</span>
                   </>
                 )}
               </div>
@@ -158,18 +169,18 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
               ) : (
                 <>
                   <button 
-                    onClick={() => onAddToCart(model, 'דיגיטלי')}
-                    className="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-black text-white transition-all active:scale-[0.98] text-base"
+                    onClick={handleDigitalContact}
+                    className="w-full bg-white/5 hover:bg-white/10 border border-white/10 py-4 rounded-xl font-black text-gray-300 transition-all active:scale-[0.98] text-base"
                   >
-                    הוספה לסל: קובץ דיגיטלי
+                    לרכישת קובץ דיגיטלי (וואטסאפ)
                   </button>
                   
                   {model.isPrintReady && (
                     <button 
                       onClick={() => onAddToCart(model, 'פיזי')}
-                      className="w-full bg-white/5 hover:bg-white/10 border border-white/10 py-4 rounded-xl font-black text-white transition-all active:scale-[0.98] text-base flex items-center justify-center gap-2"
+                      className="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-black text-white transition-all active:scale-[0.98] text-base flex items-center justify-center gap-2"
                     >
-                      <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" strokeWidth="2"/></svg>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" strokeWidth="2"/></svg>
                       הזמנת הדפסה פיזית
                     </button>
                   )}

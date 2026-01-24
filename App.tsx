@@ -13,7 +13,7 @@ import LicensesPage from './components/LicensesPage.tsx';
 import PrivacyPolicy from './components/PrivacyPolicy.tsx';
 import SpecialsPage from './components/SpecialsPage.tsx';
 
-const CATEGORIES: Category[] = ['הכל', 'דמויות', 'פידג\'טים', 'אביזרים', 'יודאיקה', 'DIY', 'קבצי הדפסת תלת מימד'];
+const CATEGORIES: Category[] = ['הכל', 'דגמים ודמויות תלת־ממד', 'פידג\'טים', 'אביזרים', 'יודאיקה', 'בעלי חיים', 'DIY'];
 
 const Catalog: React.FC<{ 
   searchQuery: string, 
@@ -83,7 +83,7 @@ const Catalog: React.FC<{
                   : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
               }`}
             >
-              {cat === 'קבצי הדפסת תלת מימד' ? '🖨️ ' + cat : cat}
+              {cat}
             </button>
           ))}
         </div>
@@ -175,8 +175,7 @@ const App: React.FC = () => {
 
   const filteredModels = useMemo(() => {
     return MODELS.filter(model => {
-      const matchesCategory = selectedCategory === 'הכל' || 
-                             (selectedCategory === 'קבצי הדפסת תלת מימד' ? model.isPrintReady : model.category === selectedCategory);
+      const matchesCategory = selectedCategory === 'הכל' || model.category === selectedCategory;
       
       const matchesSearch = model.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                            model.description.toLowerCase().includes(searchQuery.toLowerCase());

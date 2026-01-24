@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Model3D, PurchaseType } from '../types';
+import { PRINT_FEE } from '../constants';
 
 interface ModelCardProps {
   model: Model3D;
@@ -13,6 +14,9 @@ const PHONE_NUMBER = "0502156056";
 const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails }) => {
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const [imgError, setImgError] = useState(false);
+
+  const physicalPrice = model.price > 0 ? model.price + PRINT_FEE : 0;
+  const originalPhysicalPrice = model.originalPrice ? model.originalPrice + PRINT_FEE : null;
 
   const nextImg = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -35,6 +39,13 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
   const handleAddToCart = (e: React.MouseEvent, type: PurchaseType) => {
     e.stopPropagation();
     onAddToCart(model, type);
+  };
+
+  const handleDigitalContact = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const message = `שלום Polymode! אני מעוניין ברכישת הקובץ הדיגיטלי של המודל: "${model.name}".`;
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/972${PHONE_NUMBER.substring(1)}?text=${encodedMessage}`, '_blank');
   };
 
   const handleContactClick = (e: React.MouseEvent) => {
@@ -66,8 +77,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
             <svg className="w-10 h-10 mb-2 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <span className="text-[10px] font-bold text-gray-500">התמונה "{model.images[currentImgIndex]}" לא נמצאה בתיקיית picthurs</span>
-            <span className="text-[8px] mt-1 opacity-50">וודא שהקובץ קיים וששמו תקין</span>
+            <span className="text-[10px] font-bold text-gray-500">התמונה לא נמצאה</span>
           </div>
         )}
         
@@ -106,8 +116,6 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
             </div>
           )}
         </div>
-
-        <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
       </div>
 
       <div className="p-3 md:p-4 flex-grow flex flex-col text-right">
@@ -122,15 +130,18 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
         <h3 className="font-bold text-gray-100 text-[11px] md:text-base mb-1 md:mb-2 line-clamp-1">{model.name}</h3>
         
         <div className="mt-auto pt-2 md:pt-4 border-t border-white/5 space-y-2">
-          <div className="flex flex-wrap items-baseline gap-1 md:gap-2 justify-end mb-1">
+          <div className="flex flex-col items-end mb-1">
             {model.price === 0 ? (
               <span className="text-[11px] md:text-lg font-bold text-cyan-400">בתיאום אישי</span>
             ) : (
               <>
-                <span className="text-xs md:text-lg font-bold text-white">₪{model.price.toFixed(0)}</span>
-                {model.originalPrice && (
-                  <span className="text-[8px] md:text-xs text-gray-600 line-through">₪{model.originalPrice.toFixed(0)}</span>
-                )}
+                <div className="flex items-baseline gap-1 md:gap-2 justify-end">
+                  <span className="text-xs md:text-lg font-bold text-white">₪{physicalPrice.toFixed(0)}</span>
+                  {originalPhysicalPrice && (
+                    <span className="text-[8px] md:text-xs text-gray-600 line-through">₪{originalPhysicalPrice.toFixed(0)}</span>
+                  )}
+                </div>
+                <span className="text-[7px] md:text-[9px] text-gray-500 font-medium">מחיר להזמנה פיזית</span>
               </>
             )}
           </div>
@@ -146,17 +157,17 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
             ) : (
               <>
                 <button 
-                  onClick={(e) => handleAddToCart(e, 'דיגיטלי')}
-                  className="w-full py-1.5 md:py-2.5 bg-blue-600 hover:bg-blue-500 rounded-lg md:rounded-xl text-[9px] md:text-xs font-bold text-white transition-all flex items-center justify-center gap-1 shadow-md active:scale-95"
+                  onClick={handleDigitalContact}
+                  className="w-full py-1.5 md:py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg md:rounded-xl text-[9px] md:text-xs font-bold text-gray-300 transition-all flex items-center justify-center gap-1 active:scale-95"
                 >
-                  קובץ דיגיטלי
+                  לרכישת קובץ דיגיטלי
                 </button>
                 {model.isPrintReady && (
                   <button 
                     onClick={(e) => handleAddToCart(e, 'פיזי')}
-                    className="w-full py-1.5 md:py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg md:rounded-xl text-[9px] md:text-xs font-bold text-cyan-400 transition-all flex items-center justify-center gap-1 active:scale-95"
+                    className="w-full py-1.5 md:py-2.5 bg-blue-600 hover:bg-blue-500 rounded-lg md:rounded-xl text-[9px] md:text-xs font-bold text-white transition-all flex items-center justify-center gap-1 shadow-md active:scale-95"
                   >
-                    הזמנה פיזית
+                    הזמנה פיזית (הדפסה)
                   </button>
                 )}
               </>
