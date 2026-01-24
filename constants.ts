@@ -11,9 +11,8 @@ export const MODELS: Model3D[] = [
     rating: 5.0,
     reviewsCount: 24,
     images: [
-      'https://res.cloudinary.com/djv6v984k/image/upload/v1769281836/6_uw0bpf.png', // תמונה תקינה לטעינה מיידית
-      'https://res.cloudinary.com/djv6v984k/image/upload/v1769281837/7%D7%AA%D7%9E%D7%95%D7%A0%D7%946_ofbygj.png', // נתיב מקומי לבדיקה שלך
-    
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769281836/6_uw0bpf.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769281837/7%D7%AA%D7%9E%D7%95%D7%A0%D7%946_ofbygj.png',
     ],
     description: 'סדרת פידג\'טים גאומטריים מהפנטים הכוללת צורות משושה וריבוע בשכבות משולבות. המודל יוצר אפקט ויזואלי של עומק אינסופי (Vortex) בעת משחק. מותאם להדפסה בצבעים מתחלפים.',
     fileFormat: ['STL', 'STEP'],
@@ -41,7 +40,7 @@ export const MODELS: Model3D[] = [
   },
   {
     id: 'fidget-1',
-    name: 'קונוס ספירלה ',
+    name: 'קונוס ספירלה',
     category: 'פידג\'טים',
     price: 55.00,
     originalPrice: 75.00,
@@ -51,7 +50,7 @@ export const MODELS: Model3D[] = [
       'https://res.cloudinary.com/djv6v984k/image/upload/v1769281831/%D7%AA%D7%9E%D7%95%D7%A0%D7%941_u4arvl.png',
       'https://res.cloudinary.com/djv6v984k/image/upload/v1769282456/%D7%91%D7%92%D7%9B_jfa6ar.png'
     ],
-    description: 'פידג\'ט דרקון גמיש במיוחד המודפס כיחידה אחת (Print-in-place). זז בצורה חלקה ומספק חוויה סנסורית מדהימה.',
+    description: 'מודל קונוס ספירלי ייחודי המיועד למשחק והפגת מתחים. המבנה האווירודינמי שלו מאפשר תנועה חלקה וסיבוב ממושך.',
     fileFormat: ['STL'],
     vertices: '85k',
     isOnSale: true,
@@ -74,10 +73,10 @@ export const MODELS: Model3D[] = [
     isOnSale: false,
     isPrintReady: true,
     recommendedMaterial: 'בהתאמה אישית'
-  }
-   {
+  },
+  {
     id: 'fidget-4',
-    name: 'פידגט משושה היפנוטי ',
+    name: 'פידגט משושה היפנוטי',
     category: 'פידג\'טים',
     price: 40.00,
     originalPrice: 45.00,
@@ -87,11 +86,11 @@ export const MODELS: Model3D[] = [
       'https://res.cloudinary.com/djv6v984k/image/upload/v1769281833/3_lcpnlj.png',
       'https://res.cloudinary.com/djv6v984k/image/upload/v1769281834/4_wuuzbh.png'
     ],
-    description: 'פידג\'ט דרקון גמיש במיוחד המודפס כיחידה אחת (Print-in-place). זז בצורה חלקה ומספק חוויה סנסורית מדהימה.',
+    description: 'גרסת המשושה היוקרתית של סדרת הפידג\'טים ההיפנוטיים. מבנה חזק ותנועה סימטרית מושלמת.',
     fileFormat: ['STL'],
     vertices: '85k',
     isOnSale: true,
     isPrintReady: true,
     recommendedMaterial: 'PLA משי (Silk) למראה זוהר'
-  },
+  }
 ];
