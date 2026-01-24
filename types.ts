@@ -14,6 +14,7 @@ export interface Model3D {
   isOnSale: boolean;
   isPrintReady?: boolean;
   recommendedMaterial?: string;
+  printFee?: number;
 }
 
 export type Category = 'הכל' | 'דגמים ודמויות תלת־ממד' | 'פידג\'טים' | 'אביזרים' | 'יודאיקה' | 'בעלי חיים' | 'DIY';

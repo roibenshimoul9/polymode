@@ -17,8 +17,9 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [imgError, setImgError] = useState(false);
 
-  const physicalPrice = model.price > 0 ? model.price + PRINT_FEE : 0;
-  const originalPhysicalPrice = model.originalPrice ? model.originalPrice + PRINT_FEE : null;
+  const effectivePrintFee = model.printFee !== undefined ? model.printFee : PRINT_FEE;
+  const physicalPrice = model.price > 0 ? model.price + effectivePrintFee : 0;
+  const originalPhysicalPrice = model.originalPrice ? model.originalPrice + effectivePrintFee : null;
 
   const nextImg = () => {
     setImgError(false);

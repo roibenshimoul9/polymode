@@ -5,10 +5,48 @@ export const PRINT_FEE = 90.00;
 
 export const MODELS: Model3D[] = [
   {
+    id: 'b2-bomber-plane',
+    name: 'מטוס B2 מפציץ',
+    category: 'דגמים ודמויות תלת־ממד',
+    price: 50.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769289210/%D7%99%D7%94%D7%97%D7%98%D7%99_g6goa3.png'
+    ],
+    description: 'דגם מפורט ומרהיב של המפציץ האסטרטגי החמקן B-2 Spirit. העיצוב משחזר את הקימורים הייחודיים והמראה העתידני של המטוס. פריט חובה לכל חובב תעופה או אספן דגמים צבאיים.',
+    fileFormat: ['STL'],
+    vertices: '125k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'Matte Black PLA / Galaxy Black'
+  },
+  {
+    id: 'judaica-blessing-candlesticks',
+    name: 'פמוטים עם ברכה',
+    category: 'יודאיקה',
+    price: 150.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769291612/IMG_2891_ec0txc.jpg',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769291611/IMG_2892_frrtws.jpg'
+    ],
+    description: 'פמוטי שבת מעוצבים הכוללים את ברכת הדלקת הנרות בחזית המודל. עיצוב אלגנטי המשלב מסורת יהודית עם טכנולוגיה מודרנית. ניתן לבחור במגוון צבעים מרהיבים, כולל טקסטורת שיש (Marble) יוקרתית או צבעי משי (Silk) מבריקים. מתנה מדהימה לחגים, שבתות, חתונה או חנוכת בית.',
+    fileFormat: ['STL'],
+    vertices: '185k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'Marble PLA / Silk Gold / White Matte'
+  },
+  {
     id: 'apple-watch-magsafe-stand',
     name: 'מעמד אפל וואטש ומג סייף לאייפון',
     category: 'אביזרים',
-    price: 85.00,
+    price: 60.00,
+    printFee: 0.00,
     rating: 5.0,
     reviewsCount: 0,
     images: [
@@ -25,7 +63,8 @@ export const MODELS: Model3D[] = [
     id: 'fidget-poker-chip',
     name: 'גיטון פידגט',
     category: 'פידג\'טים',
-    price: 35.00,
+    price: 25.00,
+    printFee: 0, // 25 + 0 = 25 NIS Total Physical Price
     rating: 5.0,
     reviewsCount: 0,
     images: [
@@ -43,7 +82,8 @@ export const MODELS: Model3D[] = [
     id: 'hair-dryer-stand',
     name: 'מעמד לפן',
     category: 'אביזרים',
-    price: 50.00,
+    price: 55.00,
+    printFee: 0.00,
     rating: 5.0,
     reviewsCount: 0,
     images: [
@@ -60,7 +100,8 @@ export const MODELS: Model3D[] = [
     id: 'fidget-clicker',
     name: 'קליקר פידגט',
     category: 'פידג\'טים',
-    price: 30.00,
+    price: 25.00,
+    printFee: 0.00,
     rating: 5.0,
     reviewsCount: 0,
     images: [
@@ -77,8 +118,9 @@ export const MODELS: Model3D[] = [
     id: 'fidget-vortex',
     name: 'פידג\'ט בצורות תלת מימדי',
     category: 'פידג\'טים',
-    price: 35.00,
-    originalPrice: 40.00,
+    price: 45.00,
+    printFee: 0.00,
+    originalPrice: 50.00,
     rating: 5.0,
     reviewsCount: 24,
     images: [
@@ -96,7 +138,8 @@ export const MODELS: Model3D[] = [
     id: 'dog-treat-spinner',
     name: 'משחק חטיפים מסתובב לכלב',
     category: 'בעלי חיים',
-    price: 60.00,
+    price: 90.00,
+    printFee: 0.00,
     rating: 5.0,
     reviewsCount: 0,
     images: [
@@ -114,7 +157,8 @@ export const MODELS: Model3D[] = [
     id: 'fidget-formula-wheel',
     name: 'הגה פורמולה עם הילוכים',
     category: 'פידג\'טים',
-    price: 45.00,
+    price: 40.00,
+    printFee: 0.00,
     rating: 5.0,
     reviewsCount: 0,
     images: [
@@ -131,7 +175,8 @@ export const MODELS: Model3D[] = [
     id: '1',
     name: 'פידגט מרובע היפנוטי',
     category: 'פידג\'טים',
-    price: 35.00,
+    price: 40.00,
+    printFee: 0.00,
     rating: 4.9,
     reviewsCount: 128,
     images: [
@@ -148,8 +193,9 @@ export const MODELS: Model3D[] = [
     id: 'fidget-1',
     name: 'קונוס ספירלה',
     category: 'פידג\'טים',
-    price: 55.00,
-    originalPrice: 75.00,
+    price: 40.00,
+    printFee: 0.00,
+    originalPrice: 60.00,
     rating: 4.9,
     reviewsCount: 342,
     images: [
@@ -184,8 +230,9 @@ export const MODELS: Model3D[] = [
     id: 'fidget-4',
     name: 'פידגט משושה היפנוטי',
     category: 'פידג\'טים',
-    price: 40.00,
-    originalPrice: 45.00,
+    price: 48.00,
+    printFee: 0.00,
+    originalPrice: 55.00,
     rating: 4.9,
     reviewsCount: 342,
     images: [

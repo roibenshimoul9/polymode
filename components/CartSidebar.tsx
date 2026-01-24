@@ -19,8 +19,11 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
   const hasPhysical = items.some(i => i.purchaseType === 'פיזי');
   
   const calculateItemPrice = (item: CartItem) => {
-    // מאחר והמשתמשים יכולים להוסיף רק מוצרים פיזיים כרגע, המחיר תמיד יכלול את ה-PRINT_FEE
-    return item.purchaseType === 'פיזי' ? item.price + PRINT_FEE : item.price;
+    if (item.purchaseType === 'פיזי') {
+      const effectivePrintFee = item.printFee !== undefined ? item.printFee : PRINT_FEE;
+      return item.price + effectivePrintFee;
+    }
+    return item.price;
   };
 
   const total = items.reduce((sum, item) => sum + calculateItemPrice(item) * item.quantity, 0);
