@@ -11,11 +11,11 @@ export const MODELS: Model3D[] = [
     rating: 5.0,
     reviewsCount: 24,
     images: [
-      'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800&h=600', // מייצג את המראה הגאומטרי הסגול-כחול
-      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800&h=600', // מייצג שכבות גאומטריות
-      'https://images.unsplash.com/photo-1509223197845-458d87318791?auto=format&fit=crop&q=80&w=800&h=600'  // מייצג וורטקס מתמטי
+      'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800&h=600', // תמונה תקינה לטעינה מיידית
+      'pictures/fidget.jpg', // נתיב מקומי לבדיקה שלך
+      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800&h=600'
     ],
-    description: 'סדרת פידג\'טים גאומטריים מהפנטים הכוללת צורות משושה וריבוע בשכבות משולבות. המודל יוצר אפקט ויזואלי של עומק אינסופי (Vortex) בעת משחק. מתאים להדפסה בצבעים מתחלפים (Multicolor) לקבלת המראה המופיע בתמונות.',
+    description: 'סדרת פידג\'טים גאומטריים מהפנטים הכוללת צורות משושה וריבוע בשכבות משולבות. המודל יוצר אפקט ויזואלי של עומק אינסופי (Vortex) בעת משחק. מותאם להדפסה בצבעים מתחלפים.',
     fileFormat: ['STL', 'STEP'],
     vertices: '52k',
     isOnSale: true,
@@ -32,8 +32,7 @@ export const MODELS: Model3D[] = [
     reviewsCount: 128,
     images: [
       'https://picsum.photos/seed/cyber1/800/600',
-      'https://picsum.photos/seed/cyber2/800/600',
-      'https://picsum.photos/seed/cyber3/800/600'
+      'https://picsum.photos/seed/cyber2/800/600'
     ],
     description: 'דמות סייברפאנק מפורטת במיוחד. כולל גרסה מיוחדת מותאמת להדפסת שרף (Resin). המודל כולל טקסטורות PBR איכותיות.',
     fileFormat: ['FBX', 'STL', 'OBJ'],
@@ -51,8 +50,7 @@ export const MODELS: Model3D[] = [
     rating: 4.9,
     reviewsCount: 342,
     images: [
-      'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&q=80&w=800&h=600',
-      'https://picsum.photos/seed/dragon2/800/600'
+      'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&q=80&w=800&h=600'
     ],
     description: 'פידג\'ט דרקון גמיש במיוחד המודפס כיחידה אחת (Print-in-place). זז בצורה חלקה ומספק חוויה סנסורית מדהימה.',
     fileFormat: ['STL'],
@@ -60,24 +58,6 @@ export const MODELS: Model3D[] = [
     isOnSale: true,
     isPrintReady: true,
     recommendedMaterial: 'PLA משי (Silk) למראה זוהר'
-  },
-  {
-    id: 'fidget-2',
-    name: 'קוביית אינסוף גאומטרית',
-    category: 'פידג\'טים',
-    price: 35.00,
-    rating: 4.7,
-    reviewsCount: 156,
-    images: [
-      'https://picsum.photos/seed/cube1/800/600',
-      'https://picsum.photos/seed/cube2/800/600'
-    ],
-    description: 'קובייה מתקפלת לאינסוף כיוונים. פתרון מעולה להפגת מתחים ושיפור הריכוז. מודל עמיד מאוד.',
-    fileFormat: ['STL', 'STEP'],
-    vertices: '15k',
-    isOnSale: false,
-    isPrintReady: true,
-    recommendedMaterial: 'PETG לעמידות מקסימלית'
   },
   {
     id: 'custom-diy',
@@ -95,78 +75,5 @@ export const MODELS: Model3D[] = [
     isOnSale: false,
     isPrintReady: true,
     recommendedMaterial: 'בהתאמה אישית'
-  },
-  {
-    id: '2',
-    name: 'רכב עתידני Neo-Tokyo',
-    category: 'אביזרים',
-    price: 85.00,
-    rating: 4.7,
-    reviewsCount: 64,
-    images: [
-      'https://picsum.photos/seed/car1/800/600',
-      'https://picsum.photos/seed/car2/800/600'
-    ],
-    description: 'מודל רכב בעיצוב עתידני נקי. מושלם למשחקי מחשב או כפריט אספנות מודפס.',
-    fileFormat: ['OBJ', 'BLEND'],
-    vertices: '45k',
-    isOnSale: false,
-    isPrintReady: true,
-    recommendedMaterial: 'PLA משי (Silk)'
-  },
-  {
-    id: '7',
-    name: 'מנורת שבעת הקנים מודרנית',
-    category: 'יודאיקה',
-    price: 195.00,
-    originalPrice: 250.00,
-    rating: 5.0,
-    reviewsCount: 42,
-    images: [
-      'https://picsum.photos/seed/menorah1/800/600',
-      'https://picsum.photos/seed/menorah2/800/600'
-    ],
-    description: 'עיצוב גאומטרי מודרני למנורה. אופטימלי להדפסה בחומרים דמויי מתכת או פליז.',
-    fileFormat: ['STL', 'OBJ'],
-    vertices: '85k',
-    isOnSale: true,
-    isPrintReady: true,
-    recommendedMaterial: 'PLA מטאלי / נחושת'
-  },
-  {
-    id: '8',
-    name: 'בית מזוזה "שדי" מינימליסטי',
-    category: 'יודאיקה',
-    price: 40.00,
-    rating: 4.8,
-    reviewsCount: 89,
-    images: [
-      'https://picsum.photos/seed/mezuzah1/800/600'
-    ],
-    description: 'בית מזוזה מעוצב בקווים נקיים. כולל חריץ פנימי מותאם לקלף סטנדרטי.',
-    fileFormat: ['STL', 'STEP'],
-    vertices: '12k',
-    isOnSale: false,
-    isPrintReady: true,
-    recommendedMaterial: 'PETG לבן / שרף שקוף'
-  },
-  {
-    id: '5',
-    name: 'מארז ארגזי מד"ב',
-    category: 'אביזרים',
-    price: 45.00,
-    originalPrice: 70.00,
-    rating: 4.8,
-    reviewsCount: 215,
-    images: [
-      'https://picsum.photos/seed/props1/800/600',
-      'https://picsum.photos/seed/props1b/800/600'
-    ],
-    description: '10 וריאציות של ארגזי מדע בדיוני. גאומטריה פשוטה שהופכת אותם למושלמים למתחילים בהדפסה.',
-    fileFormat: ['FBX', 'STL'],
-    vertices: '2k',
-    isOnSale: true,
-    isPrintReady: true,
-    recommendedMaterial: 'כל סוג של PLA'
   }
 ];

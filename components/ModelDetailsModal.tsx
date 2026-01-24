@@ -14,9 +14,22 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
   if (!model) return null;
 
   const [activeImgIndex, setActiveImgIndex] = useState(0);
+  const [imgError, setImgError] = useState(false);
 
-  const nextImg = () => setActiveImgIndex(prev => (prev + 1) % model.images.length);
-  const prevImg = () => setActiveImgIndex(prev => (prev - 1 + model.images.length) % model.images.length);
+  const nextImg = () => {
+    setImgError(false);
+    setActiveImgIndex(prev => (prev + 1) % model.images.length);
+  };
+  
+  const prevImg = () => {
+    setImgError(false);
+    setActiveImgIndex(prev => (prev - 1 + model.images.length) % model.images.length);
+  };
+
+  const handleThumbClick = (idx: number) => {
+    setImgError(false);
+    setActiveImgIndex(idx);
+  };
 
   const handleContactClick = () => {
     const message = `שלום Polymode! אני מעוניין בפרטים לגבי עיצוב אישי לפי דרישה: "${model.name}". אשמח לייעוץ ראשוני.`;
@@ -28,10 +41,8 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-6 text-right overflow-hidden">
       <div className="absolute inset-0 bg-black/95 backdrop-blur-xl animate-in fade-in duration-300" onClick={onClose} />
       
-      {/* Modal Container */}
       <div className="relative w-full h-full md:h-auto md:max-w-6xl md:max-h-[90vh] bg-[#0d0d0d] md:rounded-[2rem] border-none md:border md:border-white/10 shadow-2xl flex flex-col md:flex-row-reverse overflow-y-auto no-scrollbar animate-in zoom-in-95 duration-500">
         
-        {/* Close Button - Sticky on Mobile */}
         <button 
           onClick={onClose}
           className="sticky md:absolute top-4 left-4 md:top-6 md:left-6 z-50 p-2.5 bg-black/50 hover:bg-white/10 backdrop-blur-md rounded-full text-white transition-all border border-white/5 self-start"
@@ -39,15 +50,25 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
           <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeWidth="2.5"/></svg>
         </button>
 
-        {/* Image Gallery Side */}
         <div className="w-full md:w-3/5 bg-black flex flex-col border-l border-white/5 shrink-0">
           <div className="relative aspect-[4/3] md:aspect-auto md:flex-grow flex items-center justify-center overflow-hidden group">
-            <img 
-              key={activeImgIndex}
-              src={model.images[activeImgIndex]} 
-              alt={model.name}
-              className="w-full h-full object-contain animate-in fade-in duration-500 p-2 md:p-4"
-            />
+            {!imgError ? (
+              <img 
+                key={activeImgIndex}
+                src={model.images[activeImgIndex]} 
+                alt={model.name}
+                onError={() => setImgError(true)}
+                className="w-full h-full object-contain animate-in fade-in duration-500 p-2 md:p-4"
+              />
+            ) : (
+              <div className="flex flex-col items-center justify-center text-gray-500 p-8 text-center">
+                <svg className="w-16 h-16 mb-4 opacity-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <p className="font-bold text-sm">התמונה בכתובת זו לא נמצאה</p>
+                <p className="text-[10px] opacity-60 mt-2">{model.images[activeImgIndex]}</p>
+              </div>
+            )}
             
             {model.images.length > 1 && (
               <>
@@ -75,7 +96,7 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
             {model.images.map((img, idx) => (
               <button
                 key={idx}
-                onClick={() => setActiveImgIndex(idx)}
+                onClick={() => handleThumbClick(idx)}
                 className={`relative w-14 h-14 md:w-20 md:h-20 flex-shrink-0 rounded-xl md:rounded-2xl overflow-hidden border-2 transition-all duration-300 ${idx === activeImgIndex ? 'border-blue-500 scale-105' : 'border-white/10 opacity-50'}`}
               >
                 <img src={img} className="w-full h-full object-cover" />
@@ -84,7 +105,6 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
           </div>
         </div>
 
-        {/* Content Side */}
         <div className="w-full md:w-2/5 p-6 md:p-12 flex flex-col">
           <div className="mb-6 flex justify-between items-center">
              <span className="text-[10px] font-black uppercase tracking-widest text-blue-500 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">{model.category}</span>
