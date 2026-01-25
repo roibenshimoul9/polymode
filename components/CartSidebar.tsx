@@ -12,9 +12,14 @@ interface CartSidebarProps {
 }
 
 const PHONE_NUMBER = "0502156056";
+const VALID_COUPON = "friend10r";
+const DISCOUNT_RATE = 0.10; // 10%
 
 const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRemove, onUpdateQuantity }) => {
   const [address, setAddress] = useState('');
+  const [couponInput, setCouponInput] = useState('');
+  const [isCouponApplied, setIsCouponApplied] = useState(false);
+  const [couponError, setCouponError] = useState(false);
   
   const hasPhysical = items.some(i => i.purchaseType === 'פיזי');
   
@@ -26,11 +31,37 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
     return item.price;
   };
 
-  const total = items.reduce((sum, item) => sum + calculateItemPrice(item) * item.quantity, 0);
+  const subtotal = items.reduce((sum, item) => sum + calculateItemPrice(item) * item.quantity, 0);
+  const discountAmount = isCouponApplied ? subtotal * DISCOUNT_RATE : 0;
+  const total = subtotal - discountAmount;
+
+  const handleApplyCoupon = () => {
+    if (couponInput.trim().toLowerCase() === VALID_COUPON.toLowerCase()) {
+      setIsCouponApplied(true);
+      setCouponError(false);
+    } else {
+      setIsCouponApplied(false);
+      setCouponError(true);
+    }
+  };
 
   const handleCheckout = () => {
-    const itemSummary = items.map(i => `• ${i.name} (הדפסה פיזית) - כמות: ${i.quantity}`).join('\n');
-    const message = `שלום Polymode! אני מעוניין להזמין את הפריטים הבאים:\n\n${itemSummary}\n\nסה"כ לתשלום: ₪${total.toFixed(2)}${address ? `\nכתובת למשלוח: ${address}` : ''}\n\nאשמח שתחזרו אלי להשלמת הרכישה.`;
+    const itemSummary = items.map(i => `• ${i.name} (${i.purchaseType === 'פיזי' ? 'הדפסה פיזית' : 'קובץ דיגיטלי'}) - כמות: ${i.quantity}`).join('\n');
+    let message = `שלום Polymode! אני מעוניין להזמין את הפריטים הבאים:\n\n${itemSummary}\n\n`;
+    
+    if (isCouponApplied) {
+      message += `סיכום ביניים: ₪${subtotal.toFixed(2)}\n`;
+      message += `קופון הוחל: ${VALID_COUPON} (10%-)\n`;
+    }
+    
+    message += `סה"כ לתשלום: ₪${total.toFixed(2)}`;
+    
+    if (address) {
+      message += `\nכתובת למשלוח: ${address}`;
+    }
+    
+    message += `\n\nאשמח שתחזרו אלי להשלמת הרכישה.`;
+    
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/972${PHONE_NUMBER.substring(1)}?text=${encodedMessage}`, '_blank');
   };
@@ -44,7 +75,7 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
       
       <div className={`fixed top-0 right-0 h-full w-full max-w-md bg-[#0a0a0a] border-l border-white/10 z-[80] transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'} flex flex-col text-right`}>
         <div className="p-6 border-b border-white/10 flex justify-between items-center bg-[#0d0d0d]">
-          <h2 className="text-xl font-black flex items-center gap-2">
+          <h2 className="text-xl font-black flex items-center gap-2 text-white">
             הסל שלך
             <span className="text-xs bg-blue-600/20 text-blue-400 px-2 py-0.5 rounded-full font-bold">
               {items.length}
@@ -65,59 +96,105 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
               <button onClick={onClose} className="text-blue-500 text-sm hover:underline">חזרה לקטלוג</button>
             </div>
           ) : (
-            items.map((item) => {
-              const itemPrice = calculateItemPrice(item);
-              return (
-                <div key={`${item.id}-${item.purchaseType}`} className="flex flex-row-reverse gap-4 bg-white/5 p-4 rounded-2xl border border-white/5 group hover:border-white/10 transition-colors">
-                  <div className="relative flex-shrink-0">
-                    <img src={item.images[0]} alt={item.name} className="w-20 h-20 object-cover rounded-xl border border-white/10" />
-                    <span className="absolute -top-2 -right-2 px-1.5 py-0.5 rounded text-[8px] font-black uppercase shadow-lg bg-cyan-500 text-black">
-                      פיזי
-                    </span>
-                  </div>
-                  <div className="flex-grow text-right flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-start">
-                        <button onClick={() => onRemove(item.id, item.purchaseType)} className="text-gray-600 hover:text-red-500 p-1 transition-colors">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" strokeWidth="2"/></svg>
-                        </button>
-                        <h3 className="font-bold text-gray-100 text-sm line-clamp-1">{item.name}</h3>
+            <>
+              <div className="space-y-4">
+                {items.map((item) => {
+                  const itemPrice = calculateItemPrice(item);
+                  return (
+                    <div key={`${item.id}-${item.purchaseType}`} className="flex flex-row-reverse gap-4 bg-white/5 p-4 rounded-2xl border border-white/5 group hover:border-white/10 transition-colors">
+                      <div className="relative flex-shrink-0">
+                        <img src={item.images[0]} alt={item.name} className="w-20 h-20 object-cover rounded-xl border border-white/10" />
+                        <span className={`absolute -top-2 -right-2 px-1.5 py-0.5 rounded text-[8px] font-black uppercase shadow-lg ${item.purchaseType === 'פיזי' ? 'bg-cyan-500 text-black' : 'bg-blue-600 text-white'}`}>
+                          {item.purchaseType}
+                        </span>
                       </div>
-                      <p className="text-[10px] text-gray-500 mt-1">הדפסה וחומרים כלולים</p>
-                    </div>
-                    <div className="flex items-center justify-between mt-2">
-                      <span className="text-sm font-black text-white">₪{(itemPrice * item.quantity).toFixed(2)}</span>
-                      <div className="flex items-center gap-2 bg-black/40 rounded-lg p-1 border border-white/10">
-                        <button 
-                          onClick={() => onUpdateQuantity(item.id, item.purchaseType, -1)}
-                          className="w-6 h-6 flex items-center justify-center hover:bg-white/10 rounded font-bold"
-                        >-</button>
-                        <span className="text-xs font-black w-4 text-center">{item.quantity}</span>
-                        <button 
-                          onClick={() => onUpdateQuantity(item.id, item.purchaseType, 1)}
-                          className="w-6 h-6 flex items-center justify-center hover:bg-white/10 rounded font-bold"
-                        >+</button>
+                      <div className="flex-grow text-right flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <button onClick={() => onRemove(item.id, item.purchaseType)} className="text-gray-600 hover:text-red-500 p-1 transition-colors">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" strokeWidth="2"/></svg>
+                            </button>
+                            <h3 className="font-bold text-gray-100 text-sm line-clamp-1">{item.name}</h3>
+                          </div>
+                          {item.purchaseType === 'פיזי' && <p className="text-[10px] text-gray-500 mt-1">הדפסה וחומרים כלולים</p>}
+                        </div>
+                        <div className="flex items-center justify-between mt-2">
+                          <span className="text-sm font-black text-white">₪{(itemPrice * item.quantity).toFixed(2)}</span>
+                          <div className="flex items-center gap-2 bg-black/40 rounded-lg p-1 border border-white/10">
+                            <button 
+                              onClick={() => onUpdateQuantity(item.id, item.purchaseType, -1)}
+                              className="w-6 h-6 flex items-center justify-center text-gray-400 hover:bg-white/10 rounded font-bold"
+                            >-</button>
+                            <span className="text-xs font-black w-4 text-center text-white">{item.quantity}</span>
+                            <button 
+                              onClick={() => onUpdateQuantity(item.id, item.purchaseType, 1)}
+                              className="w-6 h-6 flex items-center justify-center text-gray-400 hover:bg-white/10 rounded font-bold"
+                            >+</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })
-          )}
+                  );
+                })}
+              </div>
 
-          {hasPhysical && items.length > 0 && (
-            <div className="mt-8 space-y-3 bg-cyan-950/20 p-5 rounded-2xl border border-cyan-500/20">
-              <h4 className="text-sm font-bold text-cyan-400 flex items-center justify-start gap-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" strokeWidth="2"/></svg>
-                כתובת למשלוח
-              </h4>
-              <textarea 
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder="הכנס כתובת מלאה למשלוח (עיר, רחוב, מספר בית)..."
-                className="w-full bg-black/50 border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none focus:ring-1 focus:ring-cyan-500 min-h-[80px] text-right placeholder:text-gray-700"
-              />
-            </div>
+              <div className="mt-8 space-y-6">
+                {hasPhysical && (
+                  <div className="space-y-3 bg-cyan-950/20 p-5 rounded-2xl border border-cyan-500/20">
+                    <h4 className="text-sm font-bold text-cyan-400 flex items-center justify-start gap-2">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" strokeWidth="2"/></svg>
+                      כתובת למשלוח
+                    </h4>
+                    <textarea 
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      placeholder="הכנס כתובת מלאה למשלוח (עיר, רחוב, מספר בית)..."
+                      className="w-full bg-black/50 border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none focus:ring-1 focus:ring-cyan-500 min-h-[80px] text-right placeholder:text-gray-700"
+                    />
+                  </div>
+                )}
+
+                <div className="space-y-3 bg-white/5 p-5 rounded-2xl border border-white/5">
+                  <h4 className="text-sm font-bold text-gray-300 flex items-center justify-start gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" strokeWidth="2"/></svg>
+                    קוד קופון
+                  </h4>
+                  <div className="flex gap-2">
+                    <input 
+                      type="text"
+                      value={couponInput}
+                      onChange={(e) => {
+                        setCouponInput(e.target.value);
+                        setCouponError(false);
+                      }}
+                      disabled={isCouponApplied}
+                      placeholder="הכנס קוד קופון..."
+                      className={`flex-grow bg-black/50 border ${couponError ? 'border-red-500' : isCouponApplied ? 'border-green-500/50' : 'border-white/10'} rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors text-right placeholder:text-gray-700`}
+                    />
+                    {!isCouponApplied ? (
+                      <button 
+                        onClick={handleApplyCoupon}
+                        className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-xs font-black transition-all"
+                      >
+                        החל
+                      </button>
+                    ) : (
+                      <button 
+                        onClick={() => {
+                          setIsCouponApplied(false);
+                          setCouponInput('');
+                        }}
+                        className="bg-red-500/10 hover:bg-red-500/20 text-red-500 px-4 py-2 rounded-xl text-xs font-black transition-all"
+                      >
+                        בטל
+                      </button>
+                    )}
+                  </div>
+                  {isCouponApplied && <p className="text-[10px] text-green-500 font-bold">הקופון הוחל! 10% הנחה נגרעו מהסכום.</p>}
+                  {couponError && <p className="text-[10px] text-red-500 font-bold">קוד קופון לא תקין.</p>}
+                </div>
+              </div>
+            </>
           )}
         </div>
 
@@ -125,12 +202,18 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
           <div className="p-6 border-t border-white/10 space-y-4 bg-[#0d0d0d]">
             <div className="space-y-2">
               <div className="flex justify-between text-xs text-gray-500 font-bold">
-                <span>₪{total.toFixed(2)}</span>
-                <span>סיכום</span>
+                <span>₪{subtotal.toFixed(2)}</span>
+                <span>סיכום ביניים</span>
               </div>
+              {isCouponApplied && (
+                <div className="flex justify-between text-xs text-green-500 font-bold">
+                  <span>₪{discountAmount.toFixed(2)}-</span>
+                  <span>הנחת קופון (10%)</span>
+                </div>
+              )}
               <div className="flex justify-between items-center text-2xl font-black">
                 <span className="text-blue-500">₪{total.toFixed(2)}</span>
-                <span>סה"כ</span>
+                <span className="text-white">סה"כ</span>
               </div>
             </div>
             
