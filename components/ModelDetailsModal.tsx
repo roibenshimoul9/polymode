@@ -9,7 +9,7 @@ interface ModelDetailsModalProps {
   onAddToCart: (model: Model3D, type: PurchaseType) => void;
 }
 
-const PHONE_NUMBER = "0502156056";
+const PHONE_NUMBER = "0546843548";
 
 const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, onAddToCart }) => {
   if (!model) return null;

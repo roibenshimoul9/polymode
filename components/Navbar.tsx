@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -6,7 +7,7 @@ interface NavbarProps {
   cartCount: number;
 }
 
-const PHONE_NUMBER = "0502156056";
+const PHONE_NUMBER = "0546843548";
 
 const Navbar: React.FC<NavbarProps> = ({ onCartToggle, cartCount }) => {
   const handleSupportClick = (e: React.MouseEvent) => {

@@ -9,7 +9,7 @@ interface ModelCardProps {
   onOpenDetails: (model: Model3D) => void;
 }
 
-const PHONE_NUMBER = "0502156056";
+const PHONE_NUMBER = "0546843548";
 
 const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails }) => {
   const [currentImgIndex, setCurrentImgIndex] = useState(0);

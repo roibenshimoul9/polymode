@@ -11,7 +11,7 @@ interface CartSidebarProps {
   onUpdateQuantity: (id: string, type: string, delta: number) => void;
 }
 
-const PHONE_NUMBER = "0502156056";
+const PHONE_NUMBER = "0546843548";
 const VALID_COUPON = "friend10r";
 const DISCOUNT_RATE = 0.10; // 10%
 
