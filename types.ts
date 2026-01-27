@@ -15,6 +15,7 @@ export interface Model3D {
   isPrintReady?: boolean;
   recommendedMaterial?: string;
   printFee?: number;
+  createdAt: string; // ISO date string: YYYY-MM-DD
 }
 
 export type Category = 'הכל' | 'דגמים ודמויות תלת־ממד' | 'פידג\'טים' | 'אביזרים' | 'יודאיקה ולבית' | 'בעלי חיים' | 'DIY';
@@ -26,7 +27,6 @@ export interface CartItem extends Model3D {
   purchaseType: PurchaseType;
 }
 
-// Added User interface to fix import errors in components/LoginModal.tsx and components/PersonalArea.tsx
 export interface User {
   id: string;
   name: string;

@@ -21,6 +21,12 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
   const physicalPrice = model.price > 0 ? model.price + effectivePrintFee : 0;
   const originalPhysicalPrice = model.originalPrice ? model.originalPrice + effectivePrintFee : null;
 
+  // Logic for "New" label (within 14 days)
+  const createdDate = new Date(model.createdAt);
+  const now = new Date();
+  const diffInDays = Math.ceil(Math.abs(now.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
+  const isNew = diffInDays <= 14;
+
   const nextImg = () => {
     setImgError(false);
     setActiveImgIndex(prev => (prev + 1) % model.images.length);
@@ -80,6 +86,17 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
               </div>
             )}
             
+            {/* Overlay Labels for Modal */}
+            <div className="absolute top-6 left-6 right-6 z-20 flex justify-between items-start pointer-events-none">
+              <div className="flex flex-col gap-2 items-start">
+                {isNew && (
+                  <div className="bg-emerald-500 text-black text-[10px] md:text-xs font-black px-3 py-1 rounded-lg uppercase tracking-wider shadow-2xl animate-bounce-slow">
+                    חדש באתר
+                  </div>
+                )}
+              </div>
+            </div>
+
             {model.images.length > 1 && (
               <>
                 <button 

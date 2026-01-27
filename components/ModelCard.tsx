@@ -19,6 +19,12 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
   const physicalPrice = model.price > 0 ? model.price + effectivePrintFee : 0;
   const originalPhysicalPrice = model.originalPrice ? model.originalPrice + effectivePrintFee : null;
 
+  // Logic for "New" label (within 14 days)
+  const createdDate = new Date(model.createdAt);
+  const now = new Date();
+  const diffInDays = Math.ceil(Math.abs(now.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
+  const isNew = diffInDays <= 14;
+
   const nextImg = (e: React.MouseEvent) => {
     e.stopPropagation();
     setImgError(false);
@@ -110,12 +116,22 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
           ))}
         </div>
 
-        <div className="absolute top-2 right-2 z-20">
-          {model.isOnSale && (
-            <div className="bg-red-600 text-white text-[8px] md:text-[10px] font-black px-1.5 md:px-2 py-0.5 md:py-1 rounded uppercase tracking-wider shadow-lg">
-              מבצע
-            </div>
-          )}
+        {/* Labels Layer */}
+        <div className="absolute top-2 right-2 left-2 z-20 flex justify-between items-start pointer-events-none">
+          <div className="flex flex-col gap-1 items-start">
+            {isNew && (
+              <div className="bg-emerald-500 text-black text-[8px] md:text-[10px] font-black px-1.5 md:px-2 py-0.5 md:py-1 rounded uppercase tracking-wider shadow-[0_4px_12px_rgba(16,185,129,0.4)] animate-in fade-in zoom-in duration-500">
+                חדש באתר
+              </div>
+            )}
+          </div>
+          <div className="flex flex-col gap-1 items-end">
+            {model.isOnSale && (
+              <div className="bg-red-600 text-white text-[8px] md:text-[10px] font-black px-1.5 md:px-2 py-0.5 md:py-1 rounded uppercase tracking-wider shadow-lg">
+                מבצע
+              </div>
+            )}
+          </div>
         </div>
       </div>
 

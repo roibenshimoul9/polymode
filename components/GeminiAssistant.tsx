@@ -34,7 +34,7 @@ const GeminiAssistant: React.FC = () => {
   return (
     <div className="fixed bottom-6 left-6 z-[60] flex flex-col items-center">
       {isOpen ? (
-        <div className="bg-[#1a1a1a] border border-white/10 w-80 md:w-96 h-[500px] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300 text-right">
+        <div className="bg-[#1a1a1a] border border-white/10 w-[calc(100vw-2.5rem)] md:w-96 h-[500px] max-h-[70vh] md:max-h-[600px] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300 text-right">
           <div className="bg-blue-600 p-4 flex justify-between items-center flex-row-reverse">
             <div className="flex items-center space-x-2 space-x-reverse">
               <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
@@ -42,9 +42,9 @@ const GeminiAssistant: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <span className="font-bold text-white">פולי - עוזר חכם</span>
+              <span className="font-bold text-white text-sm md:text-base">פולי - עוזר חכם</span>
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-white hover:bg-white/10 p-1 rounded">
+            <button onClick={() => setIsOpen(false)} className="text-white hover:bg-white/10 p-1 rounded transition-colors">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
           </div>
@@ -52,7 +52,7 @@ const GeminiAssistant: React.FC = () => {
           <div ref={scrollRef} className="flex-grow overflow-y-auto p-4 space-y-4 bg-black/30">
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-start' : 'justify-end'}`}>
-                <div className={`max-w-[85%] rounded-2xl p-3 text-sm ${
+                <div className={`max-w-[85%] rounded-2xl p-3 text-xs md:text-sm ${
                   msg.role === 'user' 
                     ? 'bg-blue-600 text-white rounded-tl-none' 
                     : 'bg-[#2a2a2a] text-gray-200 rounded-tr-none border border-white/5'
@@ -85,7 +85,7 @@ const GeminiAssistant: React.FC = () => {
               <button 
                 onClick={handleSend}
                 disabled={isLoading}
-                className="bg-blue-600 text-white p-2 rounded-xl hover:bg-blue-500 disabled:opacity-50"
+                className="bg-blue-600 text-white p-2 rounded-xl hover:bg-blue-500 disabled:opacity-50 transition-all active:scale-90"
               >
                 <svg className="w-5 h-5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </button>
@@ -95,32 +95,18 @@ const GeminiAssistant: React.FC = () => {
       ) : (
         <div className="relative group flex flex-col items-center">
           {/* Peeking Panda */}
-          <div className="absolute -top-14 left-1/2 -translate-x-1/2 w-20 h-20 transition-all duration-500 transform group-hover:-top-16 group-hover:scale-110 pointer-events-none animate-bounce-slow">
+          <div className="absolute -top-14 left-1/2 -translate-x-1/2 w-16 h-16 md:w-20 md:h-20 transition-all duration-500 transform group-hover:-top-16 group-hover:scale-110 pointer-events-none animate-bounce-slow">
             <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-xl overflow-visible">
-              {/* Ears with white outline */}
-              {/* Left Ear */}
               <circle cx="25" cy="30" r="14" fill="white" />
               <circle cx="25" cy="30" r="10.5" fill="#111" />
-              
-              {/* Right Ear */}
               <circle cx="75" cy="30" r="14" fill="white" />
               <circle cx="75" cy="30" r="10.5" fill="#111" />
-              
-              {/* Head/Body */}
               <circle cx="50" cy="55" r="35" fill="white" />
-              
-              {/* Eye Patches */}
               <ellipse cx="38" cy="50" rx="10" ry="12" fill="#111" transform="rotate(-15, 38, 50)" />
               <ellipse cx="62" cy="50" rx="10" ry="12" fill="#111" transform="rotate(15, 62, 50)" />
-              
-              {/* Eyes */}
               <circle cx="39" cy="48" r="3" fill="white" />
               <circle cx="61" cy="48" r="3" fill="white" />
-              
-              {/* Nose */}
               <ellipse cx="50" cy="62" rx="4" ry="2.5" fill="#111" />
-              
-              {/* Hands Peeking */}
               <circle cx="35" cy="88" r="8" fill="#111" />
               <circle cx="65" cy="88" r="8" fill="#111" />
             </svg>
@@ -128,12 +114,12 @@ const GeminiAssistant: React.FC = () => {
 
           <button 
             onClick={() => setIsOpen(true)}
-            className="bg-blue-600 hover:bg-blue-500 text-white p-4 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center space-x-2 relative group-active:scale-95 z-10"
+            className="bg-blue-600 hover:bg-blue-500 text-white p-3 md:p-4 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center space-x-2 space-x-reverse relative group-active:scale-95 z-10"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" />
             </svg>
-            <span className="font-bold hidden md:inline">צ'אט עם פולי</span>
+            <span className="font-bold text-xs md:text-base">צ'אט עם פולי</span>
           </button>
 
           <style dangerouslySetInnerHTML={{ __html: `

@@ -3,7 +3,33 @@ import { Model3D } from './types';
 
 export const PRINT_FEE = 90.00;
 
+// Helper to set dates relative to now for demo purposes
+const daysAgo = (days: number) => {
+  const date = new Date();
+  date.setDate(date.getDate() - days);
+  return date.toISOString().split('T')[0];
+};
+
 export const MODELS: Model3D[] = [
+  {
+    id: 'ps5-wall-mount',
+    name: 'מתקן תלייה על הקיר לסוני פלייסטיישן',
+    category: 'אביזרים',
+    price: 40.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769545574/IMG_2995_n6ykla.jpg'
+    ],
+    description: 'מתקן תלייה איכותי וחזק המיועד להתקנה קלה של קונסולת ה-PlayStation על הקיר. פתרון מושלם לחיסכון במקום, שמירה על אוורור מקסימלי לקונסולה ומראה נקי ומודרני לפינת הגיימינג שלך. מעוצב לעמידות מרבית.',
+    fileFormat: ['STL'],
+    vertices: '95k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PETG / PLA+ (לחוסן מבני)',
+    createdAt: daysAgo(0)
+  },
   {
     id: 'dog-leash-rack-custom',
     name: 'מתקן תלייה לרצועה של הכלב עם שם מותאם אישית',
@@ -20,7 +46,8 @@ export const MODELS: Model3D[] = [
     vertices: '72k',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'PLA Silk / PETG'
+    recommendedMaterial: 'PLA Silk / PETG',
+    createdAt: daysAgo(1) // נוסף אתמול
   },
   {
     id: 'home-door-sign-judaica',
@@ -39,7 +66,8 @@ export const MODELS: Model3D[] = [
     vertices: '88k',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'PLA Silk / Marble'
+    recommendedMaterial: 'PLA Silk / Marble',
+    createdAt: daysAgo(2) // נוסף לפני יומיים
   },
   {
     id: 'hamsa-set-premium',
@@ -58,7 +86,8 @@ export const MODELS: Model3D[] = [
     vertices: '220k',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'Silk Gold / Marble PLA / Wood PLA'
+    recommendedMaterial: 'Silk Gold / Marble PLA / Wood PLA',
+    createdAt: daysAgo(4) // נוסף לפני 4 ימים
   },
   {
     id: 'b2-bomber-plane',
@@ -76,7 +105,8 @@ export const MODELS: Model3D[] = [
     vertices: '125k',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'Matte Black PLA / Galaxy Black'
+    recommendedMaterial: 'Matte Black PLA / Galaxy Black',
+    createdAt: '2024-01-10'
   },
   {
     id: 'judaica-blessing-candlesticks',
@@ -95,7 +125,8 @@ export const MODELS: Model3D[] = [
     vertices: '185k',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'Marble PLA / Silk Gold / White Matte'
+    recommendedMaterial: 'Marble PLA / Silk Gold / White Matte',
+    createdAt: '2024-01-15'
   },
   {
     id: 'apple-watch-magsafe-stand',
@@ -113,14 +144,15 @@ export const MODELS: Model3D[] = [
     vertices: '145k',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'PLA Silk / Matte PLA למראה פרימיום'
+    recommendedMaterial: 'PLA Silk / Matte PLA למראה פרימיום',
+    createdAt: '2024-01-20'
   },
   {
     id: 'fidget-poker-chip',
     name: 'גיטון פידגט',
     category: 'פידג\'טים',
     price: 25.00,
-    printFee: 0, // 25 + 0 = 25 NIS Total Physical Price
+    printFee: 0,
     rating: 5.0,
     reviewsCount: 0,
     images: [
@@ -132,7 +164,8 @@ export const MODELS: Model3D[] = [
     vertices: '65k',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'PLA Silk / PETG למגע חלק ועמידות'
+    recommendedMaterial: 'PLA Silk / PETG למגע חלק ועמידות',
+    createdAt: '2024-01-25'
   },
   {
     id: 'hair-dryer-stand',
@@ -150,7 +183,8 @@ export const MODELS: Model3D[] = [
     vertices: '110k',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'PETG (עמיד יותר בחום למקרה שהפן עדיין חם)'
+    recommendedMaterial: 'PETG (עמיד יותר בחום למקרה שהפן עדיין חם)',
+    createdAt: '2023-12-15'
   },
   {
     id: 'fidget-clicker',
@@ -168,7 +202,8 @@ export const MODELS: Model3D[] = [
     vertices: '45k',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'PLA / PETG (לחיצה עמידה יותר)'
+    recommendedMaterial: 'PLA / PETG (לחיצה עמידה יותר)',
+    createdAt: '2023-12-20'
   },
   {
     id: 'fidget-vortex',
@@ -188,7 +223,8 @@ export const MODELS: Model3D[] = [
     vertices: '52k',
     isOnSale: true,
     isPrintReady: true,
-    recommendedMaterial: 'PLA Silk (משי) כחול-סגול / Magic PLA'
+    recommendedMaterial: 'PLA Silk (משי) כחול-סגול / Magic PLA',
+    createdAt: '2023-11-30'
   },
   {
     id: 'dog-treat-spinner',
@@ -207,7 +243,8 @@ export const MODELS: Model3D[] = [
     vertices: '180k',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'PETG (בטוח למזון ועמיד יותר מפני נשיכות)'
+    recommendedMaterial: 'PETG (בטוח למזון ועמיד יותר מפני נשיכות)',
+    createdAt: '2023-12-05'
   },
   {
     id: 'fidget-formula-wheel',
@@ -225,7 +262,8 @@ export const MODELS: Model3D[] = [
     vertices: '120k',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'PLA Silk שחור או פחם למראה ספורטיבי'
+    recommendedMaterial: 'PLA Silk שחור או פחם למראה ספורטיבי',
+    createdAt: '2024-02-01'
   },
   {
     id: '1',
@@ -243,7 +281,8 @@ export const MODELS: Model3D[] = [
     vertices: '35k',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'PLA בצבעים ניגודיים'
+    recommendedMaterial: 'PLA בצבעים ניגודיים',
+    createdAt: '2023-10-10'
   },
   {
     id: 'fidget-1',
@@ -263,7 +302,8 @@ export const MODELS: Model3D[] = [
     vertices: '85k',
     isOnSale: true,
     isPrintReady: true,
-    recommendedMaterial: 'PLA משי (Silk) למראה זוהר'
+    recommendedMaterial: 'PLA משי (Silk) למראה זוהר',
+    createdAt: '2023-10-05'
   },
   {
     id: 'custom-diy',
@@ -280,7 +320,8 @@ export const MODELS: Model3D[] = [
     vertices: 'בהתאם לעיצוב',
     isOnSale: false,
     isPrintReady: true,
-    recommendedMaterial: 'בהתאמה אישית'
+    recommendedMaterial: 'בהתאמה אישית',
+    createdAt: '2023-01-01'
   },
   {
     id: 'fidget-4',
@@ -300,6 +341,7 @@ export const MODELS: Model3D[] = [
     vertices: '85k',
     isOnSale: true,
     isPrintReady: true,
-    recommendedMaterial: 'PLA משי (Silk) למראה זוהר'
+    recommendedMaterial: 'PLA משי (Silk) למראה זוהר',
+    createdAt: '2023-10-01'
   }
 ];
