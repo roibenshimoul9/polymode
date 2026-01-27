@@ -5,6 +5,25 @@ export const PRINT_FEE = 90.00;
 
 export const MODELS: Model3D[] = [
   {
+    id: 'hamsa-set-premium',
+    name: 'חמסות עם מחזיקי מפתחות ומעמד, וחמסה גדולה',
+    category: 'יודאיקה',
+    price: 0,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769541688/IMG_2988_2_eb35gj.jpg',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769541688/IMG_2992_kt4z9v.jpg',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769541688/IMG_2991_s6j3na.jpg'
+    ],
+    description: 'סט יודאיקה מרהיב הכולל חמסה גדולה דקורטיבית להצבה על המעמד, בתוספת חמסות קטנות המשמשות כמחזיקי מפתחות תואמים. עיצוב ייחודי המשלב מסורת עם נגיעה מודרנית. מתנה מושלמת לחנוכת בית, משרד חדש או אירועים משפחתיים.',
+    fileFormat: ['STL'],
+    vertices: '220k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'Silk Gold / Marble PLA / Wood PLA'
+  },
+  {
     id: 'b2-bomber-plane',
     name: 'מטוס B2 מפציץ',
     category: 'דגמים ודמויות תלת־ממד',
@@ -155,7 +174,7 @@ export const MODELS: Model3D[] = [
   },
   {
     id: 'fidget-formula-wheel',
-    name: 'הגה פורמולה עם הילוכים',
+    name: 'הגה פורמולה with הילוכים',
     category: 'פידג\'טים',
     price: 40.00,
     printFee: 0.00,
