@@ -17,7 +17,7 @@ export interface Model3D {
   printFee?: number;
 }
 
-export type Category = 'הכל' | 'דגמים ודמויות תלת־ממד' | 'פידג\'טים' | 'אביזרים' | 'יודאיקה' | 'בעלי חיים' | 'DIY';
+export type Category = 'הכל' | 'דגמים ודמויות תלת־ממד' | 'פידג\'טים' | 'אביזרים' | 'יודאיקה ולבית' | 'בעלי חיים' | 'DIY';
 
 export type PurchaseType = 'דיגיטלי' | 'פיזי';
 

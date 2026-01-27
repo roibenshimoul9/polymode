@@ -5,9 +5,46 @@ export const PRINT_FEE = 90.00;
 
 export const MODELS: Model3D[] = [
   {
+    id: 'dog-leash-rack-custom',
+    name: 'מתקן תלייה לרצועה של הכלב עם שם מותאם אישית',
+    category: 'בעלי חיים',
+    price: 60.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769542883/a275ad11-4889-4789-ba66-f9808ecf7299_tbjqqy.jpg'
+    ],
+    description: 'מתקן תלייה מעוצב ופרקטי לרצועה של הכלב, הכולל אפשרות להוספת שם הכלב בהתאמה אישית. פתרון מושלם לארגון פינת הכניסה בבית ומתנה נהדרת לכל בעל כלב. חזק, עמיד ומעוצב בטוב טעם.',
+    fileFormat: ['STL'],
+    vertices: '72k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA Silk / PETG'
+  },
+  {
+    id: 'home-door-sign-judaica',
+    name: 'שלט לבית (ניתן לבחור במגוון צבעים)',
+    category: 'יודאיקה ולבית',
+    price: 70.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769542884/650b8513-5f1d-459f-93f2-2c6d6d49c867_v0xxmn.jpg',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1769542883/B6AEF012-A079-4AAE-9EAC-18CD14C55EEE_nbpizl.jpg'
+    ],
+    description: 'שלט כניסה מעוצב ומרשים לבית. ניתן להזמין במגוון שילובי צבעים וטקסטורות לבחירתכם. עיצוב נקי ויוקרתי שמוסיף חן לכל דלת כניסה.',
+    fileFormat: ['STL'],
+    vertices: '88k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA Silk / Marble'
+  },
+  {
     id: 'hamsa-set-premium',
     name: 'חמסות עם מחזיקי מפתחות ומעמד, וחמסה גדולה',
-    category: 'יודאיקה',
+    category: 'יודאיקה ולבית',
     price: 0,
     rating: 5.0,
     reviewsCount: 0,
@@ -44,7 +81,7 @@ export const MODELS: Model3D[] = [
   {
     id: 'judaica-blessing-candlesticks',
     name: 'פמוטים עם ברכה',
-    category: 'יודאיקה',
+    category: 'יודאיקה ולבית',
     price: 150.00,
     printFee: 0.00,
     rating: 5.0,

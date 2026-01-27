@@ -13,7 +13,7 @@ import LicensesPage from './components/LicensesPage.tsx';
 import PrivacyPolicy from './components/PrivacyPolicy.tsx';
 import SpecialsPage from './components/SpecialsPage.tsx';
 
-const CATEGORIES: Category[] = ['הכל', 'דגמים ודמויות תלת־ממד', 'פידג\'טים', 'אביזרים', 'יודאיקה', 'בעלי חיים', 'DIY'];
+const CATEGORIES: Category[] = ['הכל', 'דגמים ודמויות תלת־ממד', 'פידג\'טים', 'אביזרים', 'יודאיקה ולבית', 'בעלי חיים', 'DIY'];
 
 const Catalog: React.FC<{ 
   searchQuery: string, 
