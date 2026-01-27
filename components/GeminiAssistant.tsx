@@ -11,11 +11,12 @@ const GeminiAssistant: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Auto-scroll to bottom on new messages or loading state
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages, isLoading]);
+  }, [messages, isLoading, isOpen]);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -40,7 +41,8 @@ const GeminiAssistant: React.FC = () => {
     <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-[60] flex flex-col items-center">
       {isOpen ? (
         <div className="bg-[#1a1a1a] border border-white/10 w-[calc(100vw-2rem)] md:w-96 h-[80svh] md:h-[600px] max-h-[700px] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300 text-right">
-          <div className="bg-blue-600 p-3 md:p-4 flex justify-between items-center flex-row-reverse">
+          {/* Header */}
+          <div className="bg-blue-600 p-3 md:p-4 flex justify-between items-center flex-row-reverse shadow-lg">
             <div className="flex items-center space-x-2 space-x-reverse">
               <div className="w-7 h-7 md:w-8 md:h-8 bg-white/20 rounded-full flex items-center justify-center">
                 <svg className="w-4 h-4 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -54,6 +56,7 @@ const GeminiAssistant: React.FC = () => {
             </button>
           </div>
 
+          {/* Messages Area */}
           <div ref={scrollRef} className="flex-grow overflow-y-auto p-4 space-y-4 bg-black/40 scroll-smooth">
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-start' : 'justify-end'}`}>
@@ -77,6 +80,7 @@ const GeminiAssistant: React.FC = () => {
             )}
           </div>
 
+          {/* Input Area */}
           <div className="p-3 md:p-4 border-t border-white/10 bg-[#141414]">
             <div className="flex space-x-2 flex-row-reverse items-center">
               <input
@@ -99,7 +103,7 @@ const GeminiAssistant: React.FC = () => {
         </div>
       ) : (
         <div className="relative group flex flex-col items-center">
-          {/* Peeking Panda - Scaled for mobile */}
+          {/* Peeking Panda - Proportional to mobile button */}
           <div className="absolute -top-10 md:-top-14 left-1/2 -translate-x-1/2 w-12 h-12 md:w-20 md:h-20 transition-all duration-500 transform group-hover:-top-16 group-hover:scale-110 pointer-events-none animate-bounce-slow">
             <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-xl overflow-visible">
               <circle cx="25" cy="30" r="14" fill="white" />
@@ -119,12 +123,12 @@ const GeminiAssistant: React.FC = () => {
 
           <button 
             onClick={() => setIsOpen(true)}
-            className="bg-blue-600 hover:bg-blue-500 text-white p-2 md:p-4 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center space-x-1.5 md:space-x-2 space-x-reverse relative group-active:scale-95 z-10 animate-pulse-subtle"
+            className="bg-blue-600 hover:bg-blue-500 text-white p-2.5 md:p-4 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center space-x-1.5 md:space-x-2 space-x-reverse relative group-active:scale-95 z-10 animate-pulse-subtle"
           >
             <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" />
             </svg>
-            <span className="font-bold text-[10px] md:text-base pr-1">צ'אט עם פולי</span>
+            <span className="font-bold text-[11px] md:text-base pr-1">צ'אט עם פולי</span>
           </button>
 
           <style dangerouslySetInnerHTML={{ __html: `
@@ -140,7 +144,7 @@ const GeminiAssistant: React.FC = () => {
               animation: bounce-slow 3s infinite ease-in-out;
             }
             .animate-pulse-subtle {
-              animation: pulse-subtle 3s infinite ease-in-out;
+              animation: pulse-subtle 3.5s infinite ease-in-out;
             }
           `}} />
         </div>
