@@ -2,12 +2,17 @@
 import { GoogleGenAI } from "@google/genai";
 
 export const chatWithAssistant = async (history: { role: 'user' | 'model', message: string }[]) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
   
   try {
+    let apiHistory = [...history];
+    if (apiHistory.length > 0 && apiHistory[0].role === 'model') {
+      apiHistory = apiHistory.slice(1);
+    }
+
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
-      contents: history.map(h => ({
+      contents: apiHistory.map(h => ({
         role: h.role,
         parts: [{ text: h.message }]
       })),
