@@ -38,8 +38,9 @@ export const chatWithAssistant = async (history: { role: 'user' | 'model', messa
     });
 
     return response.text;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Chat error:", error);
-    return "אופס, נראה שיש לי בעיה קטנה בחיבור. אולי תנסה לשאול שוב בעוד רגע? 🛠️";
+    const hasKey = !!process.env.GEMINI_API_KEY;
+    return `אופס, נראה שיש לי בעיה קטנה בחיבור. (Debug: Key present? ${hasKey}, Error: ${error?.message || 'Unknown'}) 🛠️`;
   }
 };
