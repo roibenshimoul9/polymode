@@ -1,6 +1,6 @@
 
 import React, { useState, useMemo } from 'react';
-import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { MODELS } from './constants.ts';
 import { Model3D, Category, CartItem, PurchaseType } from './types.ts';
 import Navbar from './components/Navbar.tsx';
@@ -12,6 +12,7 @@ import PrintingGuide from './components/PrintingGuide.tsx';
 import LicensesPage from './components/LicensesPage.tsx';
 import PrivacyPolicy from './components/PrivacyPolicy.tsx';
 import SpecialsPage from './components/SpecialsPage.tsx';
+import JudaicaPage from './components/JudaicaPage.tsx';
 
 const CATEGORIES: Category[] = ['הכל', 'דגמים ודמויות תלת־ממד', 'פידג\'טים', 'אביזרים', 'יודאיקה ולבית', 'בעלי חיים', 'DIY'];
 
@@ -33,7 +34,10 @@ const Catalog: React.FC<{
   minPrice, setMinPrice, 
   maxPrice, setMaxPrice, 
   filteredModels, onAddToCart, onOpenDetails 
-}) => (
+}) => {
+  const navigate = useNavigate();
+  
+  return (
   <>
     {/* Hero Section */}
     <section className="relative py-12 md:py-20 overflow-hidden">
@@ -76,7 +80,13 @@ const Catalog: React.FC<{
           {CATEGORIES.map(cat => (
             <button
               key={cat}
-              onClick={() => setSelectedCategory(cat)}
+              onClick={() => {
+                if (cat === 'יודאיקה ולבית') {
+                  navigate('/judaica');
+                } else {
+                  setSelectedCategory(cat);
+                }
+              }}
               className={`whitespace-nowrap px-4 md:px-6 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all ${
                 selectedCategory === cat 
                   ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' 
@@ -162,7 +172,8 @@ const Catalog: React.FC<{
       )}
     </section>
   </>
-);
+  );
+};
 
 const App: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>('הכל');
@@ -243,6 +254,12 @@ const App: React.FC = () => {
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/specials" element={
               <SpecialsPage 
+                onAddToCart={onAddToCart} 
+                onOpenDetails={setSelectedModel}
+              />
+            } />
+            <Route path="/judaica" element={
+              <JudaicaPage 
                 onAddToCart={onAddToCart} 
                 onOpenDetails={setSelectedModel}
               />
