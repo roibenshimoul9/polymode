@@ -19,7 +19,7 @@ const JudaicaPage: React.FC<JudaicaPageProps> = ({ onAddToCart, onOpenDetails })
       animate={{ opacity: 1 }} 
       exit={{ opacity: 0 }} 
       transition={{ duration: 1, ease: "easeInOut" }}
-      className="fixed inset-0 z-[100] bg-[#f4ebd0] text-[#3e2723] overflow-y-auto"
+      className="fixed inset-0 z-[100] bg-[#fcf8ee] text-[#3e2723] overflow-y-auto"
     >
       {/* Decorative background elements */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-10">
@@ -62,7 +62,7 @@ const JudaicaPage: React.FC<JudaicaPageProps> = ({ onAddToCart, onOpenDetails })
         >
           <Link 
             to="/" 
-            className="inline-flex items-center justify-center px-8 py-3 border border-[#3e2723] text-[#3e2723] hover:bg-[#3e2723] hover:text-[#f4ebd0] transition-all duration-500 rounded-full font-medium text-lg tracking-wide uppercase"
+            className="inline-flex items-center justify-center px-8 py-3 border border-[#3e2723] text-[#3e2723] hover:bg-[#3e2723] hover:text-[#fcf8ee] transition-all duration-500 rounded-full font-medium text-lg tracking-wide uppercase"
           >
             חזרה לקטלוג
           </Link>
@@ -82,6 +82,7 @@ const JudaicaPage: React.FC<JudaicaPageProps> = ({ onAddToCart, onOpenDetails })
                 model={model} 
                 onAddToCart={onAddToCart} 
                 onOpenDetails={onOpenDetails}
+                theme="light"
               />
             </motion.div>
           ))}
