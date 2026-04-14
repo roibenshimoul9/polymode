@@ -73,27 +73,27 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
         onClick={onClose}
       />
       
-      <div className={`fixed top-0 right-0 h-full w-full max-w-md bg-[#0a0a0a] border-l border-white/10 z-[80] transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'} flex flex-col text-right`}>
-        <div className="p-6 border-b border-white/10 flex justify-between items-center bg-[#0d0d0d]">
-          <h2 className="text-xl font-black flex items-center gap-2 text-white">
+      <div className={`fixed top-0 right-0 h-full w-full max-w-md bg-[#fcf8ee] border-l border-[#3e2723]/10 z-[80] transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'} flex flex-col text-right`}>
+        <div className="p-6 border-b border-[#3e2723]/10 flex justify-between items-center bg-[#f4ebd0]">
+          <h2 className="text-xl font-black flex items-center gap-2 text-[#3e2723]">
             הסל שלך
-            <span className="text-xs bg-blue-600/20 text-blue-400 px-2 py-0.5 rounded-full font-bold">
+            <span className="text-xs bg-blue-600/20 text-blue-600 px-2 py-0.5 rounded-full font-bold">
               {items.length}
             </span>
           </h2>
-          <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-full text-gray-400 hover:text-white transition-colors">
+          <button onClick={onClose} className="p-2 hover:bg-[#3e2723]/5 rounded-full text-[#5d4037] hover:text-[#3e2723] transition-colors">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
         </div>
 
         <div className="flex-grow overflow-y-auto p-6 space-y-6">
           {items.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center text-gray-600 space-y-4">
-              <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center">
+            <div className="h-full flex flex-col items-center justify-center text-[#8d6e63] space-y-4">
+              <div className="w-20 h-20 rounded-full bg-[#3e2723]/5 flex items-center justify-center">
                 <svg className="w-10 h-10 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
               </div>
               <p className="font-bold">הסל שלך ריק כרגע</p>
-              <button onClick={onClose} className="text-blue-500 text-sm hover:underline">חזרה לקטלוג</button>
+              <button onClick={onClose} className="text-blue-600 text-sm hover:underline">חזרה לקטלוג</button>
             </div>
           ) : (
             <>
@@ -101,9 +101,9 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
                 {items.map((item) => {
                   const itemPrice = calculateItemPrice(item);
                   return (
-                    <div key={`${item.id}-${item.purchaseType}`} className="flex flex-row-reverse gap-4 bg-white/5 p-4 rounded-2xl border border-white/5 group hover:border-white/10 transition-colors">
+                    <div key={`${item.id}-${item.purchaseType}`} className="flex flex-row-reverse gap-4 bg-white/60 p-4 rounded-2xl border border-[#3e2723]/10 group hover:border-[#3e2723]/30 transition-colors shadow-sm">
                       <div className="relative flex-shrink-0">
-                        <img src={item.images[0]} alt={item.name} className="w-20 h-20 object-cover rounded-xl border border-white/10" />
+                        <img src={item.images[0]} alt={item.name} className="w-20 h-20 object-cover rounded-xl border border-[#3e2723]/10" />
                         <span className={`absolute -top-2 -right-2 px-1.5 py-0.5 rounded text-[8px] font-black uppercase shadow-lg ${item.purchaseType === 'פיזי' ? 'bg-cyan-500 text-black' : 'bg-blue-600 text-white'}`}>
                           {item.purchaseType}
                         </span>
@@ -111,24 +111,24 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
                       <div className="flex-grow text-right flex flex-col justify-between">
                         <div>
                           <div className="flex justify-between items-start">
-                            <button onClick={() => onRemove(item.id, item.purchaseType)} className="text-gray-600 hover:text-red-500 p-1 transition-colors">
+                            <button onClick={() => onRemove(item.id, item.purchaseType)} className="text-[#8d6e63] hover:text-red-500 p-1 transition-colors">
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" strokeWidth="2"/></svg>
                             </button>
-                            <h3 className="font-bold text-gray-100 text-sm line-clamp-1">{item.name}</h3>
+                            <h3 className="font-bold text-[#3e2723] text-sm line-clamp-1">{item.name}</h3>
                           </div>
-                          {item.purchaseType === 'פיזי' && <p className="text-[10px] text-gray-500 mt-1">הדפסה וחומרים כלולים</p>}
+                          {item.purchaseType === 'פיזי' && <p className="text-[10px] text-[#8d6e63] mt-1">הדפסה וחומרים כלולים</p>}
                         </div>
                         <div className="flex items-center justify-between mt-2">
-                          <span className="text-sm font-black text-white">₪{(itemPrice * item.quantity).toFixed(2)}</span>
-                          <div className="flex items-center gap-2 bg-black/40 rounded-lg p-1 border border-white/10">
+                          <span className="text-sm font-black text-[#3e2723]">₪{(itemPrice * item.quantity).toFixed(2)}</span>
+                          <div className="flex items-center gap-2 bg-white rounded-lg p-1 border border-[#3e2723]/10 shadow-sm">
                             <button 
                               onClick={() => onUpdateQuantity(item.id, item.purchaseType, -1)}
-                              className="w-6 h-6 flex items-center justify-center text-gray-400 hover:bg-white/10 rounded font-bold"
+                              className="w-6 h-6 flex items-center justify-center text-[#5d4037] hover:bg-[#3e2723]/5 rounded font-bold"
                             >-</button>
-                            <span className="text-xs font-black w-4 text-center text-white">{item.quantity}</span>
+                            <span className="text-xs font-black w-4 text-center text-[#3e2723]">{item.quantity}</span>
                             <button 
                               onClick={() => onUpdateQuantity(item.id, item.purchaseType, 1)}
-                              className="w-6 h-6 flex items-center justify-center text-gray-400 hover:bg-white/10 rounded font-bold"
+                              className="w-6 h-6 flex items-center justify-center text-[#5d4037] hover:bg-[#3e2723]/5 rounded font-bold"
                             >+</button>
                           </div>
                         </div>
@@ -140,8 +140,8 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
 
               <div className="mt-8 space-y-6">
                 {hasPhysical && (
-                  <div className="space-y-3 bg-cyan-950/20 p-5 rounded-2xl border border-cyan-500/20">
-                    <h4 className="text-sm font-bold text-cyan-400 flex items-center justify-start gap-2">
+                  <div className="space-y-3 bg-blue-50 p-5 rounded-2xl border border-blue-200">
+                    <h4 className="text-sm font-bold text-blue-600 flex items-center justify-start gap-2">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" strokeWidth="2"/></svg>
                       כתובת למשלוח
                     </h4>
@@ -149,13 +149,13 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       placeholder="הכנס כתובת מלאה למשלוח (עיר, רחוב, מספר בית)..."
-                      className="w-full bg-black/50 border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none focus:ring-1 focus:ring-cyan-500 min-h-[80px] text-right placeholder:text-gray-700"
+                      className="w-full bg-white border border-blue-200 rounded-xl p-3 text-xs text-[#3e2723] focus:outline-none focus:ring-1 focus:ring-blue-500 min-h-[80px] text-right placeholder:text-[#8d6e63]"
                     />
                   </div>
                 )}
 
-                <div className="space-y-3 bg-white/5 p-5 rounded-2xl border border-white/5">
-                  <h4 className="text-sm font-bold text-gray-300 flex items-center justify-start gap-2">
+                <div className="space-y-3 bg-white/60 p-5 rounded-2xl border border-[#3e2723]/10 shadow-sm">
+                  <h4 className="text-sm font-bold text-[#5d4037] flex items-center justify-start gap-2">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" strokeWidth="2"/></svg>
                     קוד קופון
                   </h4>
@@ -169,7 +169,7 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
                       }}
                       disabled={isCouponApplied}
                       placeholder="הכנס קוד קופון..."
-                      className={`flex-grow bg-black/50 border ${couponError ? 'border-red-500' : isCouponApplied ? 'border-green-500/50' : 'border-white/10'} rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors text-right placeholder:text-gray-700`}
+                      className={`flex-grow bg-white border ${couponError ? 'border-red-500' : isCouponApplied ? 'border-green-500/50' : 'border-[#3e2723]/10'} rounded-xl px-3 py-2 text-xs text-[#3e2723] focus:outline-none transition-colors text-right placeholder:text-[#8d6e63]`}
                     />
                     {!isCouponApplied ? (
                       <button 
@@ -199,28 +199,28 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
         </div>
 
         {items.length > 0 && (
-          <div className="p-6 border-t border-white/10 space-y-4 bg-[#0d0d0d]">
+          <div className="p-6 border-t border-[#3e2723]/10 space-y-4 bg-[#f4ebd0]">
             <div className="space-y-2">
-              <div className="flex justify-between text-xs text-gray-500 font-bold">
+              <div className="flex justify-between text-xs text-[#8d6e63] font-bold">
                 <span>₪{subtotal.toFixed(2)}</span>
                 <span>סיכום ביניים</span>
               </div>
               {isCouponApplied && (
-                <div className="flex justify-between text-xs text-green-500 font-bold">
+                <div className="flex justify-between text-xs text-green-600 font-bold">
                   <span>₪{discountAmount.toFixed(2)}-</span>
                   <span>הנחת קופון (10%)</span>
                 </div>
               )}
               <div className="flex justify-between items-center text-2xl font-black">
-                <span className="text-blue-500">₪{total.toFixed(2)}</span>
-                <span className="text-white">סה"כ</span>
+                <span className="text-blue-600">₪{total.toFixed(2)}</span>
+                <span className="text-[#3e2723]">סה"כ</span>
               </div>
             </div>
             
             <div className="pt-2 text-center">
-              <p className="text-[11px] text-gray-500 mb-4">
+              <p className="text-[11px] text-[#8d6e63] mb-4">
                 לביצוע הרכישה ותיאום תשלום, לחצו על הכפתור למעבר לוואטסאפ או התקשרו: 
-                <a href={`tel:${PHONE_NUMBER}`} className="block text-blue-400 font-black text-lg mt-1 hover:underline tracking-widest">{PHONE_NUMBER}</a>
+                <a href={`tel:${PHONE_NUMBER}`} className="block text-blue-600 font-black text-lg mt-1 hover:underline tracking-widest">{PHONE_NUMBER}</a>
               </p>
               
               <button 

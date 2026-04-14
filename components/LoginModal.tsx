@@ -26,11 +26,11 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin }) => 
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/80 backdrop-blur-md animate-in fade-in duration-300" onClick={onClose} />
       
-      <div className="relative w-full max-w-md bg-[#0d0d0d] rounded-3xl border border-white/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-500 text-right">
+      <div className="relative w-full max-w-md bg-[#fcf8ee] rounded-3xl border border-[#3e2723]/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-500 text-right">
         <div className="p-8">
           <button 
             onClick={onClose}
-            className="absolute top-6 left-6 text-gray-500 hover:text-white transition-colors"
+            className="absolute top-6 left-6 text-[#8d6e63] hover:text-[#3e2723] transition-colors"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeWidth="2.5"/></svg>
           </button>
@@ -63,8 +63,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin }) => 
                 </g>
               </svg>
             </div>
-            <h2 className="text-3xl font-black text-white mb-2">ברוכים הבאים ל-Polymode</h2>
-            <p className="text-gray-500">התחברו כדי לשמור את המודלים שלכם ולעקוב אחר הזמנות</p>
+            <h2 className="text-3xl font-black text-[#3e2723] mb-2">ברוכים הבאים ל-Polymode</h2>
+            <p className="text-[#5d4037]">התחברו כדי לשמור את המודלים שלכם ולעקוב אחר הזמנות</p>
           </div>
 
           <div className="space-y-4">
@@ -81,13 +81,13 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin }) => 
               התחברות באמצעות Google
             </button>
 
-            <button className="w-full bg-[#111] hover:bg-white/5 text-gray-400 py-4 rounded-2xl font-bold transition-all border border-white/10" onClick={onClose}>
+            <button className="w-full bg-white/60 hover:bg-[#3e2723]/5 text-[#5d4037] py-4 rounded-2xl font-bold transition-all border border-[#3e2723]/10" onClick={onClose}>
               המשך כאורח
             </button>
           </div>
 
-          <p className="text-center text-[10px] text-gray-600 mt-8 leading-relaxed uppercase tracking-widest">
-            בהתחברות לאתר אתה מסכים ל<a href="#" className="text-blue-500 underline">תנאי השימוש</a> ול<a href="#" className="text-blue-500 underline">מדיניות הפרטיות</a> שלנו
+          <p className="text-center text-[10px] text-[#8d6e63] mt-8 leading-relaxed uppercase tracking-widest">
+            בהתחברות לאתר אתה מסכים ל<a href="#" className="text-blue-600 underline">תנאי השימוש</a> ול<a href="#" className="text-blue-600 underline">מדיניות הפרטיות</a> שלנו
           </p>
         </div>
       </div>

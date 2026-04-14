@@ -12,7 +12,7 @@ interface ModelCardProps {
 
 const PHONE_NUMBER = "0546843548";
 
-const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails, theme = 'dark' }) => {
+const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails, theme = 'light' }) => {
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const [imgError, setImgError] = useState(false);
 

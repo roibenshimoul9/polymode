@@ -24,21 +24,21 @@ const SpecialsPage: React.FC<SpecialsPageProps> = ({ onAddToCart, onOpenDetails 
         <div className="inline-block bg-red-600/10 border border-red-500/20 px-4 py-1.5 rounded-full mb-4">
           <span className="text-red-500 text-xs font-black uppercase tracking-widest">🔥 הצעות מוגבלות בזמן</span>
         </div>
-        <h1 className="text-4xl md:text-7xl font-black mb-4 md:mb-6 leading-tight text-white">
+        <h1 className="text-4xl md:text-7xl font-black mb-4 md:mb-6 leading-tight text-[#3e2723]">
           מבצעים <span className="text-red-500">חמים</span>
         </h1>
-        <p className="text-base md:text-xl text-gray-400 max-w-2xl md:mr-0 leading-relaxed">
+        <p className="text-base md:text-xl text-[#5d4037] max-w-2xl md:mr-0 leading-relaxed">
           ריכזנו עבורכם את כל ההנחות הכי שוות על מודלים פרימיום ומוצרי יודאיקה.
         </p>
       </header>
 
       {specialModels.length > 0 ? (
         <>
-          <div className="mb-8 flex items-center justify-between border-b border-white/5 pb-6 flex-row-reverse">
+          <div className="mb-8 flex items-center justify-between border-b border-[#3e2723]/10 pb-6 flex-row-reverse">
             <div className="flex items-center gap-2">
-              <span className="text-gray-500 text-xs md:text-sm font-bold">נמצאו</span>
-              <span className="bg-white/5 px-2 md:px-3 py-1 rounded-lg text-white font-black text-xs md:text-base">{specialModels.length}</span>
-              <span className="text-gray-500 text-xs md:text-sm font-bold">פריטים</span>
+              <span className="text-[#8d6e63] text-xs md:text-sm font-bold">נמצאו</span>
+              <span className="bg-[#3e2723]/5 px-2 md:px-3 py-1 rounded-lg text-[#3e2723] font-black text-xs md:text-base">{specialModels.length}</span>
+              <span className="text-[#8d6e63] text-xs md:text-sm font-bold">פריטים</span>
             </div>
           </div>
 
@@ -63,14 +63,14 @@ const SpecialsPage: React.FC<SpecialsPageProps> = ({ onAddToCart, onOpenDetails 
           </div>
         </>
       ) : (
-        <div className="py-20 text-center bg-[#111] rounded-[2rem] border border-white/5">
-          <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
-             <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 12H4" strokeWidth="2" strokeLinecap="round"/></svg>
+        <div className="py-20 text-center bg-white/60 rounded-[2rem] border border-[#3e2723]/10 shadow-sm">
+          <div className="w-16 h-16 bg-[#3e2723]/5 rounded-full flex items-center justify-center mx-auto mb-6">
+             <svg className="w-8 h-8 text-[#8d6e63]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 12H4" strokeWidth="2" strokeLinecap="round"/></svg>
           </div>
-          <h3 className="text-xl font-black text-white mb-2">אין מבצעים פעילים</h3>
+          <h3 className="text-xl font-black text-[#3e2723] mb-2">אין מבצעים פעילים</h3>
           <button 
             onClick={() => window.history.back()}
-            className="mt-6 bg-blue-600 text-white px-8 py-3 rounded-2xl font-black hover:bg-blue-500 transition-all text-sm"
+            className="mt-6 bg-blue-600 text-white px-8 py-3 rounded-2xl font-black hover:bg-blue-500 transition-all text-sm shadow-md"
           >
             חזרה לקטלוג
           </button>

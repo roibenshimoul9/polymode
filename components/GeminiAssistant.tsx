@@ -44,20 +44,20 @@ const GeminiAssistant: React.FC = () => {
   return (
     <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-[60] flex flex-col items-center">
       {isOpen ? (
-        <div className="bg-[#121212] border border-white/10 w-[calc(100vw-2rem)] md:w-96 h-[80svh] md:h-[600px] max-h-[700px] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300 text-right">
+        <div className="bg-[#fcf8ee] border border-[#3e2723]/10 w-[calc(100vw-2rem)] md:w-96 h-[80svh] md:h-[600px] max-h-[700px] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300 text-right">
           {/* Header */}
-          <div className="bg-blue-600 p-3 md:p-4 flex justify-between items-center flex-row-reverse shadow-lg">
+          <div className="bg-[#f4ebd0] p-3 md:p-4 flex justify-between items-center flex-row-reverse shadow-sm border-b border-[#3e2723]/10">
             <div className="flex items-center space-x-2 space-x-reverse">
-              <div className="w-7 h-7 md:w-8 md:h-8 bg-white/20 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-7 h-7 md:w-8 md:h-8 bg-[#3e2723]/10 rounded-full flex items-center justify-center">
+                <svg className="w-4 h-4 md:w-5 md:h-5 text-[#3e2723]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <span className="font-bold text-white text-sm md:text-base">פולי - העוזר החכם</span>
+              <span className="font-bold text-[#3e2723] text-sm md:text-base">פולי - העוזר החכם</span>
             </div>
             <button 
               onClick={() => setIsOpen(false)} 
-              className="text-white hover:bg-white/10 p-2 rounded-full transition-colors active:scale-90"
+              className="text-[#5d4037] hover:bg-[#3e2723]/10 p-2 rounded-full transition-colors active:scale-90"
               aria-label="סגור צ'אט"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -65,13 +65,13 @@ const GeminiAssistant: React.FC = () => {
           </div>
 
           {/* Messages Area */}
-          <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-black/40 scroll-smooth custom-scrollbar">
+          <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-white/60 scroll-smooth custom-scrollbar">
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-start' : 'justify-end'}`}>
                 <div className={`max-w-[85%] rounded-2xl p-3 text-[12px] md:text-sm leading-relaxed shadow-sm ${
                   msg.role === 'user' 
                     ? 'bg-blue-600 text-white rounded-tl-none' 
-                    : 'bg-[#2a2a2a] text-gray-200 rounded-tr-none border border-white/5'
+                    : 'bg-white text-[#3e2723] rounded-tr-none border border-[#3e2723]/10'
                 }`}>
                   {msg.message}
                 </div>
@@ -79,7 +79,7 @@ const GeminiAssistant: React.FC = () => {
             ))}
             {isLoading && (
               <div className="flex justify-end">
-                <div className="bg-[#2a2a2a] rounded-2xl p-3 flex space-x-1.5 border border-white/5">
+                <div className="bg-white rounded-2xl p-3 flex space-x-1.5 border border-[#3e2723]/10 shadow-sm">
                   <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce"></div>
                   <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
                   <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce [animation-delay:0.4s]"></div>
@@ -90,7 +90,7 @@ const GeminiAssistant: React.FC = () => {
           </div>
 
           {/* Input Area */}
-          <div className="p-3 md:p-4 border-t border-white/10 bg-[#1a1a1a]">
+          <div className="p-3 md:p-4 border-t border-[#3e2723]/10 bg-[#f4ebd0]">
             <div className="flex space-x-2 flex-row-reverse items-center">
               <input
                 type="text"
@@ -98,12 +98,12 @@ const GeminiAssistant: React.FC = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="איך אוכל לעזור?"
-                className="flex-grow bg-[#222] border border-white/10 rounded-xl px-4 py-2.5 text-xs md:text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 text-white text-right placeholder:text-gray-600 transition-all"
+                className="flex-grow bg-white border border-[#3e2723]/10 rounded-xl px-4 py-2.5 text-xs md:text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 text-[#3e2723] text-right placeholder:text-[#8d6e63] transition-all"
               />
               <button 
                 onClick={handleSend}
                 disabled={isLoading || !input.trim()}
-                className="bg-blue-600 text-white p-2.5 rounded-xl hover:bg-blue-500 disabled:opacity-20 disabled:scale-100 transition-all active:scale-90 shrink-0 shadow-lg"
+                className="bg-blue-600 text-white p-2.5 rounded-xl hover:bg-blue-500 disabled:opacity-20 disabled:scale-100 transition-all active:scale-90 shrink-0 shadow-sm"
               >
                 <svg className="w-5 h-5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -161,7 +161,7 @@ const GeminiAssistant: React.FC = () => {
               width: 4px;
             }
             .custom-scrollbar::-webkit-scrollbar-thumb {
-              background: #333;
+              background: rgba(141, 110, 99, 0.3);
               border-radius: 10px;
             }
           `}} />

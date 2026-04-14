@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCartToggle, cartCount }) => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10 px-6 py-4">
+    <nav className="sticky top-0 z-50 bg-[#fcf8ee]/90 backdrop-blur-md border-b border-[#3e2723]/10 px-6 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2 space-x-reverse group">
           <div className="relative w-16 h-16 flex items-center justify-center overflow-visible">
@@ -47,19 +47,19 @@ const Navbar: React.FC<NavbarProps> = ({ onCartToggle, cartCount }) => {
               </g>
             </svg>
           </div>
-          <span className="text-2xl font-black tracking-tighter bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent uppercase mr-2 select-none group-hover:from-blue-400 group-hover:to-white transition-all duration-500">
+          <span className="text-2xl font-black tracking-tighter bg-gradient-to-r from-[#3e2723] via-[#5d4037] to-[#8d6e63] bg-clip-text text-transparent uppercase mr-2 select-none group-hover:from-blue-600 group-hover:to-[#3e2723] transition-all duration-500">
             Polymode
           </span>
         </Link>
 
-        <div className="hidden md:flex space-x-8 space-x-reverse text-sm font-bold text-gray-400">
-          <Link to="/" className="hover:text-blue-400 transition-colors uppercase tracking-widest">חנות</Link>
-          <Link to="/guide" className="hover:text-blue-400 transition-colors uppercase tracking-widest">מדריך הדפסה</Link>
-          <Link to="/specials" className="hover:text-blue-400 transition-colors uppercase tracking-widest text-red-500/80">מבצעים</Link>
+        <div className="hidden md:flex space-x-8 space-x-reverse text-sm font-bold text-[#5d4037]">
+          <Link to="/" className="hover:text-blue-600 transition-colors uppercase tracking-widest">חנות</Link>
+          <Link to="/guide" className="hover:text-blue-600 transition-colors uppercase tracking-widest">מדריך הדפסה</Link>
+          <Link to="/specials" className="hover:text-blue-600 transition-colors uppercase tracking-widest text-red-500/80">מבצעים</Link>
           <a 
             href={`https://wa.me/972${PHONE_NUMBER.substring(1)}`}
             onClick={handleSupportClick}
-            className="hover:text-blue-400 transition-colors uppercase tracking-widest text-blue-500/80"
+            className="hover:text-blue-600 transition-colors uppercase tracking-widest text-blue-600/80"
           >
             תמיכה
           </a>
@@ -68,7 +68,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCartToggle, cartCount }) => {
         <div className="flex items-center space-x-6 space-x-reverse">
           <button 
             onClick={onCartToggle}
-            className="relative p-2 text-gray-400 hover:text-white transition-colors"
+            className="relative p-2 text-[#5d4037] hover:text-[#3e2723] transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
