@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { MODELS } from '../constants';
 import { Model3D, PurchaseType } from '../types';
@@ -12,15 +12,33 @@ interface JudaicaPageProps {
 
 const JudaicaPage: React.FC<JudaicaPageProps> = ({ onAddToCart, onOpenDetails }) => {
   const judaicaModels = MODELS.filter(m => m.category === 'יודאיקה ולבית');
+  
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll({ container: containerRef });
+  const backgroundOpacity = useTransform(scrollY, [0, 500], [0.3, 0]);
 
   return (
     <motion.div 
+      ref={containerRef}
       initial={{ opacity: 0 }} 
       animate={{ opacity: 1 }} 
       exit={{ opacity: 0 }} 
       transition={{ duration: 1, ease: "easeInOut" }}
       className="fixed inset-0 z-[100] bg-[#fcf8ee] text-[#3e2723] overflow-y-auto"
     >
+      {/* Scrollable Background Image */}
+      <motion.div 
+        style={{ opacity: backgroundOpacity }} 
+        className="fixed inset-0 z-0 pointer-events-none"
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1582299839420-1a12d1b54b1f?auto=format&fit=crop&q=80" 
+          alt="Western Wall Background" 
+          className="absolute inset-0 w-full h-full object-cover object-center grayscale mix-blend-multiply opacity-50"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#fcf8ee]/50 via-[#fcf8ee]/80 to-[#fcf8ee]" />
+      </motion.div>
+
       {/* Decorative background elements */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-10">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full border-[1px] border-[#3e2723]"></div>
@@ -32,7 +50,8 @@ const JudaicaPage: React.FC<JudaicaPageProps> = ({ onAddToCart, onOpenDetails })
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
-          className="text-6xl md:text-9xl font-serif font-bold mb-6 tracking-tight"
+          className="text-7xl md:text-9xl font-black mb-6 tracking-tighter bg-clip-text text-transparent bg-gradient-to-l from-[#3e2723] via-[#8d6e63] to-[#3e2723] drop-shadow-sm"
+          style={{ fontFamily: "'Assistant', sans-serif" }}
         >
           אור החיים
         </motion.h1>

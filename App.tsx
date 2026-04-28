@@ -14,6 +14,8 @@ import PrivacyPolicy from './components/PrivacyPolicy.tsx';
 import SpecialsPage from './components/SpecialsPage.tsx';
 import JudaicaPage from './components/JudaicaPage.tsx';
 
+import LandingHero from './components/LandingHero.tsx';
+
 const CATEGORIES: Category[] = ['הכל', 'דגמים ודמויות תלת־ממד', 'פידג\'טים', 'אביזרים', 'יודאיקה ולבית', 'בעלי חיים', 'DIY'];
 
 const Catalog: React.FC<{ 
@@ -39,19 +41,35 @@ const Catalog: React.FC<{
   
   return (
   <>
-    {/* Hero Section */}
-    <section className="relative py-12 md:py-20 overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-blue-400/20 blur-[120px] rounded-full -z-10" />
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight mb-4 md:mb-6 leading-tight text-[#3e2723]">
-          מהמסך למציאות:<br />
-          <span className="text-blue-600 uppercase tracking-wide">Polymode</span>
-        </h1>
-        <p className="text-[#5d4037] text-base md:text-xl max-w-2xl mx-auto mb-8 md:mb-10">
-          זירת המסחר המקצועית למודלים ו<span className="text-blue-600 font-semibold">הדפסות תלת-ממד במשלוח עד הבית</span>.
-        </p>
+    {/* New Landing Hero Section */}
+    <LandingHero />
+
+    <div id="catalog-section" className="scroll-mt-[73px]"></div>
+
+    <div className="max-w-7xl mx-auto px-6 mt-12 md:mt-16 text-center">
+      <h2 className="text-2xl md:text-3xl font-black text-[#3e2723] mb-2 tracking-tight">
+        הדמיון שלכם, המציאות שלנו
+      </h2>
+      <p className="text-sm md:text-base text-[#5d4037] max-w-2xl mx-auto">
+        כל המודלים בקטלוג ניתנים להתאמה אישית מלאה – החל ממידות מדויקות ועד לבחירת גוונים שיתאימו בדיוק לחזון שלכם.<br/>
+        אל תהססו לפנות אלינו, לשאלות לחץ{' '}
+        <a 
+          href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '0546843548'}?text=היי,%20יש%20לי%20שאלה%20בקשר%20להתאמה%20אישית`}
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-blue-600 font-bold hover:underline"
+        >
+          תמיכה
+        </a>.
+      </p>
+    </div>
+
+    {/* Catalog Controls */}
+    <section className="relative z-20 bg-[#fcf8ee]/95 backdrop-blur-md border-b border-[#3e2723]/10 py-3 md:py-4 mt-8 md:mt-8">
+      <div className="max-w-7xl mx-auto px-6 space-y-4">
         
-        <div className="max-w-xl mx-auto relative group">
+        {/* Added Search Bar Here */}
+        <div className="max-w-xl mx-auto relative group mb-4">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
           <div className="relative flex items-center bg-white/80 backdrop-blur-md border border-[#3e2723]/10 rounded-2xl p-1.5 md:p-2 flex-row-reverse shadow-sm">
             <svg className="w-5 h-5 text-[#8d6e63] mr-3 ml-3 md:mr-4 md:ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,8 +77,8 @@ const Catalog: React.FC<{
             </svg>
             <input 
               type="text" 
-              placeholder="חפש מודלים להדפסה..."
-              className="flex-grow bg-transparent border-none focus:ring-0 text-[#3e2723] placeholder:text-[#8d6e63] px-2 md:px-4 py-2 md:py-3 text-sm md:text-base text-right"
+              placeholder="כאן תמצא את מה שחלמת עליו או שפשוט נייצר לך אותו..."
+              className="flex-grow bg-transparent border-none outline-none focus:ring-0 text-[#3e2723] placeholder:text-[#8d6e63] px-2 md:px-4 py-2 md:py-3 text-sm md:text-base text-right"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -69,12 +87,7 @@ const Catalog: React.FC<{
             </button>
           </div>
         </div>
-      </div>
-    </section>
 
-    {/* Catalog Controls */}
-    <section className="sticky top-[73px] z-40 bg-[#fcf8ee]/95 backdrop-blur-md border-b border-[#3e2723]/10 py-3 md:py-4">
-      <div className="max-w-7xl mx-auto px-6 space-y-4">
         {/* Category Row */}
         <div className="overflow-x-auto no-scrollbar flex items-center justify-start space-x-2 space-x-reverse pb-1">
           {CATEGORIES.map(cat => (
