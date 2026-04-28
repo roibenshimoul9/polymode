@@ -54,10 +54,10 @@ const Catalog: React.FC<{
         כל המודלים בקטלוג ניתנים להתאמה אישית מלאה – החל ממידות מדויקות ועד לבחירת גוונים שיתאימו בדיוק לחזון שלכם.<br/>
         אל תהססו לפנות אלינו, לשאלות לחץ{' '}
         <a 
-          href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '0546843548'}?text=היי,%20יש%20לי%20שאלה%20בקשר%20להתאמה%20אישית`}
+          href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '972546843548'}?text=${encodeURIComponent('היי, יש לי שאלה בקשר להתאמה אישית')}`}
           target="_blank" 
           rel="noopener noreferrer"
-          className="text-blue-600 font-bold hover:underline"
+          className="text-blue-600 font-bold hover:underline cursor-pointer"
         >
           תמיכה
         </a>.
