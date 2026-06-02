@@ -12,6 +12,66 @@ const daysAgo = (days: number) => {
 
 export const MODELS: Model3D[] = [
   {
+    id: 'car-honeycomb-keychain',
+    name: 'מחזיק מפתחות לרכב לכל סוגי הרכבים דגם כוורת',
+    category: 'מוצרים לרכב',
+    price: 35.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1780420247/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2026-06-02_201031_srm9rr.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1780420200/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2026-06-02_200932_vie1z7.png'
+    ],
+    description: 'מחזיק מפתחות מעוצב בדוגמת כוורת (Honeycomb) יוקרתית וספורטיבית, המותאם אישית לכל סוגי הרכבים. קל משקל, עמיד במיוחד ובעל מראה תלת-ממדי ייחודי שישדרג את צרור המפתחות שלכם.',
+    fileFormat: ['STL'],
+    vertices: '45k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PETG / PLA Silk',
+    createdAt: daysAgo(0)
+  },
+  {
+    id: 'car-spinner-keychain',
+    name: 'מחזיק ספינר למפתחות לכל סוגי הרכבים',
+    category: 'מוצרים לרכב',
+    price: 35.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1780419259/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2026-06-02_194714_tgtzgj.png'
+    ],
+    description: 'מחזיק מפתחות ספינר ייחודי וממכר המתאים לכל סוגי הרכבים ומחזיקי המפתחות. מושלם לסיבוב והפגת מתחים בזמן נהיגה, שהייה בפקקים או סתם בשעות הפנאי. פריט חובה לחובבי רכב ועיצוב אישי!',
+    fileFormat: ['STL'],
+    vertices: '64k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA Silk / PETG (עמיד וחזק)',
+    createdAt: daysAgo(0)
+  },
+  {
+    id: 'netanyahu-crown-statue',
+    name: 'פסלון בנימין נתניהו עם כתר',
+    category: 'דגמים ודמויות תלת־ממד',
+    price: 99.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1780419251/IMG_4076_uj1jf0.jpg',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1780419251/IMG_4075_u0rvcv.jpg',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1780419251/IMG_4074_ysre0n.jpg'
+    ],
+    description: 'פסלון דיוקן ייחודי ומשעשע של בנימין נתניהו מעוטר בכתר. הדגם מודפס ברמת דיוק ורזולוציה גבוהה במיוחד, פריט עיצוב יוצא דופן למשרד, לבית או כמתנה בלתי נשכחת.',
+    fileFormat: ['STL'],
+    vertices: '180k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'Silk Gold (משי זהב) / Marble PLA',
+    createdAt: daysAgo(0)
+  },
+  {
     id: 'ps5-wall-mount',
     name: 'מתקן תלייה על הקיר לסוני פלייסטיישן',
     category: 'אביזרים',

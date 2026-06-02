@@ -16,7 +16,7 @@ import JudaicaPage from './components/JudaicaPage.tsx';
 
 import LandingHero from './components/LandingHero.tsx';
 
-const CATEGORIES: Category[] = ['הכל', 'דגמים ודמויות תלת־ממד', 'פידג\'טים', 'אביזרים', 'יודאיקה ולבית', 'בעלי חיים', 'DIY'];
+const CATEGORIES: Category[] = ['הכל', 'דגמים ודמויות תלת־ממד', 'מוצרים לרכב', 'פידג\'טים', 'אביזרים', 'יודאיקה ולבית', 'בעלי חיים', 'DIY'];
 
 const Catalog: React.FC<{ 
   searchQuery: string, 
