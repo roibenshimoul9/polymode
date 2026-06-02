@@ -17,7 +17,14 @@ const LandingHero: React.FC = () => {
   return (
     <div className="relative w-full h-screen overflow-hidden flex flex-col items-center justify-center bg-transparent">
       {/* Background */}
-      <motion.div style={{ opacity: backgroundOpacity }} className="fixed inset-0 z-0 pointer-events-none">
+      <motion.div 
+        style={{ 
+          opacity: backgroundOpacity,
+          willChange: 'opacity',
+          transform: 'translate3d(0, 0, 0)'
+        }} 
+        className="fixed inset-0 z-0 pointer-events-none"
+      >
         <motion.img
           src={BACKGROUND_IMAGE}
           alt="Background"

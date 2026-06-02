@@ -240,12 +240,16 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div 
-        className="min-h-screen flex flex-col text-right bg-[#fcf8ee]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E")`,
-        }}
-      >
+      <div className="min-h-screen flex flex-col text-right bg-[#fcf8ee] relative">
+        {/* Hardware-accelerated fixed noise overlay for silky-smooth scrolling */}
+        <div 
+          className="fixed inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-overlay"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            willChange: 'transform',
+            transform: 'translate3d(0, 0, 0)'
+          }}
+        />
         <Navbar 
           onCartToggle={() => setIsCartOpen(true)} 
           cartCount={cart.reduce((a, b) => a + b.quantity, 0)} 

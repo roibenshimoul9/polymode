@@ -28,7 +28,11 @@ const JudaicaPage: React.FC<JudaicaPageProps> = ({ onAddToCart, onOpenDetails })
     >
       {/* Scrollable Background Image */}
       <motion.div 
-        style={{ opacity: backgroundOpacity }} 
+        style={{ 
+          opacity: backgroundOpacity,
+          willChange: 'opacity',
+          transform: 'translate3d(0, 0, 0)'
+        }} 
         className="fixed inset-0 z-0 pointer-events-none"
       >
         <img 

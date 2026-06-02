@@ -84,7 +84,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
               setImgError(true);
             }}
             loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 transform-gpu backface-hidden"
           />
         ) : (
           <div className={`w-full h-full flex flex-col items-center justify-center p-4 text-center ${isLight ? 'bg-[#3e2723]/5 text-[#8d6e63]' : 'bg-white/5 text-gray-600'}`}>
