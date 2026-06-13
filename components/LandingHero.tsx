@@ -81,7 +81,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
   };
 
   return (
-    <div className="relative w-full min-h-[100dvh] pt-8 pb-12 md:pb-16 overflow-hidden flex flex-col items-center justify-center bg-transparent">
+    <div className="relative w-full min-h-[100dvh] pt-8 pb-8 md:pb-12 overflow-hidden flex flex-col items-center justify-center bg-transparent">
       {/* Background with Silk Texture Image */}
       <motion.div 
         style={{ 
@@ -105,7 +105,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 w-full h-full">
+      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 w-full flex-grow">
         {/* Logo Icon */}
         <motion.div 
           className="relative w-40 h-40 md:w-56 md:h-56 mb-1 md:mb-0 flex items-center justify-center"
@@ -176,7 +176,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
       {/* Scroll Down Indicator */}
       <motion.button 
         onClick={scrollToCatalog}
-        className="absolute bottom-12 z-20 flex flex-col items-center justify-center text-[#3e2723] hover:text-blue-600 transition-colors cursor-pointer drop-shadow-md"
+        className="relative mt-8 md:mt-12 z-20 flex flex-col items-center justify-center text-[#3e2723] hover:text-blue-600 transition-colors cursor-pointer drop-shadow-md"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}

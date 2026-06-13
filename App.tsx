@@ -49,7 +49,7 @@ const Catalog: React.FC<{
 
     <div id="catalog-section" className="scroll-mt-[73px]"></div>
 
-    <div className="max-w-7xl mx-auto px-6 mt-12 md:mt-16 text-center">
+    <div className="max-w-7xl mx-auto px-6 mt-4 md:mt-8 text-center">
       <h2 className="text-2xl md:text-3xl font-black text-[#3e2723] mb-2 tracking-tight">
         הדמיון שלכם, המציאות שלנו
       </h2>
