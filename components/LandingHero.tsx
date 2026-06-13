@@ -81,7 +81,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
   };
 
   return (
-    <div className="relative w-full min-h-[100dvh] pt-12 pb-32 overflow-hidden flex flex-col items-center justify-center bg-transparent">
+    <div className="relative w-full min-h-[100dvh] pt-8 pb-12 md:pb-16 overflow-hidden flex flex-col items-center justify-center bg-transparent">
       {/* Background with Silk Texture Image */}
       <motion.div 
         style={{ 
@@ -105,7 +105,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 w-full h-full mt-[-20px]">
+      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 w-full h-full">
         {/* Logo Icon */}
         <motion.div 
           className="relative w-40 h-40 md:w-56 md:h-56 mb-1 md:mb-0 flex items-center justify-center"
@@ -136,7 +136,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
         
         {/* Subtitle */}
         <motion.p 
-          className="text-xl md:text-3xl text-[#3e2723] max-w-2xl font-medium mb-4 md:mb-6 tracking-wide drop-shadow-sm"
+          className="text-xl md:text-3xl text-[#3e2723] max-w-2xl font-medium mb-3 md:mb-4 tracking-wide drop-shadow-sm"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.6 }}
@@ -147,12 +147,12 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
         {/* Premium Imagery Row */}
         {carouselImages.length >= 5 && (
           <motion.div
-            className="w-full max-w-full md:max-w-[1500px] lg:max-w-[1800px] mx-auto px-2 md:px-4 mt-8 md:mt-12"
+            className="w-full max-w-full md:max-w-[1200px] lg:max-w-[1450px] mx-auto px-2 md:px-4 mt-6 md:mt-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.8 }}
           >
-            <div className="flex flex-wrap justify-center gap-3 md:gap-4 lg:gap-[14px] w-full">
+            <div className="flex flex-wrap justify-center gap-4 md:gap-5 lg:gap-6 w-full">
               {[
                 { offset: 0, delay: 5000 },
                 { offset: 1, delay: 6200 },
@@ -162,7 +162,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
               ].map((config, idx) => (
                 <PremiumFrame 
                   key={idx}
-                  className="w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.5rem)] md:w-[calc(20%-0.7rem)] flex-grow-0 flex-shrink-0"
+                  className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.66rem)] md:w-[calc(20%-1rem)] lg:w-[calc(20%-1.2rem)] flex-grow-0 flex-shrink-0"
                   models={carouselImages.filter((_, i) => i % 5 === config.offset)} 
                   intervalMs={config.delay} 
                   onClick={(m) => onOpenDetails ? onOpenDetails(m) : scrollToCatalog()} 
