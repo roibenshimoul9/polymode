@@ -14,8 +14,12 @@ const JudaicaPage: React.FC<JudaicaPageProps> = ({ onAddToCart, onOpenDetails })
   const judaicaModels = MODELS.filter(m => m.category === 'יודאיקה ולבית');
   
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll({ container: containerRef });
+  const { scrollY } = useScroll();
   const backgroundOpacity = useTransform(scrollY, [0, 500], [0.3, 0]);
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <motion.div 
@@ -24,7 +28,7 @@ const JudaicaPage: React.FC<JudaicaPageProps> = ({ onAddToCart, onOpenDetails })
       animate={{ opacity: 1 }} 
       exit={{ opacity: 0 }} 
       transition={{ duration: 1, ease: "easeInOut" }}
-      className="fixed inset-0 z-[100] bg-[#fcf8ee] text-[#3e2723] overflow-y-auto"
+      className="min-h-screen bg-[#fcf8ee] text-[#3e2723]"
     >
       {/* Scrollable Background Image */}
       <motion.div 

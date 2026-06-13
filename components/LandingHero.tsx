@@ -82,7 +82,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
 
   return (
     <div className="relative w-full min-h-[100dvh] pt-12 pb-32 overflow-hidden flex flex-col items-center justify-center bg-transparent">
-      {/* Background with Live Mesh Gradient */}
+      {/* Background with Silk Texture Image */}
       <motion.div 
         style={{ 
           opacity: backgroundOpacity,
@@ -91,74 +91,16 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
         }} 
         className="fixed inset-0 z-0 pointer-events-none bg-[#fdfbf6] overflow-hidden"
       >
-        <style>{`
-          @keyframes mesh-blob-1 {
-            0%   { transform: translate(0px, 0px) scale(1); }
-            33%  { transform: translate(5vw, -5vh) scale(1.1); }
-            66%  { transform: translate(-3vw, 4vh) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
-          }
-          @keyframes mesh-blob-2 {
-            0%   { transform: translate(0px, 0px) scale(1.1); }
-            33%  { transform: translate(-5vw, 6vh) scale(0.9); }
-            66%  { transform: translate(4vw, -4vh) scale(1.05); }
-            100% { transform: translate(0px, 0px) scale(1.1); }
-          }
-          @keyframes mesh-blob-3 {
-            0%   { transform: translate(0px, 0px) scale(0.9); }
-            33%  { transform: translate(4vw, 4vh) scale(1.1); }
-            66%  { transform: translate(-4vw, -3vh) scale(0.95); }
-            100% { transform: translate(0px, 0px) scale(0.9); }
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .mesh-animate {
-              animation: none !important;
-              transform: none !important;
-            }
-          }
-          .mesh-blob-1 { animation: mesh-blob-1 25s infinite alternate ease-in-out; }
-          .mesh-blob-2 { animation: mesh-blob-2 28s infinite alternate-reverse ease-in-out; }
-          .mesh-blob-3 { animation: mesh-blob-3 22s infinite alternate ease-in-out; }
-        `}</style>
-        
-        {/* Animated Mesh Blobs */}
-        {/* Subtle Blue */}
-        <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] md:w-[40vw] md:h-[40vw] rounded-full bg-blue-300/40 mix-blend-multiply blur-[100px] md:blur-[140px] mesh-animate mesh-blob-1 opacity-70" />
-        {/* Warm Golden-Brown */}
-        <div className="absolute bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] md:w-[50vw] md:h-[50vw] rounded-full bg-[#d7ccc8]/60 mix-blend-multiply blur-[100px] md:blur-[150px] mesh-animate mesh-blob-2 opacity-80" />
-        {/* Soft Peach/Pink touch */}
-        <div className="absolute top-[20%] right-[-20%] w-[50vw] h-[50vw] md:w-[35vw] md:h-[35vw] rounded-full bg-rose-200/40 mix-blend-multiply blur-[90px] md:blur-[130px] mesh-animate mesh-blob-3 opacity-60" />
-        {/* Secondary Base adjustment blob */}
-        <div className="absolute bottom-[-10%] left-[10%] w-[55vw] h-[55vw] md:w-[30vw] md:h-[30vw] rounded-full bg-[#f5ede0]/80 mix-blend-multiply blur-[100px] md:blur-[120px] mesh-animate mesh-blob-1 opacity-70" style={{ animationDelay: '-10s' }} />
-
+        {/* Blurred Silk Background */}
+        <div 
+          className="absolute -inset-4 bg-cover bg-center bg-no-repeat blur-[5px]"
+          style={{ 
+            backgroundImage: `url('https://res.cloudinary.com/djv6v984k/image/upload/v1781372874/EE216FEA-E066-4C7F-AD13-5E1FCEEF0FEC_q71hxp.png')`,
+          }}
+        />
         {/* Center Light mask for solid text readability */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(253,251,246,0.6)_0%,rgba(253,251,246,0)_70%)] z-10" />
-
-        {/* 3D Wireframe Cubes */}
-        {/* Cube 1 (Top Right) */}
-        <div className="absolute top-[15%] right-[5%] w-24 h-24 md:w-40 md:h-40 opacity-[0.04] z-10">
-           <svg viewBox="0 0 100 100" className="w-full h-full text-[#3e2723]" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M50 15 L85 30 L50 45 L15 30 Z" />
-              <path d="M50 45 L85 30 L85 70 L50 85 Z" />
-              <path d="M15 30 L50 45 L50 85 L15 70 Z" />
-           </svg>
-        </div>
-        {/* Cube 2 (Bottom Left) */}
-        <div className="absolute bottom-[25%] left-[5%] w-32 h-32 md:w-48 md:h-48 opacity-[0.03] z-10">
-           <svg viewBox="0 0 100 100" className="w-full h-full text-[#3e2723]" fill="none" stroke="currentColor" strokeWidth="1">
-              <path d="M50 15 L85 30 L50 45 L15 30 Z" />
-              <path d="M50 45 L85 30 L85 70 L50 85 Z" />
-              <path d="M15 30 L50 45 L50 85 L15 70 Z" />
-           </svg>
-        </div>
-        {/* Cube 3 (Mid Top Left) */}
-        <div className="absolute top-[35%] left-[10%] w-16 h-16 md:w-20 md:h-20 opacity-[0.02] z-10">
-           <svg viewBox="0 0 100 100" className="w-full h-full text-[#3e2723]" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M50 15 L85 30 L50 45 L15 30 Z" />
-              <path d="M50 45 L85 30 L85 70 L50 85 Z" />
-              <path d="M15 30 L50 45 L50 85 L15 70 Z" />
-           </svg>
-        </div>
+        <div className="absolute inset-0 bg-[#fdfbf6]/20 z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(253,251,246,0.85)_0%,rgba(253,251,246,0.4)_50%,rgba(253,251,246,0.1)_100%)] z-10" />
       </motion.div>
 
       {/* Content */}
@@ -193,12 +135,12 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
         
         {/* Subtitle */}
         <motion.p 
-          className="text-xl md:text-3xl text-[#3e2723] max-w-2xl font-semibold mb-4 md:mb-6 tracking-wide drop-shadow-sm"
+          className="text-xl md:text-3xl text-[#3e2723] max-w-2xl font-medium mb-4 md:mb-6 tracking-wide drop-shadow-sm"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.6 }}
         >
-          מהמסך למציאות בעיצוב אישי
+          הופכים כל רעיון למוצר בהתאמה אישית
         </motion.p>
 
         {/* Premium Imagery Row */}
