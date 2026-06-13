@@ -108,7 +108,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
       <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 w-full flex-grow">
         {/* Logo Icon */}
         <motion.div 
-          className="relative w-40 h-40 md:w-56 md:h-56 mb-1 md:mb-0 flex items-center justify-center"
+          className="relative w-32 h-32 md:w-56 md:h-56 mb-1 md:mb-0 flex items-center justify-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
@@ -126,7 +126,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
 
         {/* Title */}
         <motion.h1 
-          className="text-6xl md:text-8xl font-black text-[#3e2723] mb-0 md:mb-1 tracking-tighter uppercase drop-shadow-[0_4px_8px_rgba(62,39,35,0.15)]"
+          className="text-5xl md:text-8xl font-black text-[#3e2723] mb-0 md:mb-1 tracking-tighter uppercase drop-shadow-[0_4px_8px_rgba(62,39,35,0.15)]"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.4 }}
@@ -136,7 +136,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
         
         {/* Subtitle */}
         <motion.p 
-          className="text-xl md:text-3xl text-[#3e2723] max-w-2xl font-medium mb-3 md:mb-4 tracking-wide drop-shadow-sm"
+          className="text-lg md:text-3xl text-[#3e2723] max-w-2xl font-medium mb-3 md:mb-4 tracking-wide drop-shadow-sm"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.6 }}
@@ -144,10 +144,10 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
           הופכים כל רעיון למוצר בהתאמה אישית
         </motion.p>
 
-        {/* Premium Imagery Row */}
+        {/* Desktop Premium Imagery Row */}
         {carouselImages.length >= 5 && (
           <motion.div
-            className="w-full max-w-full md:max-w-[1200px] lg:max-w-[1450px] mx-auto px-2 md:px-4 mt-6 md:mt-8"
+            className="hidden md:block w-full max-w-full md:max-w-[1200px] lg:max-w-[1450px] mx-auto px-2 md:px-4 mt-6 md:mt-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.8 }}
@@ -162,8 +162,34 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
               ].map((config, idx) => (
                 <PremiumFrame 
                   key={idx}
-                  className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.66rem)] md:w-[calc(20%-1rem)] lg:w-[calc(20%-1.2rem)] flex-grow-0 flex-shrink-0"
+                  className="w-[calc(20%-1rem)] lg:w-[calc(20%-1.2rem)] flex-grow-0 flex-shrink-0"
                   models={carouselImages.filter((_, i) => i % 5 === config.offset)} 
+                  intervalMs={config.delay} 
+                  onClick={(m) => onOpenDetails ? onOpenDetails(m) : scrollToCatalog()} 
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Mobile Grid (3 images) */}
+        {carouselImages.length >= 3 && (
+          <motion.div
+            className="flex md:hidden w-full max-w-[400px] mx-auto mt-4 px-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut', delay: 0.8 }}
+          >
+            <div className="flex flex-row gap-3 w-full justify-between items-center">
+              {[
+                { offset: 0, delay: 5000 },
+                { offset: 1, delay: 6500 },
+                { offset: 2, delay: 8000 },
+              ].map((config, idx) => (
+                <PremiumFrame 
+                  key={idx}
+                  className="flex-1 aspect-square w-[calc(33.333%-0.5rem)] shadow-sm"
+                  models={carouselImages.filter((_, i) => i % 3 === config.offset)} 
                   intervalMs={config.delay} 
                   onClick={(m) => onOpenDetails ? onOpenDetails(m) : scrollToCatalog()} 
                 />
@@ -176,7 +202,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
       {/* Scroll Down Indicator */}
       <motion.button 
         onClick={scrollToCatalog}
-        className="relative mt-8 md:mt-12 z-20 flex flex-col items-center justify-center text-[#3e2723] hover:text-blue-600 transition-colors cursor-pointer drop-shadow-md"
+        className="relative mt-4 md:mt-12 z-20 flex flex-col items-center justify-center text-[#3e2723] hover:text-blue-600 transition-colors cursor-pointer drop-shadow-md"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
