@@ -7,6 +7,130 @@ export const PRINT_FEE = 90.00;
 
 export const MODELS: Model3D[] = [
   {
+    id: 'custom-designed-netla',
+    name: 'נטלה מעוצבת בעיצוב אישי',
+    category: 'יודאיקה ולבית',
+    price: 59.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781375974/AFDC081C-32FA-40F2-8AA9-88DDBE45D529_yflvt6.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781377176/IMG_4192_cht4u5.png'
+    ],
+    description: 'נטלה (ספל נטילת ידיים) מעוצבת הניתנת להתאמה אישית מלאה. מודפסת בתלת-ממד ברמת גימור גבוהה, המשלבת מסורת עם חדשנות. ניתן לבחור צבעים ייחודיים ולהוסיף חריטת שם או הקדשה אישית.',
+    fileFormat: ['STL'],
+    vertices: '85k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PETG / PLA',
+    createdAt: new Date().toISOString().split('T')[0]
+  },
+  {
+    id: 'designed-key-hanger',
+    name: 'מתלה למפתחות מעוצב',
+    category: 'יודאיקה ולבית',
+    price: 79.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781375974/C60A01C5-8E6F-46FC-A649-508D729EEFEE_heyybb.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781377178/6BA7EA08-305C-429E-B8EA-9D8B7D546C11_dnikib.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781377178/temp_2_dniyom.png'
+    ],
+    description: 'מתלה מפתחות מעוצב לקיר, מודפס בתלת-ממד. משלב עיצוב מודרני ואלגנטי עם פונקציונליות מושלמת לסדר בכניסה לבית, לשמור על המפתחות מאורגנים ולהוסיף חן לקיר.',
+    fileFormat: ['STL'],
+    vertices: '60k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA / PETG',
+    createdAt: new Date().toISOString().split('T')[0]
+  },
+  {
+    id: 'dog-bowl-designed',
+    name: 'קערה מעוצבת לכלב',
+    category: 'בעלי חיים',
+    price: 79.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781375974/5422A719-8183-4B68-9624-8C3393B6BACD_dnc33z.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781377175/temp_aglsve.png'
+    ],
+    description: 'קערה מעוצבת לכלב מודפסת בתלת-ממד, המשלבת פונקציונליות עם מראה מודרני מיוחד. מותאמת לארוחות יומיומיות של חיית המחמד שלכם ומכניסה טאץ׳ עיצובי לבית.',
+    fileFormat: ['STL'],
+    vertices: '75k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PETG / PLA',
+    createdAt: new Date().toISOString().split('T')[0]
+  },
+  {
+    id: 'stone-pattern-planter',
+    name: 'אדנית לעציץ דגם אבן',
+    category: 'יודאיקה ולבית',
+    price: 69.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781375974/1E5D6775-9B4E-4BA7-8CDD-1D32161608E0_brf8or.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781377177/4E793025-4405-4E0C-9241-9952ED067259_qzruwn.png'
+    ],
+    description: 'אדנית לעציץ בעיצוב דמוי אבן טבעית מודפסת בתלת-ממד. שילוב מושלם של מראה כפרי ואותנטי עם טכנולוגיה מודרנית. מתאימה לשימוש פנים ומוסיפה טאץ\' עיצובי מיוחד לכל צמח.',
+    fileFormat: ['STL'],
+    vertices: '120k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA Marble / Stone',
+    createdAt: new Date().toISOString().split('T')[0]
+  },
+  {
+    id: 'home-stand-decorative',
+    name: 'מעמד HOME לבית',
+    category: 'יודאיקה ולבית',
+    price: 79.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781375990/5FBE3572-FA1A-412D-8E8F-C63AD0B86128_xgb1sl.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781377177/CAAB55DC-75C0-42B7-A651-70E3CC25ABEE_hx1zcu.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781377176/IMG_4180_c1rjxv.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781377178/IMG_4178_jzx5cx.jpg'
+    ],
+    description: 'מעמד דקורטיבי לבית בעיצוב המילה HOME, מודפס בתלת-ממד. פריט עיצוב נקי ומרשים שמתאים לכל קונסולה או מדף, ומוסיף חום ואווירה ביתית נעימה. מושלם כמתנה מקורית או לשדרוג העיצוב בבית.',
+    fileFormat: ['STL'],
+    vertices: '40k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA',
+    createdAt: new Date().toISOString().split('T')[0]
+  },
+  {
+    id: 'decorative-home-tray',
+    name: 'מגש דקורטיבי לבית',
+    category: 'יודאיקה ולבית',
+    price: 99.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781375974/D6C96A18-5368-4830-B563-3144937A221B_mfcrgi.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781377177/temp_3_mkgkow.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781377177/93CADD21-242B-4340-BBC4-755CBC26D474_prghoe.png'
+    ],
+    description: 'מגש דקורטיבי ויוקרתי מודפס בתלת-ממד. פריט עיצובי מרשים ופונקציונלי שיוסיף טאץ\' מודרני לחלל הבית. מושלם להגשה, לארגון פריטים על השולחן או כפריט נוי אלגנטי לעיצוב פנים.',
+    fileFormat: ['STL'],
+    vertices: '80k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA Silk / Marble',
+    createdAt: new Date().toISOString().split('T')[0]
+  },
+  {
     id: 'car-honeycomb-keychain',
     name: 'מחזיק מפתחות לרכב לכל סוגי הרכבים דגם כוורת',
     category: 'מוצרים לרכב',
