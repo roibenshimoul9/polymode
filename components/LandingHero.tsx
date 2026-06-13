@@ -81,7 +81,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
   };
 
   return (
-    <div className="relative w-full min-h-[85dvh] md:min-h-[100dvh] pt-8 pb-2 md:pb-12 overflow-hidden flex flex-col items-center justify-center bg-transparent">
+    <div className="relative w-full min-h-0 md:min-h-[100dvh] pt-28 md:pt-8 pb-8 md:pb-12 overflow-hidden flex flex-col items-center justify-start md:justify-center bg-transparent">
       {/* Background with Silk Texture Image */}
       <motion.div 
         style={{ 
