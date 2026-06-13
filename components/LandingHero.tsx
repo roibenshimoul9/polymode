@@ -3,7 +3,6 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { MODELS } from '../constants.ts';
 import { Model3D } from '../types.ts';
 
-const BACKGROUND_IMAGE = 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80';
 const carouselImages = MODELS.filter(m => m.images && m.images.length > 0);
 
 const PremiumFrame: React.FC<{
@@ -83,26 +82,83 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
 
   return (
     <div className="relative w-full min-h-[100dvh] pt-12 pb-32 overflow-hidden flex flex-col items-center justify-center bg-transparent">
-      {/* Background */}
+      {/* Background with Live Mesh Gradient */}
       <motion.div 
         style={{ 
           opacity: backgroundOpacity,
           willChange: 'opacity',
           transform: 'translate3d(0, 0, 0)'
         }} 
-        className="fixed inset-0 z-0 pointer-events-none"
+        className="fixed inset-0 z-0 pointer-events-none bg-[#fdfbf6] overflow-hidden"
       >
-        <motion.img
-          src={BACKGROUND_IMAGE}
-          alt="Background"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: 'easeInOut' }}
-        />
-        {/* Overlay to ensure text readability and maintain site's beige feel */}
-        <div className="absolute inset-0 bg-[#fcf8ee]/70 mix-blend-overlay z-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#fcf8ee]/90 via-[#fcf8ee]/60 to-[#fcf8ee] z-10" />
+        <style>{`
+          @keyframes mesh-blob-1 {
+            0%   { transform: translate(0px, 0px) scale(1); }
+            33%  { transform: translate(5vw, -5vh) scale(1.1); }
+            66%  { transform: translate(-3vw, 4vh) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+          }
+          @keyframes mesh-blob-2 {
+            0%   { transform: translate(0px, 0px) scale(1.1); }
+            33%  { transform: translate(-5vw, 6vh) scale(0.9); }
+            66%  { transform: translate(4vw, -4vh) scale(1.05); }
+            100% { transform: translate(0px, 0px) scale(1.1); }
+          }
+          @keyframes mesh-blob-3 {
+            0%   { transform: translate(0px, 0px) scale(0.9); }
+            33%  { transform: translate(4vw, 4vh) scale(1.1); }
+            66%  { transform: translate(-4vw, -3vh) scale(0.95); }
+            100% { transform: translate(0px, 0px) scale(0.9); }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .mesh-animate {
+              animation: none !important;
+              transform: none !important;
+            }
+          }
+          .mesh-blob-1 { animation: mesh-blob-1 25s infinite alternate ease-in-out; }
+          .mesh-blob-2 { animation: mesh-blob-2 28s infinite alternate-reverse ease-in-out; }
+          .mesh-blob-3 { animation: mesh-blob-3 22s infinite alternate ease-in-out; }
+        `}</style>
+        
+        {/* Animated Mesh Blobs */}
+        {/* Subtle Blue */}
+        <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] md:w-[40vw] md:h-[40vw] rounded-full bg-blue-300/40 mix-blend-multiply blur-[100px] md:blur-[140px] mesh-animate mesh-blob-1 opacity-70" />
+        {/* Warm Golden-Brown */}
+        <div className="absolute bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] md:w-[50vw] md:h-[50vw] rounded-full bg-[#d7ccc8]/60 mix-blend-multiply blur-[100px] md:blur-[150px] mesh-animate mesh-blob-2 opacity-80" />
+        {/* Soft Peach/Pink touch */}
+        <div className="absolute top-[20%] right-[-20%] w-[50vw] h-[50vw] md:w-[35vw] md:h-[35vw] rounded-full bg-rose-200/40 mix-blend-multiply blur-[90px] md:blur-[130px] mesh-animate mesh-blob-3 opacity-60" />
+        {/* Secondary Base adjustment blob */}
+        <div className="absolute bottom-[-10%] left-[10%] w-[55vw] h-[55vw] md:w-[30vw] md:h-[30vw] rounded-full bg-[#f5ede0]/80 mix-blend-multiply blur-[100px] md:blur-[120px] mesh-animate mesh-blob-1 opacity-70" style={{ animationDelay: '-10s' }} />
+
+        {/* Center Light mask for solid text readability */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(253,251,246,0.6)_0%,rgba(253,251,246,0)_70%)] z-10" />
+
+        {/* 3D Wireframe Cubes */}
+        {/* Cube 1 (Top Right) */}
+        <div className="absolute top-[15%] right-[5%] w-24 h-24 md:w-40 md:h-40 opacity-[0.04] z-10">
+           <svg viewBox="0 0 100 100" className="w-full h-full text-[#3e2723]" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M50 15 L85 30 L50 45 L15 30 Z" />
+              <path d="M50 45 L85 30 L85 70 L50 85 Z" />
+              <path d="M15 30 L50 45 L50 85 L15 70 Z" />
+           </svg>
+        </div>
+        {/* Cube 2 (Bottom Left) */}
+        <div className="absolute bottom-[25%] left-[5%] w-32 h-32 md:w-48 md:h-48 opacity-[0.03] z-10">
+           <svg viewBox="0 0 100 100" className="w-full h-full text-[#3e2723]" fill="none" stroke="currentColor" strokeWidth="1">
+              <path d="M50 15 L85 30 L50 45 L15 30 Z" />
+              <path d="M50 45 L85 30 L85 70 L50 85 Z" />
+              <path d="M15 30 L50 45 L50 85 L15 70 Z" />
+           </svg>
+        </div>
+        {/* Cube 3 (Mid Top Left) */}
+        <div className="absolute top-[35%] left-[10%] w-16 h-16 md:w-20 md:h-20 opacity-[0.02] z-10">
+           <svg viewBox="0 0 100 100" className="w-full h-full text-[#3e2723]" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M50 15 L85 30 L50 45 L15 30 Z" />
+              <path d="M50 45 L85 30 L85 70 L50 85 Z" />
+              <path d="M15 30 L50 45 L50 85 L15 70 Z" />
+           </svg>
+        </div>
       </motion.div>
 
       {/* Content */}
@@ -127,7 +183,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
 
         {/* Title */}
         <motion.h1 
-          className="text-6xl md:text-8xl font-black text-[#3e2723] mb-0 md:mb-1 tracking-tighter uppercase"
+          className="text-6xl md:text-8xl font-black text-[#3e2723] mb-0 md:mb-1 tracking-tighter uppercase drop-shadow-[0_4px_8px_rgba(62,39,35,0.15)]"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.4 }}
@@ -137,7 +193,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
         
         {/* Subtitle */}
         <motion.p 
-          className="text-xl md:text-3xl text-[#5d4037] max-w-2xl font-light mb-4 md:mb-6 tracking-wide"
+          className="text-xl md:text-3xl text-[#3e2723] max-w-2xl font-semibold mb-4 md:mb-6 tracking-wide drop-shadow-sm"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.6 }}
@@ -182,21 +238,21 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
       {/* Scroll Down Indicator */}
       <motion.button 
         onClick={scrollToCatalog}
-        className="absolute bottom-12 z-20 flex flex-col items-center justify-center text-[#5d4037] hover:text-[#3e2723] transition-colors cursor-pointer"
+        className="absolute bottom-12 z-20 flex flex-col items-center justify-center text-[#3e2723] hover:text-blue-600 transition-colors cursor-pointer drop-shadow-md"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
       >
-        <span className="text-sm tracking-widest uppercase font-bold mb-3">למעבר לקטלוג</span>
+        <span className="text-sm md:text-base tracking-widest uppercase font-black mb-3">למעבר לקטלוג</span>
         <motion.svg 
-          className="w-8 h-8" 
+          className="w-8 h-8 md:w-10 md:h-10" 
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </motion.svg>
       </motion.button>
     </div>

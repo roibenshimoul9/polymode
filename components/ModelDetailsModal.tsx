@@ -190,22 +190,21 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
                 </button>
               ) : (
                 <>
-                  <button 
-                    onClick={handleDigitalContact}
-                    className="w-full bg-white/60 hover:bg-white border border-[#3e2723]/10 py-4 rounded-xl font-black text-[#5d4037] transition-all active:scale-[0.98] text-base shadow-sm"
-                  >
-                    לרכישת קובץ דיגיטלי (וואטסאפ)
-                  </button>
-                  
                   {model.isPrintReady && (
                     <button 
                       onClick={() => onAddToCart(model, 'פיזי')}
-                      className="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-black text-white transition-all active:scale-[0.98] text-base flex items-center justify-center gap-2 shadow-md"
+                      className="w-full bg-[#3e2723] hover:bg-[#5d4037] py-4 rounded-xl font-black text-[#f4ebd0] transition-all active:scale-[0.98] text-base flex items-center justify-center gap-2 shadow-md"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" strokeWidth="2"/></svg>
                       הזמנת הדפסה פיזית
                     </button>
                   )}
+                  <button 
+                    onClick={handleDigitalContact}
+                    className="w-full bg-transparent border border-[#3e2723]/30 hover:border-[#3e2723]/60 hover:bg-[#3e2723]/5 py-3.5 rounded-xl font-bold text-[#5d4037] transition-all active:scale-[0.98] text-sm"
+                  >
+                    לרכישת קובץ דיגיטלי (וואטסאפ)
+                  </button>
                 </>
               )}
             </div>

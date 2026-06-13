@@ -210,28 +210,28 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
               </button>
             ) : (
               <>
-                <button 
-                  onClick={handleDigitalContact}
-                  className={`w-full py-1.5 md:py-2.5 border rounded-lg md:rounded-xl text-[9px] md:text-xs font-bold transition-all flex items-center justify-center gap-1 active:scale-95 ${
-                    isLight 
-                      ? 'bg-[#3e2723]/5 hover:bg-[#3e2723]/10 border-[#3e2723]/20 text-[#5d4037]' 
-                      : 'bg-white/5 hover:bg-white/10 border-white/10 text-gray-300'
-                  }`}
-                >
-                  לרכישת קובץ דיגיטלי
-                </button>
                 {model.isPrintReady && (
                   <button 
                     onClick={(e) => handleAddToCart(e, 'פיזי')}
                     className={`w-full py-1.5 md:py-2.5 rounded-lg md:rounded-xl text-[9px] md:text-xs font-bold transition-all flex items-center justify-center gap-1 shadow-md active:scale-95 ${
                       isLight 
                         ? 'bg-[#3e2723] hover:bg-[#5d4037] text-[#f4ebd0]' 
-                        : 'bg-blue-600 hover:bg-blue-500 text-white'
+                        : 'bg-[#3e2723] hover:bg-[#5d4037] text-white'
                     }`}
                   >
                     הזמנה פיזית (הדפסה)
                   </button>
                 )}
+                <button 
+                  onClick={handleDigitalContact}
+                  className={`w-full py-1.5 md:py-2.5 bg-transparent border rounded-lg md:rounded-xl text-[9px] md:text-xs font-bold transition-all flex items-center justify-center gap-1 active:scale-95 ${
+                    isLight 
+                      ? 'border-[#3e2723]/30 text-[#3e2723] hover:bg-[#3e2723]/5 hover:border-[#3e2723]/60' 
+                      : 'border-white/20 text-gray-300 hover:bg-white/5 hover:border-white/40'
+                  }`}
+                >
+                  לרכישת קובץ דיגיטלי
+                </button>
               </>
             )}
           </div>
