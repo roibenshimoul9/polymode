@@ -42,7 +42,7 @@ const Catalog: React.FC<{
   return (
   <>
     {/* New Landing Hero Section */}
-    <LandingHero />
+    <LandingHero onOpenDetails={onOpenDetails} />
 
     <div id="catalog-section" className="scroll-mt-[73px]"></div>
 

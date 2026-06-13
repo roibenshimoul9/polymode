@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Model3D, PurchaseType } from '../types';
 import { PRINT_FEE } from '../constants';
+import ProductPrice from './ProductPrice.tsx';
 
 interface ModelCardProps {
   model: Model3D;
@@ -144,6 +145,26 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
             )}
           </div>
         </div>
+
+        {/* Feature Tags (Bottom Right) */}
+        <div className="absolute bottom-2 right-2 z-20 flex gap-1.5 pointer-events-auto">
+          <div 
+            className="w-6 h-6 rounded-full bg-white/90 backdrop-blur shadow-sm ring-1 ring-black/10 hover:scale-110 transition-transform cursor-help flex items-center justify-center"
+            title="ניתן להתאמה אישית של צבע"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="w-3.5 h-3.5 rounded-full bg-[conic-gradient(red,orange,yellow,green,blue,purple,red)]" />
+          </div>
+          <div 
+            className="w-6 h-6 rounded-full bg-white/90 backdrop-blur shadow-sm ring-1 ring-black/10 hover:scale-110 transition-transform cursor-help flex items-center justify-center"
+            title="זמין במגוון גדלים"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <svg className="w-3.5 h-3.5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+            </svg>
+          </div>
+        </div>
       </div>
 
       <div className="p-3 md:p-4 flex-grow flex flex-col text-right">
@@ -163,12 +184,14 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
               <span className={`text-[10px] md:text-sm font-bold ${isLight ? 'text-[#5d4037]' : 'text-cyan-400'}`}>להצעת מחיר צרו קשר</span>
             ) : (
               <>
-                <div className="flex items-baseline gap-1 md:gap-2 justify-end">
-                  <span className={`text-xs md:text-lg font-bold ${isLight ? 'text-[#3e2723]' : 'text-white'}`}>₪{physicalPrice.toFixed(0)}</span>
-                  {originalPhysicalPrice && (
-                    <span className={`text-[8px] md:text-xs line-through ${isLight ? 'text-[#8d6e63]' : 'text-gray-600'}`}>₪{originalPhysicalPrice.toFixed(0)}</span>
-                  )}
-                </div>
+                <ProductPrice 
+                  price={physicalPrice} 
+                  originalPrice={originalPhysicalPrice}
+                  containerClassName="flex items-baseline gap-1 md:gap-2 justify-end"
+                  priceClassName={`text-xs md:text-lg font-bold ${isLight ? 'text-[#3e2723]' : 'text-white'}`}
+                  originalPriceClassName={`text-[8px] md:text-xs line-through ${isLight ? 'text-[#8d6e63]' : 'text-gray-600'}`}
+                  prefixClassName={`text-[10px] md:text-xs ${isLight ? 'text-[#8d6e63]' : 'text-gray-400'}`}
+                />
                 <span className={`text-[7px] md:text-[9px] font-medium ${isLight ? 'text-[#8d6e63]' : 'text-gray-500'}`}>מחיר להזמנה פיזית</span>
               </>
             )}

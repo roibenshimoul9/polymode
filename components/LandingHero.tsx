@@ -1,9 +1,59 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
+import { MODELS } from '../constants.ts';
+import { Model3D } from '../types.ts';
 
 const BACKGROUND_IMAGE = 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80';
+const carouselImages = MODELS.filter(m => m.images && m.images.length > 0);
 
-const LandingHero: React.FC = () => {
+const PremiumFrame: React.FC<{
+  models: Model3D[]; 
+  intervalMs: number; 
+  className?: string;
+  onClick: (m: Model3D) => void;
+}> = ({ models, intervalMs, className, onClick }) => {
+  const [index, setIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    if (models.length <= 1) return;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mediaQuery.matches) return;
+
+    const interval = setInterval(() => {
+      setIndex((i) => (i + 1) % models.length);
+    }, intervalMs);
+    return () => clearInterval(interval);
+  }, [intervalMs, models.length]);
+
+  if (models.length === 0) return null;
+
+  return (
+    <div 
+      className={`relative w-full aspect-square rounded-xl md:rounded-[14px] shadow-[0_10px_30px_-15px_rgba(0,0,0,0.15)] border border-[#3e2723]/5 overflow-hidden bg-[#fcf8ee]/50 cursor-pointer transition-transform hover:scale-[1.03] duration-500 ease-out will-change-transform ${className || ''}`}
+      onClick={() => onClick(models[index])}
+    >
+      <div className="absolute inset-0 bg-[#fcf8ee]">
+        {models.map((model, i) => (
+          <img
+            key={`${model.id}-${i}`}
+            src={model.images[0]}
+            alt={model.name}
+            loading="lazy"
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out will-change-opacity ${
+              i === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+interface LandingHeroProps {
+  onOpenDetails?: (m: Model3D) => void;
+}
+
+const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
   const { scrollY } = useScroll();
   const backgroundOpacity = useTransform(scrollY, [0, 800], [1, 0]);
 
@@ -15,7 +65,7 @@ const LandingHero: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden flex flex-col items-center justify-center bg-transparent">
+    <div className="relative w-full min-h-[100dvh] pt-12 pb-32 overflow-hidden flex flex-col items-center justify-center bg-transparent">
       {/* Background */}
       <motion.div 
         style={{ 
@@ -39,10 +89,10 @@ const LandingHero: React.FC = () => {
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 w-full h-full mt-[-50px]">
+      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 w-full h-full mt-[-20px]">
         {/* Logo Icon */}
         <motion.div 
-          className="relative w-40 h-40 md:w-56 md:h-56 mb-8 flex items-center justify-center"
+          className="relative w-40 h-40 md:w-56 md:h-56 mb-1 md:mb-0 flex items-center justify-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
@@ -60,7 +110,7 @@ const LandingHero: React.FC = () => {
 
         {/* Title */}
         <motion.h1 
-          className="text-6xl md:text-8xl font-black text-[#3e2723] mb-4 tracking-tighter uppercase"
+          className="text-6xl md:text-8xl font-black text-[#3e2723] mb-0 md:mb-1 tracking-tighter uppercase"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.4 }}
@@ -70,13 +120,46 @@ const LandingHero: React.FC = () => {
         
         {/* Subtitle */}
         <motion.p 
-          className="text-xl md:text-3xl text-[#5d4037] max-w-2xl font-light mb-16 tracking-wide"
+          className="text-xl md:text-3xl text-[#5d4037] max-w-2xl font-light mb-4 md:mb-6 tracking-wide"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.6 }}
         >
           מהמסך למציאות בעיצוב אישי
         </motion.p>
+
+        {/* Premium Imagery Row */}
+        {carouselImages.length >= 4 && (
+          <motion.div
+            className="w-full max-w-[1020px] mx-auto px-4 mt-8 md:mt-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut', delay: 0.8 }}
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-[14px] w-full">
+              <PremiumFrame 
+                models={carouselImages.filter((_, i) => i % 4 === 0)} 
+                intervalMs={5000} 
+                onClick={(m) => onOpenDetails ? onOpenDetails(m) : scrollToCatalog()} 
+              />
+              <PremiumFrame 
+                models={carouselImages.filter((_, i) => i % 4 === 1)} 
+                intervalMs={6200} 
+                onClick={(m) => onOpenDetails ? onOpenDetails(m) : scrollToCatalog()} 
+              />
+              <PremiumFrame 
+                models={carouselImages.filter((_, i) => i % 4 === 2)} 
+                intervalMs={7400} 
+                onClick={(m) => onOpenDetails ? onOpenDetails(m) : scrollToCatalog()} 
+              />
+              <PremiumFrame 
+                models={carouselImages.filter((_, i) => i % 4 === 3)} 
+                intervalMs={8100} 
+                onClick={(m) => onOpenDetails ? onOpenDetails(m) : scrollToCatalog()} 
+              />
+            </div>
+          </motion.div>
+        )}
       </div>
 
       {/* Scroll Down Indicator */}

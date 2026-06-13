@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Model3D, PurchaseType } from '../types';
 import { PRINT_FEE } from '../constants';
+import ProductPrice from './ProductPrice.tsx';
 
 interface ModelDetailsModalProps {
   model: Model3D | null;
@@ -164,12 +165,14 @@ const ModelDetailsModal: React.FC<ModelDetailsModalProps> = ({ model, onClose, o
                   <span className="text-2xl font-black text-blue-600">להצעת מחיר צרו קשר</span>
                 ) : (
                   <>
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-black text-[#3e2723]">₪{physicalPrice.toFixed(0)}</span>
-                      {originalPhysicalPrice && (
-                        <span className="text-sm text-[#8d6e63] line-through">₪{originalPhysicalPrice.toFixed(0)}</span>
-                      )}
-                    </div>
+                    <ProductPrice 
+                      price={physicalPrice} 
+                      originalPrice={originalPhysicalPrice}
+                      containerClassName="flex items-baseline gap-2"
+                      priceClassName="text-3xl font-black text-[#3e2723]"
+                      originalPriceClassName="text-sm text-[#8d6e63] line-through"
+                      prefixClassName="text-sm text-[#8d6e63]"
+                    />
                     <span className="text-[10px] text-[#8d6e63] font-bold uppercase tracking-wider">מחיר להזמנה פיזית (הדפסה)</span>
                   </>
                 )}
