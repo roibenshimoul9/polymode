@@ -23,11 +23,11 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onAddToCart, onOpenDetails
   const physicalPrice = model.price > 0 ? model.price + effectivePrintFee : 0;
   const originalPhysicalPrice = model.originalPrice ? model.originalPrice + effectivePrintFee : null;
 
-  // Logic for "New" label (within 14 days)
+  // Logic for "New" label (within 7 days)
   const createdDate = new Date(model.createdAt);
-  const now = new Date();
-  const diffInDays = Math.ceil(Math.abs(now.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
-  const isNew = diffInDays <= 14;
+  const diffTime = Date.now() - createdDate.getTime();
+  const diffInDays = diffTime / (1000 * 60 * 60 * 24);
+  const isNew = diffInDays >= 0 && diffInDays <= 7;
 
   const nextImg = (e: React.MouseEvent) => {
     e.stopPropagation();

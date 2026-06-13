@@ -53,7 +53,18 @@ const Navbar: React.FC<NavbarProps> = ({ onCartToggle, cartCount }) => {
         </Link>
 
         <div className="hidden md:flex space-x-8 space-x-reverse text-sm font-bold text-[#5d4037]">
-          <Link to="/" className="hover:text-blue-600 transition-colors uppercase tracking-widest">חנות</Link>
+          <a 
+            href="/#catalog-section"
+            onClick={(e) => {
+              if (window.location.pathname === '/') {
+                e.preventDefault();
+                document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="hover:text-blue-600 transition-colors uppercase tracking-widest cursor-pointer"
+          >
+            קטלוג
+          </a>
           <Link to="/guide" className="hover:text-blue-600 transition-colors uppercase tracking-widest">מדריך הדפסה</Link>
           <Link to="/specials" className="hover:text-blue-600 transition-colors uppercase tracking-widest text-red-500/80">מבצעים</Link>
           <a 

@@ -45,6 +45,23 @@ const PremiumFrame: React.FC<{
           />
         ))}
       </div>
+      
+      {/* Indicator dots */}
+      <div className="absolute bottom-2 md:bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 pointer-events-auto">
+        {models.map((_, i) => (
+          <button
+            key={i}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIndex(i);
+            }}
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+              i === index ? 'bg-white scale-125 opacity-100' : 'bg-white/40 hover:bg-white/70 opacity-60'
+            }`}
+            aria-label={`Go to image ${i + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 };
@@ -131,7 +148,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
         {/* Premium Imagery Row */}
         {carouselImages.length >= 4 && (
           <motion.div
-            className="w-full max-w-[1020px] mx-auto px-4 mt-8 md:mt-12"
+            className="w-full max-w-full md:max-w-[1240px] mx-auto px-4 mt-8 md:mt-12"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.8 }}

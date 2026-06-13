@@ -69,10 +69,16 @@ const LicensesPage: React.FC = () => {
 
       <footer className="mt-20 text-center">
         <button 
-          onClick={() => window.history.back()}
+          onClick={() => {
+            if (window.location.pathname === '/') {
+              window.history.back();
+            } else {
+              window.location.href = '/#catalog-section';
+            }
+          }}
           className="bg-blue-600 text-white px-12 py-4 rounded-2xl font-black hover:bg-blue-500 transition-all transform active:scale-95 shadow-md"
         >
-          חזרה לחנות
+          חזרה לקטלוג
         </button>
       </footer>
     </div>

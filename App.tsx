@@ -89,7 +89,7 @@ const Catalog: React.FC<{
         </div>
 
         {/* Category Row */}
-        <div className="overflow-x-auto no-scrollbar flex items-center justify-start space-x-2 space-x-reverse pb-1">
+        <div className="overflow-x-auto no-scrollbar flex items-center justify-start space-x-2 space-x-reverse py-6 -my-6 px-1 -mx-1">
           {CATEGORIES.map(cat => (
             <button
               key={cat}
@@ -100,13 +100,18 @@ const Catalog: React.FC<{
                   setSelectedCategory(cat);
                 }
               }}
-              className={`whitespace-nowrap px-4 md:px-6 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all ${
+              className={`relative whitespace-nowrap px-4 md:px-6 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all ${
                 selectedCategory === cat 
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' 
-                  : 'bg-[#3e2723]/5 text-[#5d4037] hover:bg-[#3e2723]/10 hover:text-[#3e2723]'
+                  ? `bg-blue-600 text-white ${cat === 'יודאיקה ולבית' ? 'shadow-[0_4px_15px_rgba(37,99,235,0.4),0_0_12px_2px_rgba(37,99,235,0.5)]' : 'shadow-lg shadow-blue-600/30'}` 
+                  : `bg-[#3e2723]/5 text-[#5d4037] hover:bg-[#3e2723]/10 hover:text-[#3e2723] ${cat === 'יודאיקה ולבית' ? 'shadow-[0_0_12px_2px_rgba(37,99,235,0.4)]' : ''}`
               }`}
             >
               {cat}
+              {cat === 'יודאיקה ולבית' && (
+                <span className="absolute -top-2.5 rtl:-left-2 ltr:-right-2 bg-gradient-to-tr from-yellow-500 to-yellow-400 text-white text-[8px] md:text-[9px] font-black px-1.5 md:px-2 py-0.5 rounded-full shadow-md z-10 whitespace-nowrap">
+                  פופולרי
+                </span>
+              )}
             </button>
           ))}
         </div>

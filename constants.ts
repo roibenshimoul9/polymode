@@ -3,12 +3,7 @@ import { Model3D } from './types';
 
 export const PRINT_FEE = 90.00;
 
-// Helper to set dates relative to now for demo purposes
-const daysAgo = (days: number) => {
-  const date = new Date();
-  date.setDate(date.getDate() - days);
-  return date.toISOString().split('T')[0];
-};
+// Removed daysAgo helper since we use static dates now
 
 export const MODELS: Model3D[] = [
   {
@@ -29,7 +24,7 @@ export const MODELS: Model3D[] = [
     isOnSale: false,
     isPrintReady: true,
     recommendedMaterial: 'PETG / PLA Silk',
-    createdAt: daysAgo(0)
+    createdAt: '2026-06-01'
   },
   {
     id: 'car-spinner-keychain',
@@ -48,7 +43,7 @@ export const MODELS: Model3D[] = [
     isOnSale: false,
     isPrintReady: true,
     recommendedMaterial: 'PLA Silk / PETG (עמיד וחזק)',
-    createdAt: daysAgo(0)
+    createdAt: '2026-06-01'
   },
   {
     id: 'netanyahu-crown-statue',
@@ -69,7 +64,7 @@ export const MODELS: Model3D[] = [
     isOnSale: false,
     isPrintReady: true,
     recommendedMaterial: 'Silk Gold (משי זהב) / Marble PLA',
-    createdAt: daysAgo(0)
+    createdAt: '2026-06-01'
   },
   {
     id: 'ps5-wall-mount',
@@ -88,7 +83,7 @@ export const MODELS: Model3D[] = [
     isOnSale: false,
     isPrintReady: true,
     recommendedMaterial: 'PETG / PLA+ (לחוסן מבני)',
-    createdAt: daysAgo(0)
+    createdAt: '2026-06-01'
   },
   {
     id: 'dog-leash-rack-custom',
@@ -107,7 +102,7 @@ export const MODELS: Model3D[] = [
     isOnSale: false,
     isPrintReady: true,
     recommendedMaterial: 'PLA Silk / PETG',
-    createdAt: daysAgo(1) // נוסף אתמול
+    createdAt: '2026-05-30' // נוסף אתמול
   },
   {
     id: 'home-door-sign-judaica',
@@ -127,7 +122,7 @@ export const MODELS: Model3D[] = [
     isOnSale: false,
     isPrintReady: true,
     recommendedMaterial: 'PLA Silk / Marble',
-    createdAt: daysAgo(2) // נוסף לפני יומיים
+    createdAt: '2026-05-29' // נוסף לפני יומיים
   },
   {
     id: 'hamsa-set-premium',
@@ -147,7 +142,7 @@ export const MODELS: Model3D[] = [
     isOnSale: false,
     isPrintReady: true,
     recommendedMaterial: 'Silk Gold / Marble PLA / Wood PLA',
-    createdAt: daysAgo(4) // נוסף לפני 4 ימים
+    createdAt: '2026-05-27' // נוסף לפני 4 ימים
   },
   {
     id: 'b2-bomber-plane',
