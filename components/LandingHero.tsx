@@ -93,9 +93,10 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
       >
         {/* Blurred Silk Background */}
         <div 
-          className="absolute -inset-4 bg-cover bg-center bg-no-repeat blur-[5px]"
+          className="absolute -inset-4 bg-cover bg-no-repeat blur-[5px]"
           style={{ 
             backgroundImage: `url('https://res.cloudinary.com/djv6v984k/image/upload/v1781372874/EE216FEA-E066-4C7F-AD13-5E1FCEEF0FEC_q71hxp.png')`,
+            backgroundPosition: '30% 45%', // Shifted to balance the texture distribution
           }}
         />
         {/* Center Light mask for solid text readability */}
@@ -144,34 +145,29 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onOpenDetails }) => {
         </motion.p>
 
         {/* Premium Imagery Row */}
-        {carouselImages.length >= 4 && (
+        {carouselImages.length >= 5 && (
           <motion.div
-            className="w-full max-w-full md:max-w-[1240px] mx-auto px-4 mt-8 md:mt-12"
+            className="w-full max-w-full md:max-w-[1500px] lg:max-w-[1800px] mx-auto px-2 md:px-4 mt-8 md:mt-12"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.8 }}
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-[14px] w-full">
-              <PremiumFrame 
-                models={carouselImages.filter((_, i) => i % 4 === 0)} 
-                intervalMs={5000} 
-                onClick={(m) => onOpenDetails ? onOpenDetails(m) : scrollToCatalog()} 
-              />
-              <PremiumFrame 
-                models={carouselImages.filter((_, i) => i % 4 === 1)} 
-                intervalMs={6200} 
-                onClick={(m) => onOpenDetails ? onOpenDetails(m) : scrollToCatalog()} 
-              />
-              <PremiumFrame 
-                models={carouselImages.filter((_, i) => i % 4 === 2)} 
-                intervalMs={7400} 
-                onClick={(m) => onOpenDetails ? onOpenDetails(m) : scrollToCatalog()} 
-              />
-              <PremiumFrame 
-                models={carouselImages.filter((_, i) => i % 4 === 3)} 
-                intervalMs={8100} 
-                onClick={(m) => onOpenDetails ? onOpenDetails(m) : scrollToCatalog()} 
-              />
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4 lg:gap-[14px] w-full">
+              {[
+                { offset: 0, delay: 5000 },
+                { offset: 1, delay: 6200 },
+                { offset: 2, delay: 7400 },
+                { offset: 3, delay: 8100 },
+                { offset: 4, delay: 9000 },
+              ].map((config, idx) => (
+                <PremiumFrame 
+                  key={idx}
+                  className="w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.5rem)] md:w-[calc(20%-0.7rem)] flex-grow-0 flex-shrink-0"
+                  models={carouselImages.filter((_, i) => i % 5 === config.offset)} 
+                  intervalMs={config.delay} 
+                  onClick={(m) => onOpenDetails ? onOpenDetails(m) : scrollToCatalog()} 
+                />
+              ))}
             </div>
           </motion.div>
         )}
