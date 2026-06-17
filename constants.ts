@@ -7,6 +7,26 @@ export const PRINT_FEE = 90.00;
 
 export const MODELS: Model3D[] = [
   {
+    id: 'custom-designed-mezuzah',
+    name: 'מזוזה בעיצוב אישי',
+    category: 'יודאיקה ולבית',
+    price: 59.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781729154/1E19CBAB-A315-4C2D-AF1C-0D585347798F_zy1gsr.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1781729153/8FD80AEB-A37D-44DD-9258-39D1CD9C5D9F_lkglji.png'
+    ],
+    description: 'בית מזוזה מעוצב בעיצוב מודרני ואלגנטי, הניתן להתאמה אישית מלאה. מודפס בתלת-ממד ברמת גימור יוצאת דופן. המזוזה משלבת הידור ומסורת עם מראה נקי המעניק סגנון ייחודי לכל פתח וכניסה.',
+    fileFormat: ['STL'],
+    vertices: '55k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA Silk / PETG',
+    createdAt: new Date().toISOString().split('T')[0]
+  },
+  {
     id: 'custom-designed-netla',
     name: 'נטלה מעוצבת בעיצוב אישי',
     category: 'יודאיקה ולבית',
