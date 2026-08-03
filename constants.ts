@@ -7,6 +7,28 @@ export const PRINT_FEE = 90.00;
 
 export const MODELS: Model3D[] = [
   {
+    id: 'personal-memorial-candle',
+    name: 'נר זיכרון אישי',
+    category: 'יודאיקה ולבית',
+    price: 119.00,
+    printFee: 0.00,
+    rating: 5.0,
+    reviewsCount: 0,
+    images: [
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1785790851/e8598770-cd40-463e-9441-6a25f3cf1fa4_id7x77.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1785790850/ChatGPT_Image_Aug_3_2026_10_55_33_PM_got2dh.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1785790850/ChatGPT_Image_Aug_3_2026_08_41_48_PM_dj6yvu.png',
+      'https://res.cloudinary.com/djv6v984k/image/upload/v1785790849/ChatGPT_Image_Aug_3_2026_08_39_05_PM_hxc98n.png'
+    ],
+    description: 'נר זיכרון אישי מעוצב ומרגש, מודפס בתלת-ממד בגימור איכותי. הפריט כולל נר חשמלי בטיחותי ומהודר המפיץ אור חם ומנחם, ויוצר פינת הנצחה מרגשת, מכבדת וייחודית בביתכם.',
+    fileFormat: ['STL'],
+    vertices: '70k',
+    isOnSale: false,
+    isPrintReady: true,
+    recommendedMaterial: 'PLA / PETG',
+    createdAt: new Date().toISOString().split('T')[0]
+  },
+  {
     id: 'custom-designed-mezuzah',
     name: 'מזוזה בעיצוב אישי',
     category: 'יודאיקה ולבית',
