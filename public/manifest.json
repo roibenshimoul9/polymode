@@ -1,0 +1,38 @@
+{
+  "id": "/",
+  "name": "POLYMODE — הדפסות תלת-ממד בעיצוב אישי",
+  "short_name": "POLYMODE",
+  "description": "הדפסות תלת-ממד בעיצוב אישי. זירת המסחר המקצועית בישראל לנכסי תלת-ממד פרימיום ושירותי הדפסה איכותיים.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

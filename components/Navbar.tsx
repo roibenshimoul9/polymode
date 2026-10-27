@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface NavbarProps {
   onCartToggle: () => void;
@@ -76,7 +77,8 @@ const Navbar: React.FC<NavbarProps> = ({ onCartToggle, cartCount }) => {
           </a>
         </div>
 
-        <div className="flex items-center space-x-6 space-x-reverse">
+        <div className="flex items-center space-x-4 space-x-reverse">
+          <PWAInstallButton />
           <button 
             onClick={onCartToggle}
             className="relative p-2 text-[#5d4037] hover:text-[#3e2723] transition-colors"

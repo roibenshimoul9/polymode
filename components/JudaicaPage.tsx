@@ -61,7 +61,7 @@ const JudaicaPage: React.FC<JudaicaPageProps> = ({ onAddToCart, onOpenDetails })
           className="text-7xl md:text-9xl font-black mb-6 tracking-tighter bg-clip-text text-transparent bg-gradient-to-l from-[#3e2723] via-[#8d6e63] to-[#3e2723] drop-shadow-sm"
           style={{ fontFamily: "'Assistant', sans-serif" }}
         >
-          אור החיים
+          אור בראשית
         </motion.h1>
         
         <motion.div 
